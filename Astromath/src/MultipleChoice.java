@@ -11,25 +11,29 @@ public class MultipleChoice extends Question{
 		super(question, numQuestions, answer);
 		
 		
+		
+		
 	}
-
-	public static int[] genAddSub(int min, int max) {
+    // method to make an addition or subtraction equation. It will return the full equation broken into 4 parts.
+	// The First number, the operand, the Second number, and the answer in an array for easy UI usability.
+	public static int[] generateAddSub(int min, int max) {
 
 		int operand = rand.nextInt(1); //next number 0 or 1
 
 		int maxNum= 20;
 		int halfNum = maxNum/2;
-		int floor = 5;
-		int[] answerKey = new int[4];
+		int floor = 3;
 		int[] equation = new int[5];
 		
-		//add a floor if you want to increase the base of the random
+		//add a floor if you want to increase the lower limit of the random question
+		
 		int firstNum = rand.nextInt(halfNum+floor);
 		int secondNum = rand.nextInt(halfNum+floor);
 		int transitionNum;
 		answer = firstNum + halfNum;
 
-		//while loop to continuously generate new numbers in the event that the random numbers are larger than halfNum, or the total is greater than maxNum
+		/*while loop to continuously generate new numbers in the event that the random numbers are larger than halfNum
+		 */
 
 		while(firstNum + secondNum > maxNum){
 		firstNum = rand.nextInt(halfNum);
@@ -64,32 +68,27 @@ public class MultipleChoice extends Question{
 		equation[3] = answer;
 		
 		
-		generateQ(answer, numOfQuestions);
-		for(i = 0; i < numOfQuestions; i++) {
-			answerKey[i] = generateQ;
-		}
-
+	
 		return equation;
-				
-		}
 	
-	
-		//Add Division Multiplication Method here vvvvvv
-	
-	
-	
-	
+	}
 
 
-		//method for generating the multiple choice questions, call this in the above method
+		/*method for generating the multiple choice questions, call this in the above method
+		*Cast this to an int array to use outside of this class */
 		public static int[] generateQ(int answer, int numOfQuestions){
 
 		int[] answers = new int[numOfQuestions];
 		int spread = rand.nextInt(5);
 		int operand = rand.nextInt(1);
 		int multChoiceAnswer = rand.nextInt(numOfQuestions);
+		
+		//Check to make sure the answer is larger than the spread to prevent variance issues(If answer = 2, spread = 5, -3 may be an option)
+		if(spread > answer) {
+			spread = answer - 1;
+		}
 
-		//generate 3 random answers for multiple choice within +-5 of the actual answer
+		//generate 3 random answers for multiple choice within +- the spread of the answer
 		for(int i = 0; i < numOfQuestions; i++){
 		if(i == multChoiceAnswer){
 		answers[i] = answer;
