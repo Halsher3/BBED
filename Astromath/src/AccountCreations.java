@@ -68,7 +68,7 @@ public class AccountCreations {
 		JLabel lblNewLabel_2 = new JLabel("ASTROMATH");
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
-		lblNewLabel_2.setBounds(98, 28, 745, 52);
+		lblNewLabel_2.setBounds(98, 39, 745, 52);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JTextField textField = new JTextField();
@@ -97,8 +97,31 @@ public class AccountCreations {
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\astronaut.png"));
-		lblNewLabel_3.setBounds(638, 75, 599, 664);
+		lblNewLabel_3.setBounds(614, -93, 1009, 960);
 		frame.getContentPane().add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Your password must have at least 1 Uppercase character\r\n");
+		lblNewLabel_4.setForeground(Color.WHITE);
+		lblNewLabel_4.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		lblNewLabel_4.setBounds(98, 538, 604, 52);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("At least 6 characters long\r\n");
+		lblNewLabel_4_1.setForeground(Color.WHITE);
+		lblNewLabel_4_1.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		lblNewLabel_4_1.setBounds(98, 576, 604, 39);
+		frame.getContentPane().add(lblNewLabel_4_1);
+		
+		JLabel lblNewLabel_4_1_1 = new JLabel("At least one special character (!, ?, /, *, &, ^, etc.)\r\n");
+		lblNewLabel_4_1_1.setForeground(Color.WHITE);
+		lblNewLabel_4_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		lblNewLabel_4_1_1.setBounds(98, 608, 604, 39);
+		frame.getContentPane().add(lblNewLabel_4_1_1);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\home.png"));
+		lblNewLabel_5.setBounds(30, 23, 78, 81);
+		frame.getContentPane().add(lblNewLabel_5);
 
 		
 	}
