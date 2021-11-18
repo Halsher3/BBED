@@ -8,7 +8,7 @@ public class Student{
 	private static int testScores;
 
 	//constructor
-	public Student(String username, String email, String passWord, int accNum, int gradeLevel, int level, int testScores ) {
+	public Student(String username, String email, String password, int accNum, int gradeLevel, int level, int testScores ) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
