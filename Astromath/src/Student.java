@@ -11,48 +11,56 @@ public class Student{
 	public Student(String username, String email, String passWord, int accNum, int gradeLevel, int level, int testScores ) {
 		this.username = username;
 		this.email = email;
-		this.passWord = passWord;
+		this.password = password;
 		this.accNum = accNum;
-		this.gradeLevel  gradeLevel;
+		this.gradeLevel = gradeLevel;
 		this.level = level;
 		this.testScores = testScores; 
 	} 
 
 	public void setUsername(String username){
-		username = new uname;
+		this.username = username;
 	}
-	public void setPassword(String passWord){
-		passWord = new pword;
+	public void setPassword(String password){
+		this.password = password;
 	}
 	public void setEmail(String email){
-		email = new mail;
+		this.email = email;
 	}
 
 	//construtor for login info
 
-
-	void getPassword (String passWord){
-		return this.passWord;
+	void getPassword(String password){
+		return this.password;
 	}
 
 
-	void getLogin (String login) {
+	String getLogin(String login) {
 
-		if (username.equals(passWord))
+		if(username.equals(username)){
+			
+			if(password.equals(password)){
+				
+				return login;;
+			} 
+			else {
+				break;
+			}
+		}
 
-		return this.login;
+		return null;
 	}
 
 	void getAccNum (int accNum) {
-		return this.accNum;
+		return accNum;
 	}
 
 	void getGrade (int gradeLevel){
-		return this.gradeLevel;
+		return gradeLevel;
 	}
 
 	void getLevel (int level) {
-		return this.level;
+		return level;
 	}
 
 }
