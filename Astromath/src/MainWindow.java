@@ -1,6 +1,4 @@
-package goku;
-
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -47,6 +45,18 @@ public class MainWindow
 	{
 		// Creates the JFrame, and sets the background color and bounds to 1280 x 720 resolution
 		frame = new JFrame();
+		frame.getContentPane().addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				//Toolkit tools = frame.getToolkit();
+				//Image rocket = tools.getImage("C:\\Users\\Ru\\Desktop\\Project\\home.png");
+				//Point hotspot = new Point(0,0);
+				//frame.setCursor(tools.createCustomCursor(rocket, hotspot, "idk"));
+				
+			}
+		});
 		frame.getContentPane().setBackground(new Color(77,58,129));
 		frame.setBounds(100, 100, 1280, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,7 +71,7 @@ public class MainWindow
 		
 		JLabel label_logo = new JLabel("ASTROMATH");
 		
-		label_logo.setIcon(new ImageIcon("C:\\Users\\Ru\\Desktop\\Project\\home.png"));
+		label_logo.setIcon(null);
 		label_logo.setHorizontalAlignment(SwingConstants.CENTER);
 		label_logo.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
 		label_logo.setForeground(new Color(255, 255, 255));
@@ -96,17 +106,53 @@ public class MainWindow
 		// Some of the icons for the planets
 		
 		JLabel image_ringPlanet = new JLabel("");
-		image_ringPlanet.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\ringed planet.png"));
-		image_ringPlanet.setBounds(64, 407, 283, 224);
+		image_ringPlanet.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				image_ringPlanet.setIcon(new ImageIcon(".\\assets\\images\\ringed planet v2.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				image_ringPlanet.setIcon(new ImageIcon(".\\assets\\images\\ringed planet.png"));
+			}
+		});
+		image_ringPlanet.setIcon(new ImageIcon(".\\assets\\images\\ringed planet.png"));
+		image_ringPlanet.setBounds(64, 389, 318, 224);
 		frame.getContentPane().add(image_ringPlanet);
 		
 		JLabel image_earth = new JLabel("");
-		image_earth.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\earth.png"));
+		image_earth.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				image_earth.setIcon(new ImageIcon(".\\assets\\images\\earth v2.png"));
+			}
+			public void mouseExited(MouseEvent e) 
+			{
+				image_earth.setIcon(new ImageIcon(".\\assets\\images\\earth.png"));
+			}
+		});
+		image_earth.setIcon(new ImageIcon(".\\assets\\images\\earth.png"));
 		image_earth.setBounds(924, 117, 254, 224);
 		frame.getContentPane().add(image_earth);
 		
 		JLabel image_redPlanet = new JLabel("");
-		image_redPlanet.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\red planet.png"));
+		image_redPlanet.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				image_redPlanet.setIcon(new ImageIcon(".\\assets\\images\\red planet v2.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				image_redPlanet.setIcon(new ImageIcon(".\\assets\\images\\red planet.png"));
+			}
+		});
+		image_redPlanet.setIcon(new ImageIcon(".\\assets\\images\\red planet.png"));
 		image_redPlanet.setBounds(900, 389, 224, 224);
 		frame.getContentPane().add(image_redPlanet);
 		
@@ -122,7 +168,7 @@ public class MainWindow
 		//More planet images, and images in general
 		
 		JLabel image_bluePlanet = new JLabel("");
-		image_bluePlanet.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\blue planet.png"));
+		image_bluePlanet.setIcon(new ImageIcon(".\\assets\\images\\blue planet.png"));
 		image_bluePlanet.setBounds(54, 135, 224, 224);
 		frame.getContentPane().add(image_bluePlanet);
 		
@@ -132,22 +178,30 @@ public class MainWindow
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				image_bluePlanet.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\blue planet v2.png"));
+				image_bluePlanet.setIcon(new ImageIcon(".\\assets\\images\\blue planet v2.png"));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) 
 			{
-				image_bluePlanet.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\blue planet.png"));
+				image_bluePlanet.setIcon(new ImageIcon(".\\assets\\images\\blue planet.png"));
 			}
 		});
 		
 		JLabel image_sun = new JLabel("");
-		image_sun.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\sun.png"));
+		image_sun.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				
+			}
+		});
+		image_sun.setIcon(new ImageIcon(".\\assets\\images\\sun.png"));
 		image_sun.setBounds(402, 99, 512, 512);
 		frame.getContentPane().add(image_sun);
 		
 		JLabel image_home = new JLabel("");
-		image_home.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\home.png"));
+		image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 		image_home.setBounds(40, 21, 64, 74);
 		frame.getContentPane().add(image_home);
 		
@@ -184,8 +238,26 @@ public class MainWindow
 		// Logout button
 		
 		JLabel image_logout = new JLabel("");
-		image_logout.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\goku\\src\\assets\\images\\logout.png"));
+		image_logout.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+			}
+		});
+		image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 		image_logout.setBounds(1192, 15, 72, 91);
 		frame.getContentPane().add(image_logout);
+		
+		JLabel image_settings = new JLabel("");
+		image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+		image_settings.setBounds(1188, 99, 64, 64);
+		frame.getContentPane().add(image_settings);
 	}
 }
