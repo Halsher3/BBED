@@ -1,21 +1,20 @@
 public class Student{
-	private static String username;
-	private static String email;
-	private static String passWord;
-	private static int accNum;
-	private static int gradeLevel;
-	private static int level;
-	private static int testScores;
+	private String username;
+	private String email;
+	private String password;
+	private int accNum;
+	private int gradeLevel;
+	private int level;
 
 	//constructor
-	public Student(String username, String email, String password, int accNum, int gradeLevel, int level, int testScores ) {
+	public Student(String username, String email, String password, int accNum, int gradeLevel, int level) 
+	{
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.accNum = accNum;
 		this.gradeLevel = gradeLevel;
 		this.level = level;
-		this.testScores = testScores; 
 	} 
 
 	public void setUsername(String username){
@@ -30,36 +29,39 @@ public class Student{
 
 	//construtor for login info
 
-	void getPassword(String password){
+	public String getPassword(String password)
+	{
 		return this.password;
 	}
 
 
-	String getLogin(String login) {
+	public Boolean getLogin(String username, String password) 
+	{
+        
+        Boolean loginPass;
 
-		if(username.equals(username)){
-			
-			if(password.equals(password)){
-				
-				return login;;
-			} 
-			else {
-				break;
-			}
-		}
+        if(this.username.equals(username) && (this.password.equals(password))){
+            loginPass = true;
+        } else { 
+            loginPass = false;
+        }
 
-		return null;
-	}
 
-	void getAccNum (int accNum) {
+        return loginPass;
+    }
+
+	public int getAccNum()
+	{
 		return accNum;
 	}
 
-	void getGrade (int gradeLevel){
+	public int getGradeLevel()
+	{
 		return gradeLevel;
 	}
 
-	void getLevel (int level) {
+	public int getLevel() 
+	{
 		return level;
 	}
 
