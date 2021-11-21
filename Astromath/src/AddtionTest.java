@@ -76,8 +76,7 @@ public class AddtionTest {
 				frame_1.getContentPane().add(image_home);
 				// Placeholder variables to use for Student name and Student grade
 				
-				String studentName = "Jack";
-				String grade = "Grade 1";
+
 				
 				// Code for the logo in the upper left corner and Astromath text
 				
@@ -107,13 +106,23 @@ public class AddtionTest {
 				});
 				
 				// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
+				String studentName = "Jack";
+				String grade = "Grade 1";
 				
-				JLabel label_name = new JLabel("Welcome back, " + studentName);
+				JLabel label_name = new JLabel(studentName);
 				label_name.setHorizontalAlignment(SwingConstants.RIGHT);
 				label_name.setForeground(Color.WHITE);
 				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 				label_name.setBounds(765, 21, 417, 44);
 				frame_1.getContentPane().add(label_name);
+				
+				JLabel label_grade = new JLabel(grade);
+				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_grade.setForeground(new Color(0, 195, 255));
+				label_grade.setBounds(874, 59, 308, 44);
+				frame.getContentPane().add(label_grade);
+				
 				
 				// Logout button
 				
@@ -149,6 +158,8 @@ public class AddtionTest {
 				label_name_1.setBounds(475, 99, 417, 44);
 				frame_1.getContentPane().add(label_name_1);
 				
+
+				
 				//RANDOM EQUATION MAKER This accesses MultipleChoice.java
 				
 				MultipleChoice mp = new MultipleChoice(1, 4);
@@ -160,8 +171,41 @@ public class AddtionTest {
 				
 				
 				
-				mp.generateQuestions(equation[3], 4);
 				
+				int[] answerKey = new int[4];
+				answerKey = mp.generateQuestions(equation[3], 4);
+				//ANSWER KEY NUMBERS
+				String answerKey0 = String.format("%d", answerKey[0]); 
+				String answerKey1 = String.format("%d", answerKey[1]); 
+				String answerKey2 = String.format("%d", answerKey[2]); 
+				String answerKey3 = String.format("%d", answerKey[3]); 
+				
+				JLabel lblNewLabel_4 = new JLabel(answerKey0);
+				lblNewLabel_4.setForeground(Color.WHITE);
+				lblNewLabel_4.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
+				lblNewLabel_4.setBounds(55, 483, 186, 161);
+				frame_1.getContentPane().add(lblNewLabel_4);
+				
+				JLabel lblNewLabel_5 = new JLabel(answerKey1);
+				lblNewLabel_5.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
+				lblNewLabel_5.setForeground(Color.WHITE);
+				lblNewLabel_5.setBounds(301, 483, 191, 161);
+				frame_1.getContentPane().add(lblNewLabel_5);
+				
+				JLabel lblNewLabel_6 = new JLabel(answerKey2);
+				lblNewLabel_6.setForeground(Color.WHITE);
+				lblNewLabel_6.setFont(new Font("A-Space Demo", Font.PLAIN, 78));
+				lblNewLabel_6.setBounds(633, 479, 197, 168);
+				frame_1.getContentPane().add(lblNewLabel_6);
+				
+				JLabel lblNewLabel_7 = new JLabel(answerKey3);
+				lblNewLabel_7.setForeground(Color.WHITE);
+				lblNewLabel_7.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
+				lblNewLabel_7.setBounds(981, 483, 186, 176);
+				frame_1.getContentPane().add(lblNewLabel_7);
+
+				
+				//EQUATION NUMBERS
 				String equation0 = String.format("%d", equation[0]);
 
 				String equation2 = String.format("%d", equation[2]);
@@ -171,16 +215,19 @@ public class AddtionTest {
 				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				lblNewLabel.setForeground(new Color(255, 255, 255));
 				lblNewLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
-				lblNewLabel.setBounds(164, 249, 153, 104);
-				frame_1.getContentPane().add(lblNewLabel);
 				
+
 				
 				JLabel lblNewLabel_2 = new JLabel(equation2);
 				lblNewLabel_2.setForeground(new Color(255, 255, 255));
 				lblNewLabel_2.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
 				lblNewLabel_2.setBounds(536, 264, 197, 91);
 				frame_1.getContentPane().add(lblNewLabel_2);
-				
+		
+				JLabel lblNewLabel_8 = new JLabel("New label");
+				lblNewLabel_8.setBounds(1137, 62, -225, 37);
+				frame_1.getContentPane().add(lblNewLabel_8);
+						
 				JLabel lblNewLabel_3 = new JLabel(" = " + equation3);
 				lblNewLabel_3.setForeground(new Color(255, 255, 255));
 				lblNewLabel_3.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
@@ -204,7 +251,8 @@ public class AddtionTest {
 				lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
 				lblNewLabel_1.setBounds(345, 264, 164, 85);
 				frame_1.getContentPane().add(lblNewLabel_1);
-				
+				lblNewLabel.setBounds(164, 249, 153, 104);
+				frame_1.getContentPane().add(lblNewLabel);
 	}
 
 }
