@@ -9,10 +9,28 @@ import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MainWindow 
+public class MainWindow extends JFrame
 {
 
-	private JFrame frame;
+	private Student goku = new Student("goku7", "menameisgoku@gmail.com", "dragonballs", 1234, 1, 1);
+	
+	private JFrame frame  = new JFrame();
+	private JLabel label_logo = new JLabel("ASTROMATH");
+	private JLabel label_name = new JLabel("Welcome back, " + "Goku");
+	private JLabel image_ringPlanet = new JLabel("");
+	private JLabel image_earth = new JLabel("");
+	private JLabel image_redPlanet = new JLabel("");
+	private JLabel label_grade = new JLabel("First Grade");
+	private JLabel image_bluePlanet = new JLabel("");
+	private JLabel image_sun = new JLabel("");
+	private JLabel image_home = new JLabel("");
+	private JLabel label_grades = new JLabel("Grades");
+	private JLabel label_tests = new JLabel("Tests");
+	private JLabel label_practice = new JLabel("Practice");
+	private JLabel label_profile = new JLabel("Profile");
+	private JLabel image_logout = new JLabel("");
+	private JLabel image_settings = new JLabel("");
+	
 
 	/**
 	 * Launch the application.
@@ -36,13 +54,15 @@ public class MainWindow
 	public MainWindow() 
 	{
 		initialize();
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() 
+	public void initialize() 
 	{
+		
 		// Creates the JFrame, and sets the background color and bounds to 1280 x 720 resolution
 		frame = new JFrame();
 		frame.getContentPane().addMouseListener(new MouseAdapter() 
@@ -64,12 +84,11 @@ public class MainWindow
 		
 		// Placeholder variables to use for Student name and Student grade
 		
-		String studentName = "Jack";
-		String grade = "Kindergarten";
+
 		
 		// Code for the logo in the upper left corner and Astromath text
 		
-		JLabel label_logo = new JLabel("ASTROMATH");
+		
 		
 		label_logo.setIcon(null);
 		label_logo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -96,7 +115,7 @@ public class MainWindow
 		
 		// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
 		
-		JLabel label_name = new JLabel("Welcome back, " + studentName);
+
 		label_name.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_name.setForeground(Color.WHITE);
 		label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
@@ -105,7 +124,7 @@ public class MainWindow
 		
 		// Some of the icons for the planets
 		
-		JLabel image_ringPlanet = new JLabel("");
+		
 		image_ringPlanet.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -122,7 +141,7 @@ public class MainWindow
 		image_ringPlanet.setBounds(64, 389, 318, 224);
 		frame.getContentPane().add(image_ringPlanet);
 		
-		JLabel image_earth = new JLabel("");
+		image_earth = new JLabel("");
 		image_earth.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -134,12 +153,18 @@ public class MainWindow
 			{
 				image_earth.setIcon(new ImageIcon(".\\assets\\images\\earth.png"));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				PracticeSelectWindow practice = new PracticeSelectWindow();
+				frame.dispose();
+			}
 		});
 		image_earth.setIcon(new ImageIcon(".\\assets\\images\\earth.png"));
 		image_earth.setBounds(924, 117, 254, 224);
 		frame.getContentPane().add(image_earth);
 		
-		JLabel image_redPlanet = new JLabel("");
+		image_redPlanet = new JLabel("");
 		image_redPlanet.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -158,7 +183,7 @@ public class MainWindow
 		
 		// The student's grade level displayed under the welcome back message
 		
-		JLabel label_grade = new JLabel(grade);
+		
 		label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 		label_grade.setForeground(new Color(0, 195, 255));
@@ -167,7 +192,7 @@ public class MainWindow
 		
 		//More planet images, and images in general
 		
-		JLabel image_bluePlanet = new JLabel("");
+		image_bluePlanet = new JLabel("");
 		image_bluePlanet.setIcon(new ImageIcon(".\\assets\\images\\blue planet.png"));
 		image_bluePlanet.setBounds(54, 135, 224, 224);
 		frame.getContentPane().add(image_bluePlanet);
@@ -187,7 +212,7 @@ public class MainWindow
 			}
 		});
 		
-		JLabel image_sun = new JLabel("");
+		image_sun = new JLabel("");
 		image_sun.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -200,35 +225,35 @@ public class MainWindow
 		image_sun.setBounds(402, 99, 512, 512);
 		frame.getContentPane().add(image_sun);
 		
-		JLabel image_home = new JLabel("");
+		image_home = new JLabel("");
 		image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 		image_home.setBounds(40, 21, 64, 74);
 		frame.getContentPane().add(image_home);
 		
 		// Labels for the planets
 		
-		JLabel label_grades = new JLabel("Grades");
+		
 		label_grades.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		label_grades.setForeground(Color.WHITE);
 		label_grades.setHorizontalAlignment(SwingConstants.CENTER);
 		label_grades.setBounds(40, 352, 254, 44);
 		frame.getContentPane().add(label_grades);
 		
-		JLabel label_tests = new JLabel("Tests");
+		
 		label_tests.setHorizontalAlignment(SwingConstants.CENTER);
 		label_tests.setForeground(Color.WHITE);
 		label_tests.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		label_tests.setBounds(84, 622, 254, 44);
 		frame.getContentPane().add(label_tests);
 		
-		JLabel label_practice = new JLabel("Practice");
+		
 		label_practice.setHorizontalAlignment(SwingConstants.CENTER);
 		label_practice.setForeground(Color.WHITE);
 		label_practice.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		label_practice.setBounds(913, 334, 254, 44);
 		frame.getContentPane().add(label_practice);
 		
-		JLabel label_profile = new JLabel("Profile");
+		
 		label_profile.setHorizontalAlignment(SwingConstants.CENTER);
 		label_profile.setForeground(Color.WHITE);
 		label_profile.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
@@ -237,7 +262,7 @@ public class MainWindow
 		
 		// Logout button
 		
-		JLabel image_logout = new JLabel("");
+		image_logout = new JLabel("");
 		image_logout.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -250,14 +275,22 @@ public class MainWindow
 			{
 				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Visual vis = new Visual();
+				frame.dispose();
+			}
 		});
 		image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 		image_logout.setBounds(1192, 15, 72, 91);
 		frame.getContentPane().add(image_logout);
 		
-		JLabel image_settings = new JLabel("");
+		image_settings = new JLabel("");
 		image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 		image_settings.setBounds(1188, 99, 64, 64);
 		frame.getContentPane().add(image_settings);
+		
+		frame.setVisible(true);
 	}
 }
