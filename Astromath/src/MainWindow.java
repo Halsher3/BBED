@@ -287,6 +287,13 @@ public class MainWindow extends JFrame
 		frame.getContentPane().add(image_logout);
 		
 		image_settings = new JLabel("");
+		image_settings.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccountSettings as = new AccountSettings();
+				frame.dispose();
+			}
+		});
 		image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 		image_settings.setBounds(1188, 99, 64, 64);
 		frame.getContentPane().add(image_settings);

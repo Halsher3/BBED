@@ -14,10 +14,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
 
 public class AdditionTest {
 
 	private JFrame frame;
+
 
 	/**
 	 * Launch the application.
@@ -144,6 +146,13 @@ public class AdditionTest {
 				frame.getContentPane().add(imageLogout);
 				
 				JLabel imageSettings = new JLabel("");
+				imageSettings.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						AccountSettings as = new AccountSettings();
+						frame.dispose();
+					}
+				});
 				imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 				imageSettings.setBounds(1188, 99, 64, 64);
 				frame.getContentPane().add(imageSettings);
@@ -179,30 +188,34 @@ public class AdditionTest {
 				String answerKey2 = String.format("%d", answerKey[2]); 
 				String answerKey3 = String.format("%d", answerKey[3]); 
 				
-				JLabel answer0 = new JLabel(answerKey0);
-				answer0.setForeground(Color.WHITE);
-				answer0.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
-				answer0.setBounds(55, 483, 186, 161);
-				frame.getContentPane().add(answer0);
+				JButton btnNewButton = new JButton(answerKey0);
+				btnNewButton.setForeground(Color.WHITE);
+				btnNewButton.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				btnNewButton.setBounds(123, 439, 169, 157);
+				btnNewButton.setBackground(new Color(0, 255, 153));
+				frame.getContentPane().add(btnNewButton);
 				
-				JLabel answer1 = new JLabel(answerKey1);
-				answer1.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
-				answer1.setForeground(Color.WHITE);
-				answer1.setBounds(301, 483, 191, 161);
-				frame.getContentPane().add(answer1);
+				JButton btnNewButton_1 = new JButton(answerKey1);
+				btnNewButton_1.setForeground(Color.WHITE);
+				btnNewButton_1.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				btnNewButton_1.setBounds(382, 439, 169, 157);
+				btnNewButton_1.setBackground(new Color(0, 255, 153));
+				frame.getContentPane().add(btnNewButton_1);
 				
-				JLabel answer2 = new JLabel(answerKey2);
-				answer2.setForeground(Color.WHITE);
-				answer2.setFont(new Font("A-Space Demo", Font.PLAIN, 78));
-				answer2.setBounds(633, 479, 197, 168);
-				frame.getContentPane().add(answer2);
+				JButton btnNewButton_1_1 = new JButton(answerKey2);
+				btnNewButton_1_1.setForeground(Color.WHITE);
+				btnNewButton_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				btnNewButton_1_1.setBounds(652, 439, 169, 157);
+				btnNewButton_1_1.setBackground(new Color(0, 255, 153));
+				frame.getContentPane().add(btnNewButton_1_1);
 				
-				JLabel answer3 = new JLabel(answerKey3);
-				answer3.setForeground(Color.WHITE);
-				answer3.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
-				answer3.setBounds(981, 483, 186, 176);
-				frame.getContentPane().add(answer3);
-
+				JButton btnNewButton_1_1_1 = new JButton(answerKey3);
+				btnNewButton_1_1_1.setForeground(Color.WHITE);
+				btnNewButton_1_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				btnNewButton_1_1_1.setBounds(916, 439, 169, 157);
+				btnNewButton_1_1_1.setBackground(new Color(0, 255, 153));
+				frame.getContentPane().add(btnNewButton_1_1_1);
+				
 				
 				//EQUATION NUMBERS
 				String equation0 = String.format("%d", equation[0]);
@@ -214,7 +227,8 @@ public class AdditionTest {
 				labelEquation0.setHorizontalAlignment(SwingConstants.CENTER);
 				labelEquation0.setForeground(new Color(255, 255, 255));
 				labelEquation0.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
-				
+				labelEquation0.setBounds(164, 249, 153, 104);
+				frame.getContentPane().add(labelEquation0);
 
 				
 				JLabel labelEquation2 = new JLabel(equation2);
@@ -250,8 +264,7 @@ public class AdditionTest {
 				labelEquation1.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
 				labelEquation1.setBounds(345, 264, 164, 85);
 				frame.getContentPane().add(labelEquation1);
-				labelEquation0.setBounds(164, 249, 153, 104);
-				frame.getContentPane().add(labelEquation0);
-	}
 
+				frame.setVisible(true);
+	}
 }

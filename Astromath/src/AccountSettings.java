@@ -11,8 +11,8 @@ import javax.swing.SwingConstants;
 
 public class AccountSettings {
 
+
 	private JFrame frame;
-	private JFrame frame_1;
 
 	/**
 	 * Launch the application.
@@ -22,7 +22,7 @@ public class AccountSettings {
 			public void run() {
 				try {
 					AccountSettings window = new AccountSettings();
-					window.frame_1.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,8 +46,8 @@ public class AccountSettings {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Creates the JFrame, and sets the background color and bounds to 1280 x 720 resolution
-		frame_1 = new JFrame();
-		frame_1.getContentPane().addMouseListener(new MouseAdapter() 
+		frame = new JFrame();
+		frame.getContentPane().addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -59,15 +59,22 @@ public class AccountSettings {
 				
 			}
 		});
-		frame_1.getContentPane().setBackground(new Color(77,58,129));
-		frame_1.setBounds(100, 100, 1280, 720);
-		frame_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame_1.getContentPane().setLayout(null);
+		frame.getContentPane().setBackground(new Color(77,58,129));
+		frame.setBounds(100, 100, 1280, 720);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JLabel imageHome = new JLabel("");
+		imageHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainWindow mw = new MainWindow();
+				frame.dispose();
+			}
+		});
 		imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 		imageHome.setBounds(40, 21, 64, 74);
-		frame_1.getContentPane().add(imageHome);
+		frame.getContentPane().add(imageHome);
 		// Placeholder variables to use for Student name and Student grade
 		
 		String studentName = "Jack";
@@ -78,7 +85,7 @@ public class AccountSettings {
 		labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 		labelGrade.setForeground(new Color(0, 195, 255));
 		labelGrade.setBounds(874, 59, 308, 44);
-		frame_1.getContentPane().add(labelGrade);
+		frame.getContentPane().add(labelGrade);
 		
 		
 		JLabel labelName = new JLabel(studentName);
@@ -86,7 +93,7 @@ public class AccountSettings {
 		labelName.setForeground(Color.WHITE);
 		labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 		labelName.setBounds(765, 21, 417, 44);
-		frame_1.getContentPane().add(labelName);
+		frame.getContentPane().add(labelName);
 		
 		
 		// Code for the logo in the upper left corner and Astromath text
@@ -98,7 +105,7 @@ public class AccountSettings {
 		labelLogo.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
 		labelLogo.setForeground(new Color(255, 255, 255));
 		labelLogo.setBounds(97, 21, 318, 85);
-		frame_1.getContentPane().add(labelLogo);
+		frame.getContentPane().add(labelLogo);
 		
 		// Does a hover effect on the AstroMath text with the home button
 		
@@ -138,24 +145,24 @@ public class AccountSettings {
 		});
 		imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 		imageLogout.setBounds(1192, 15, 72, 91);
-		frame_1.getContentPane().add(imageLogout);
+		frame.getContentPane().add(imageLogout);
 		
 		JLabel imageSettings = new JLabel("");
 		imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 		imageSettings.setBounds(1188, 99, 64, 64);
-		frame_1.getContentPane().add(imageSettings);
+		frame.getContentPane().add(imageSettings);
 		
 		JLabel accountSettings = new JLabel("Account Settings");
 		accountSettings.setForeground(Color.WHITE);
 		accountSettings.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
 		accountSettings.setBounds(97, 89, 782, 96);
-		frame_1.getContentPane().add(accountSettings);
+		frame.getContentPane().add(accountSettings);
 		
 		JLabel changePassword = new JLabel("Change Password");
 		changePassword.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		changePassword.setForeground(Color.WHITE);
 		changePassword.setBounds(97, 285, 533, 119);
-		frame_1.getContentPane().add(changePassword);
+		frame.getContentPane().add(changePassword);
 		
 		changePassword.addMouseListener(new MouseAdapter() 
         {
@@ -175,7 +182,7 @@ public class AccountSettings {
 		changeEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		changeEmail.setForeground(Color.WHITE);
 		changeEmail.setBounds(97, 396, 533, 110);
-		frame_1.getContentPane().add(changeEmail);
+		frame.getContentPane().add(changeEmail);
 		
 		changeEmail.addMouseListener(new MouseAdapter() 
         {
@@ -195,7 +202,7 @@ public class AccountSettings {
 		changeUsername.setForeground(Color.WHITE);
 		changeUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		changeUsername.setBounds(97, 519, 376, 96);
-		frame_1.getContentPane().add(changeUsername);
+		frame.getContentPane().add(changeUsername);
 		
 		changeUsername.addMouseListener(new MouseAdapter() 
         {
@@ -215,7 +222,7 @@ public class AccountSettings {
 		verifyEmail.setForeground(Color.WHITE);
 		verifyEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		verifyEmail.setBounds(98, 206, 444, 64);
-		frame_1.getContentPane().add(verifyEmail);
+		frame.getContentPane().add(verifyEmail);
 		
 		verifyEmail.addMouseListener(new MouseAdapter() 
         {
@@ -233,12 +240,14 @@ public class AccountSettings {
 		
 		JLabel label = new JLabel("New label");
 		label.setBounds(1193, 670, -432, -417);
-		frame_1.getContentPane().add(label);
+		frame.getContentPane().add(label);
 		
 		JLabel astronaut = new JLabel("");
 		astronaut.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\BBED-main\\BBED-main\\Astromath\\Assets\\images\\astronaut.png"));
 		astronaut.setBounds(552, 99, 609, 679);
-		frame_1.getContentPane().add(astronaut);
+		frame.getContentPane().add(astronaut);
+		
+		frame.setVisible(true);
 	}
 
 }

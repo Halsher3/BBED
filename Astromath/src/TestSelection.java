@@ -105,7 +105,7 @@ public class TestSelection {
 				
 				// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
 				
-				JLabel name = new JLabel("Welcome back, " + studentName);
+				JLabel name = new JLabel(studentName);
 				name.setHorizontalAlignment(SwingConstants.RIGHT);
 				name.setForeground(Color.WHITE);
 				name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
@@ -169,6 +169,14 @@ public class TestSelection {
 				});
 				
 				JEditorPane editorPane = new JEditorPane();
+				editorPane.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						AdditionTest at = new AdditionTest();
+						frame.dispose();
+					}
+				});
+				
 				editorPane.setBackground(new Color(23, 38, 83));
 				editorPane.setBounds(175, 153, 953, 74);
 				frame.getContentPane().add(editorPane);
@@ -196,6 +204,13 @@ public class TestSelection {
 				});
 				
 				JEditorPane editorPane_1 = new JEditorPane();
+				editorPane_1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						SubtractionTest st = new SubtractionTest();
+						frame.dispose();
+					}
+				});
 				editorPane_1.setBackground(new Color(23, 38, 83));
 				editorPane_1.setBounds(175, 246, 953, 74);
 				frame.getContentPane().add(editorPane_1);

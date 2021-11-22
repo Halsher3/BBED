@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -154,7 +155,7 @@ public class SubtractionTest {
 				subtractionTest.setHorizontalAlignment(SwingConstants.CENTER);
 				subtractionTest.setForeground(Color.WHITE);
 				subtractionTest.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-				subtractionTest.setBounds(475, 99, 417, 44);
+				subtractionTest.setBounds(403, 87, 594, 81);
 				frame.getContentPane().add(subtractionTest);
 				
 
@@ -164,51 +165,76 @@ public class SubtractionTest {
 				MultipleChoice mp = new MultipleChoice(1, 4);
 				
 				int[] equation = new int[4];
+				int[][] questionArray = new int[10][1];
+				for(int i = 0; i < 10; i++) {
+					equation = mp.generateAddSub(1, 20, 1);
+					questionArray[i] = equation;
+				}
+				
+				int score = 0;
+				int finalScore = (score / 10) * 100;
+				String letterGrade = "";
+				
+				if(finalScore <= 59) {
+				
+					letterGrade = "F";
+				} else if (finalScore >= 60 && finalScore <= 69) {
+					letterGrade = "D";
+				} else if (finalScore >= 70 && finalScore <= 79) {
+					letterGrade = "C";
+				} else if (finalScore >= 80 && finalScore <= 89) {
+					letterGrade = "B";
+				} else if (finalScore >= 90 && finalScore <=100) {
+					letterGrade = "A";
+				}
 				
 				
-				equation = mp.generateAddSub(1, 20, 1);
 				
 				
-				
+				int problem = 0;
 				int difficulty = 1;
 				int[] answerKey = new int[4];
-				answerKey = MultipleChoice.generateQuestions(equation[3], 4, difficulty);
+				answerKey = mp.generateQuestions(questionArray[problem][3], 4, difficulty);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
 				String answerKey1 = String.format("%d", answerKey[1]); 
 				String answerKey2 = String.format("%d", answerKey[2]); 
 				String answerKey3 = String.format("%d", answerKey[3]); 
 				
-				JLabel labelAnswer0 = new JLabel(answerKey0);
-				labelAnswer0.setForeground(Color.WHITE);
-				labelAnswer0.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
-				labelAnswer0.setBounds(55, 483, 186, 161);
-				frame.getContentPane().add(labelAnswer0);
+				JButton btnNewButton = new JButton(answerKey0);
+				btnNewButton.setForeground(Color.WHITE);
+				btnNewButton.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				btnNewButton.setBounds(123, 439, 169, 157);
+				btnNewButton.setBackground(new Color(0, 255, 153));
+				frame.getContentPane().add(btnNewButton);
 				
-				JLabel labelAnswer1 = new JLabel(answerKey1);
-				labelAnswer1.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
-				labelAnswer1.setForeground(Color.WHITE);
-				labelAnswer1.setBounds(301, 483, 191, 161);
-				frame.getContentPane().add(labelAnswer1);
+				JButton btnNewButton_1 = new JButton(answerKey1);
+				btnNewButton_1.setForeground(Color.WHITE);
+				btnNewButton_1.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				btnNewButton_1.setBounds(382, 439, 169, 157);
+				btnNewButton_1.setBackground(new Color(0, 255, 153));
+				frame.getContentPane().add(btnNewButton_1);
 				
-				JLabel labelAnswer2 = new JLabel(answerKey2);
-				labelAnswer2.setForeground(Color.WHITE);
-				labelAnswer2.setFont(new Font("A-Space Demo", Font.PLAIN, 78));
-				labelAnswer2.setBounds(633, 479, 197, 168);
-				frame.getContentPane().add(labelAnswer2);
+				JButton btnNewButton_1_1 = new JButton(answerKey2);
+				btnNewButton_1_1.setForeground(Color.WHITE);
+				btnNewButton_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				btnNewButton_1_1.setBounds(652, 439, 169, 157);
+				btnNewButton_1_1.setBackground(new Color(0, 255, 153));
+				frame.getContentPane().add(btnNewButton_1_1);
 				
-				JLabel labelAnswer3 = new JLabel(answerKey3);
-				labelAnswer3.setForeground(Color.WHITE);
-				labelAnswer3.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
-				labelAnswer3.setBounds(981, 483, 186, 176);
-				frame.getContentPane().add(labelAnswer3);
+				JButton btnNewButton_1_1_1 = new JButton(answerKey3);
+				btnNewButton_1_1_1.setForeground(Color.WHITE);
+				btnNewButton_1_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				btnNewButton_1_1_1.setBounds(916, 439, 169, 157);
+				btnNewButton_1_1_1.setBackground(new Color(0, 255, 153));
+				frame.getContentPane().add(btnNewButton_1_1_1);
 
 				
 				//EQUATION NUMBERS
-				String equation0 = String.format("%d", equation[0]);
+				String equation0 = String.format("%d", questionArray[problem][0]);
 
-				String equation2 = String.format("%d", equation[2]);
-				String equation3 = String.format("%d", equation[3]);
+				String equation2 = String.format("%d", questionArray[problem][2]);
+				String equation3 = String.format("%d", questionArray[problem][3]);
 			
 				JLabel labelEquation0 = new JLabel(equation0);
 				labelEquation0.setHorizontalAlignment(SwingConstants.CENTER);
@@ -237,7 +263,7 @@ public class SubtractionTest {
 			
 				//OPERAND PART
 				String equation1;
-				if (equation[1] == 0){
+				if (questionArray[problem][1] == 0){
 				
 				equation1 = "+";
 				}
@@ -252,6 +278,7 @@ public class SubtractionTest {
 				frame.getContentPane().add(labelEquation1);
 				labelEquation0.setBounds(164, 249, 153, 104);
 				frame.getContentPane().add(labelEquation0);
+				frame.setVisible(true);
 	}
 
 }
