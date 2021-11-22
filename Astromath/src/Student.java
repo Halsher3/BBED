@@ -6,7 +6,7 @@ public class Student{
 	private int gradeLevel;
 	private int level;
 
-	//constructor
+	//constructs account info 
 	public Student(String username, String email, String password, int accNum, int gradeLevel, int level) 
 	{
 		this.username = username;
@@ -17,6 +17,7 @@ public class Student{
 		this.level = level;
 	} 
 
+	//user creates an account with username, email and password
 	public void setUsername(String username){
 		this.username = username;
 	}
@@ -27,7 +28,7 @@ public class Student{
 		this.email = email;
 	}
 
-	//construtor for login info
+	//grants login given correct credentails are entered
 
 	public String getPassword(String password)
 	{
@@ -66,9 +67,3 @@ public class Student{
 	}
 
 }
-
-// return type errors
-// break outside loop error
-// need to add String Login to contructor. 
-
-		 
