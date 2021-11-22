@@ -136,6 +136,11 @@ public class MainWindow extends JFrame
 			{
 				image_ringPlanet.setIcon(new ImageIcon(".\\assets\\images\\ringed planet.png"));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TestSelection ts = new TestSelection();
+				frame.dispose();
+			}
 		});
 		image_ringPlanet.setIcon(new ImageIcon(".\\assets\\images\\ringed planet.png"));
 		image_ringPlanet.setBounds(64, 389, 318, 224);

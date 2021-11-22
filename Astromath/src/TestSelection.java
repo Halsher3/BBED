@@ -68,6 +68,13 @@ public class TestSelection {
 				frame.getContentPane().setLayout(null);
 				
 				JLabel image_home = new JLabel("");
+				image_home.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) { 
+						MainWindow mw = new MainWindow();
+						frame.dispose();
+					}
+				});
 				image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 				image_home.setBounds(40, 21, 64, 74);
 				frame.getContentPane().add(image_home);
@@ -111,6 +118,13 @@ public class TestSelection {
 				name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 				name.setBounds(765, 21, 417, 44);
 				frame.getContentPane().add(name);
+				
+				JLabel labelGrade = new JLabel(grade);
+				labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
+				labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				labelGrade.setForeground(new Color(0, 195, 255));
+				labelGrade.setBounds(874, 59, 308, 44);
+				frame.getContentPane().add(labelGrade);
 				
 				// Logout button
 				
@@ -270,6 +284,6 @@ public class TestSelection {
 				frame.getContentPane().add(editorPane_2_1);
 				
 
-				
+				frame.setVisible(true);
 	}
 }

@@ -14,10 +14,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 public class FillInTheBlankTest {
 
 	private JFrame frame;
+	private JFrame frame_1;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -27,7 +30,7 @@ public class FillInTheBlankTest {
 			public void run() {
 				try {
 					FillInTheBlankTest window = new FillInTheBlankTest();
-					window.frame.setVisible(true);
+					window.frame_1.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,8 +54,8 @@ public class FillInTheBlankTest {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Creates the JFrame, and sets the background color and bounds to 1280 x 720 resolution
-				frame = new JFrame();
-				frame.getContentPane().addMouseListener(new MouseAdapter() 
+				frame_1 = new JFrame();
+				frame_1.getContentPane().addMouseListener(new MouseAdapter() 
 				{
 					@Override
 					public void mouseEntered(MouseEvent e) 
@@ -64,15 +67,15 @@ public class FillInTheBlankTest {
 						
 					}
 				});
-				frame.getContentPane().setBackground(new Color(77,58,129));
-				frame.setBounds(100, 100, 1280, 720);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.getContentPane().setLayout(null);
+				frame_1.getContentPane().setBackground(new Color(77,58,129));
+				frame_1.setBounds(100, 100, 1280, 720);
+				frame_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame_1.getContentPane().setLayout(null);
 				
 				JLabel imageHome = new JLabel("");
 				imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 				imageHome.setBounds(40, 21, 64, 74);
-				frame.getContentPane().add(imageHome);
+				frame_1.getContentPane().add(imageHome);
 				// Placeholder variables to use for Student name and Student grade
 				
 
@@ -86,7 +89,7 @@ public class FillInTheBlankTest {
 				astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
 				astromath.setForeground(new Color(255, 255, 255));
 				astromath.setBounds(97, 21, 318, 85);
-				frame.getContentPane().add(astromath);
+				frame_1.getContentPane().add(astromath);
 				
 				// Does a hover effect on the AstroMath text with the home button
 				
@@ -113,14 +116,14 @@ public class FillInTheBlankTest {
 				name.setForeground(Color.WHITE);
 				name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 				name.setBounds(765, 21, 417, 44);
-				frame.getContentPane().add(name);
+				frame_1.getContentPane().add(name);
 				
 				JLabel labelGrade = new JLabel(grade);
 				labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
 				labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 				labelGrade.setForeground(new Color(0, 195, 255));
 				labelGrade.setBounds(874, 59, 308, 44);
-				frame.getContentPane().add(labelGrade);
+				frame_1.getContentPane().add(labelGrade);
 				
 				
 				// Logout button
@@ -141,12 +144,12 @@ public class FillInTheBlankTest {
 				});
 				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 				imageLogout.setBounds(1192, 15, 72, 91);
-				frame.getContentPane().add(imageLogout);
+				frame_1.getContentPane().add(imageLogout);
 				
 				JLabel imageSettings = new JLabel("");
 				imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 				imageSettings.setBounds(1188, 99, 64, 64);
-				frame.getContentPane().add(imageSettings);
+				frame_1.getContentPane().add(imageSettings);
 				
 				//TEST COMPONENTS
 				
@@ -154,8 +157,8 @@ public class FillInTheBlankTest {
 				FITBTest.setHorizontalAlignment(SwingConstants.CENTER);
 				FITBTest.setForeground(Color.WHITE);
 				FITBTest.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-				FITBTest.setBounds(475, 99, 417, 44);
-				frame.getContentPane().add(FITBTest);
+				FITBTest.setBounds(333, 99, 559, 44);
+				frame_1.getContentPane().add(FITBTest);
 				
 
 				
@@ -177,9 +180,19 @@ public class FillInTheBlankTest {
 				JLabel labelPhrase0 = new JLabel(phrase[0]);
 				labelPhrase0.setHorizontalAlignment(SwingConstants.CENTER);
 				labelPhrase0.setForeground(new Color(255, 255, 255));
-				labelPhrase0.setFont(new Font("A-Space Demo", Font.PLAIN, 45));
-				labelPhrase0.setBounds(-50, 266,1400,200);
-				frame.getContentPane().add(labelPhrase0);
+				labelPhrase0.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
+				labelPhrase0.setBounds(-50, 215,1400,200);
+				frame_1.getContentPane().add(labelPhrase0);
+				
+				//answer field for fill in the blank
+				textField = new JTextField();
+				textField.setForeground(Color.WHITE);
+				textField.setFont(new Font("A-Space Demo", Font.PLAIN, 70));
+				textField.setBounds(438, 425, 442, 177);
+				frame_1.getContentPane().add(textField);
+				textField.setBackground(new Color(0, 255, 153));
+
+				textField.setColumns(10);
 				
 
 				/* testing commented out
@@ -194,6 +207,5 @@ public class FillInTheBlankTest {
 				
 				
 	}
-
 }
 

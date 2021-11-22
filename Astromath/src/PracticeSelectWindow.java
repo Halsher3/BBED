@@ -206,6 +206,13 @@ public class PracticeSelectWindow
 		frame.getContentPane().add(imageLogout);
 		
 		JLabel imageSettings = new JLabel("");
+		imageSettings.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccountSettings as = new AccountSettings();
+				frame.dispose();
+			}
+		});
 		imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 		imageSettings.setBounds(1188, 99, 64, 64);
 		frame.getContentPane().add(imageSettings);
