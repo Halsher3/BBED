@@ -9,10 +9,10 @@ public class FillInTheBlank extends Question{
 		
 	}
 	
-	public static String[] generateFITB(int grade) {
+	public String[] generateFITB(int grade) {
 	String[] FITBStatement = new String[2];
 	String statement = "";
-	int prompt = rand.nextInt(1);
+	int prompt = rand.nextInt(2);
 	int maxNum= 20;
 	int halfNum = maxNum/2;
 	int floor = 2;
@@ -46,7 +46,7 @@ public class FillInTheBlank extends Question{
 		  while(firstNum < secondNum) {
 			  secondNum = rand.nextInt(halfNum) + floor;
 		  }
-		  statement = String.format("%s has %d %s. %s has %d. %s has ___ more.", names1[name1Roll],firstNum, fruit[fruitRoll].toLowerCase(), names2[name2Roll], secondNum, names2[name2Roll]);
+		  statement = String.format("%s has %d %s. %s has %d. %s has ___ more.", names1[name1Roll],firstNum, fruit[fruitRoll].toLowerCase(), names2[name2Roll], secondNum, names1[name1Roll]);
 		  break;
 	  }
 	  
@@ -62,6 +62,8 @@ public class FillInTheBlank extends Question{
 	  } else if (prompt == 1) {
 		  if(firstNum > secondNum) {
 			  FITBStatement[1] = String.valueOf(firstNum - secondNum);
+		  } else {
+			  FITBStatement[1] = String.valueOf(secondNum - firstNum);
 		  }
 		  
 

@@ -45,31 +45,31 @@ public class AccountCreations {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Create a Username");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		lblNewLabel.setBounds(98, 114, 447, 81);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel userLabel = new JLabel("Create a Username");
+		userLabel.setForeground(Color.WHITE);
+		userLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+		userLabel.setBounds(98, 114, 447, 81);
+		frame.getContentPane().add(userLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Add an Email Address");
-		lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(98, 266, 447, 68);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel emailLabel = new JLabel("Add an Email Address");
+		emailLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+		emailLabel.setForeground(Color.WHITE);
+		emailLabel.setBounds(98, 266, 447, 68);
+		frame.getContentPane().add(emailLabel);
 		
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Enter a Password");
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		lblNewLabel_1_1.setBounds(98, 413, 447, 68);
-		frame.getContentPane().add(lblNewLabel_1_1);
+		JLabel passwordLabel = new JLabel("Enter a Password");
+		passwordLabel.setForeground(Color.WHITE);
+		passwordLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+		passwordLabel.setBounds(98, 413, 447, 68);
+		frame.getContentPane().add(passwordLabel);
 
 		
-		JLabel lblNewLabel_2 = new JLabel("ASTROMATH");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
-		lblNewLabel_2.setBounds(98, 39, 745, 52);
-		frame.getContentPane().add(lblNewLabel_2);
+		JLabel astromath = new JLabel("ASTROMATH");
+		astromath.setForeground(Color.WHITE);
+		astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
+		astromath.setBounds(98, 39, 745, 52);
+		frame.getContentPane().add(astromath);
 		
 		JTextField textField = new JTextField();
 		textField.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
@@ -95,33 +95,33 @@ public class AccountCreations {
 		textField_2.setBounds(98, 468, 592, 81);
 		frame.getContentPane().add(textField_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\astronaut.png"));
-		lblNewLabel_3.setBounds(614, -93, 1009, 960);
-		frame.getContentPane().add(lblNewLabel_3);
+		JLabel astronaut = new JLabel("");
+		astronaut.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\astronaut.png"));
+		astronaut.setBounds(614, -93, 1009, 960);
+		frame.getContentPane().add(astronaut);
 		
-		JLabel lblNewLabel_4 = new JLabel("Your password must have at least 1 Uppercase character\r\n");
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
-		lblNewLabel_4.setBounds(98, 538, 604, 52);
-		frame.getContentPane().add(lblNewLabel_4);
+		JLabel casePasswordReq = new JLabel("Your password must have at least 1 Uppercase character\r\n");
+		casePasswordReq.setForeground(Color.WHITE);
+		casePasswordReq.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		casePasswordReq.setBounds(98, 538, 604, 52);
+		frame.getContentPane().add(casePasswordReq);
 		
-		JLabel lblNewLabel_4_1 = new JLabel("At least 6 characters long\r\n");
-		lblNewLabel_4_1.setForeground(Color.WHITE);
-		lblNewLabel_4_1.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
-		lblNewLabel_4_1.setBounds(98, 576, 604, 39);
-		frame.getContentPane().add(lblNewLabel_4_1);
+		JLabel characterReq = new JLabel("At least 6 characters long\r\n");
+		characterReq.setForeground(Color.WHITE);
+		characterReq.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		characterReq.setBounds(98, 576, 604, 39);
+		frame.getContentPane().add(characterReq);
 		
-		JLabel lblNewLabel_4_1_1 = new JLabel("At least one special character (!, ?, /, *, &, ^, etc.)\r\n");
-		lblNewLabel_4_1_1.setForeground(Color.WHITE);
-		lblNewLabel_4_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
-		lblNewLabel_4_1_1.setBounds(98, 608, 604, 39);
-		frame.getContentPane().add(lblNewLabel_4_1_1);
+		JLabel specialCharReq = new JLabel("At least one special character (!, ?, /, *, &, ^, etc.)\r\n");
+		specialCharReq.setForeground(Color.WHITE);
+		specialCharReq.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		specialCharReq.setBounds(98, 608, 604, 39);
+		frame.getContentPane().add(specialCharReq);
 		
-		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\home.png"));
-		lblNewLabel_5.setBounds(30, 23, 78, 81);
-		frame.getContentPane().add(lblNewLabel_5);
+		JLabel home = new JLabel("");
+		home.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\home.png"));
+		home.setBounds(30, 23, 78, 81);
+		frame.getContentPane().add(home);
 
 		
 	}

@@ -13,7 +13,7 @@ import javax.swing.JEditorPane;
 public class TestSelection {
 
 	private JFrame frame;
-	private JFrame frame_1;
+
 
 	/**
 	 * Launch the application.
@@ -23,7 +23,7 @@ public class TestSelection {
 			public void run() {
 				try {
 					TestSelection window = new TestSelection();
-					window.frame_1.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,8 +49,8 @@ public class TestSelection {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Creates the JFrame, and sets the background color and bounds to 1280 x 720 resolution
-				frame_1 = new JFrame();
-				frame_1.getContentPane().addMouseListener(new MouseAdapter() 
+				frame = new JFrame();
+				frame.getContentPane().addMouseListener(new MouseAdapter() 
 				{
 					@Override
 					public void mouseEntered(MouseEvent e) 
@@ -62,15 +62,15 @@ public class TestSelection {
 						
 					}
 				});
-				frame_1.getContentPane().setBackground(new Color(77,58,129));
-				frame_1.setBounds(100, 100, 1280, 720);
-				frame_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame_1.getContentPane().setLayout(null);
+				frame.getContentPane().setBackground(new Color(77,58,129));
+				frame.setBounds(100, 100, 1280, 720);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.getContentPane().setLayout(null);
 				
 				JLabel image_home = new JLabel("");
 				image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 				image_home.setBounds(40, 21, 64, 74);
-				frame_1.getContentPane().add(image_home);
+				frame.getContentPane().add(image_home);
 				// Placeholder variables to use for Student name and Student grade
 				
 				String studentName = "Jack";
@@ -78,181 +78,181 @@ public class TestSelection {
 				
 				// Code for the logo in the upper left corner and Astromath text
 				
-				JLabel label_logo = new JLabel("ASTROMATH");
+				JLabel astromath = new JLabel("ASTROMATH");
 				
-				label_logo.setIcon(null);
-				label_logo.setHorizontalAlignment(SwingConstants.CENTER);
-				label_logo.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
-				label_logo.setForeground(new Color(255, 255, 255));
-				label_logo.setBounds(97, 21, 318, 85);
-				frame_1.getContentPane().add(label_logo);
+				astromath.setIcon(null);
+				astromath.setHorizontalAlignment(SwingConstants.CENTER);
+				astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
+				astromath.setForeground(new Color(255, 255, 255));
+				astromath.setBounds(97, 21, 318, 85);
+				frame.getContentPane().add(astromath);
 				
 				// Does a hover effect on the AstroMath text with the home button
 				
-				label_logo.addMouseListener(new MouseAdapter() 
+				astromath.addMouseListener(new MouseAdapter() 
 				{
 					@Override
 					public void mouseEntered(MouseEvent e) 
 					{
-						label_logo.setForeground(new Color(0, 195, 255));
+						astromath.setForeground(new Color(0, 195, 255));
 					}
 					@Override
 					public void mouseExited(MouseEvent e) 
 					{
-						label_logo.setForeground(Color.WHITE);
+						astromath.setForeground(Color.WHITE);
 					}
 				});
 				
 				// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
 				
-				JLabel label_name = new JLabel("Welcome back, " + studentName);
-				label_name.setHorizontalAlignment(SwingConstants.RIGHT);
-				label_name.setForeground(Color.WHITE);
-				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				label_name.setBounds(765, 21, 417, 44);
-				frame_1.getContentPane().add(label_name);
+				JLabel name = new JLabel("Welcome back, " + studentName);
+				name.setHorizontalAlignment(SwingConstants.RIGHT);
+				name.setForeground(Color.WHITE);
+				name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				name.setBounds(765, 21, 417, 44);
+				frame.getContentPane().add(name);
 				
 				// Logout button
 				
-				JLabel image_logout = new JLabel("");
-				image_logout.addMouseListener(new MouseAdapter() 
+				JLabel imageLogout = new JLabel("");
+				imageLogout.addMouseListener(new MouseAdapter() 
 				{
 					@Override
 					public void mouseEntered(MouseEvent e) 
 					{
-						image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
+						imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
 					}
 					@Override
 					public void mouseExited(MouseEvent e) 
 					{
-						image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+						imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 					}
 				});
-				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
-				image_logout.setBounds(1192, 15, 72, 91);
-				frame_1.getContentPane().add(image_logout);
+				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+				imageLogout.setBounds(1192, 15, 72, 91);
+				frame.getContentPane().add(imageLogout);
 				
-				JLabel image_settings = new JLabel("");
-				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
-				image_settings.setBounds(1188, 99, 64, 64);
-				frame_1.getContentPane().add(image_settings);
+				JLabel imageSettings = new JLabel("");
+				imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+				imageSettings.setBounds(1188, 99, 64, 64);
+				frame.getContentPane().add(imageSettings);
 				
 				//Test Selection options
 				
-				JLabel label_name_1 = new JLabel("Grade 1 Tests");
-				label_name_1.setHorizontalAlignment(SwingConstants.CENTER);
-				label_name_1.setForeground(Color.WHITE);
-				label_name_1.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-				label_name_1.setBounds(475, 99, 417, 44);
-				frame_1.getContentPane().add(label_name_1);
+				JLabel grade1Tests = new JLabel("Grade 1 Tests");
+				grade1Tests.setHorizontalAlignment(SwingConstants.CENTER);
+				grade1Tests.setForeground(Color.WHITE);
+				grade1Tests.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+				grade1Tests.setBounds(475, 99, 417, 44);
+				frame.getContentPane().add(grade1Tests);
 				
-				JLabel label_name_1_1 = new JLabel("Addition Test (Numbers within 20)");
-				label_name_1_1.setBackground(new Color(0, 0, 153));
-				label_name_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-				label_name_1_1.setForeground(Color.WHITE);
-				label_name_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-				label_name_1_1.setBounds(189, 171, 925, 44);
-				frame_1.getContentPane().add(label_name_1_1);
+				JLabel additionTest = new JLabel("Addition Test (Numbers within 20)");
+				additionTest.setBackground(new Color(0, 0, 153));
+				additionTest.setHorizontalAlignment(SwingConstants.CENTER);
+				additionTest.setForeground(Color.WHITE);
+				additionTest.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+				additionTest.setBounds(189, 171, 925, 44);
+				frame.getContentPane().add(additionTest);
 				
-				label_name_1_1.addMouseListener(new MouseAdapter() 
+				additionTest.addMouseListener(new MouseAdapter() 
 				{
 					@Override
 					public void mouseEntered(MouseEvent e) 
 					{
-						label_name_1_1.setForeground(new Color(0, 195, 255));
+						additionTest.setForeground(new Color(0, 195, 255));
 					}
 					@Override
 					public void mouseExited(MouseEvent e) 
 					{
-						label_name_1_1.setForeground(Color.WHITE);
+						additionTest.setForeground(Color.WHITE);
 					}
 				});
 				
 				JEditorPane editorPane = new JEditorPane();
 				editorPane.setBackground(new Color(23, 38, 83));
 				editorPane.setBounds(175, 153, 953, 74);
-				frame_1.getContentPane().add(editorPane);
+				frame.getContentPane().add(editorPane);
 				
-				JLabel lblSubtractionTestnumbers = new JLabel("Subtraction Test (Numbers within 20)");
-				lblSubtractionTestnumbers.setHorizontalAlignment(SwingConstants.CENTER);
-				lblSubtractionTestnumbers.setForeground(Color.WHITE);
-				lblSubtractionTestnumbers.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
-				lblSubtractionTestnumbers.setBackground(new Color(0, 0, 153));
-				lblSubtractionTestnumbers.setBounds(189, 263, 925, 44);
-				frame_1.getContentPane().add(lblSubtractionTestnumbers);
+				JLabel subtractionTest = new JLabel("Subtraction Test (Numbers within 20)");
+				subtractionTest.setHorizontalAlignment(SwingConstants.CENTER);
+				subtractionTest.setForeground(Color.WHITE);
+				subtractionTest.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
+				subtractionTest.setBackground(new Color(0, 0, 153));
+				subtractionTest.setBounds(189, 263, 925, 44);
+				frame.getContentPane().add(subtractionTest);
 				
-				lblSubtractionTestnumbers.addMouseListener(new MouseAdapter() 
+				subtractionTest.addMouseListener(new MouseAdapter() 
 				{
 					@Override
 					public void mouseEntered(MouseEvent e) 
 					{
-						lblSubtractionTestnumbers.setForeground(new Color(0, 195, 255));
+						subtractionTest.setForeground(new Color(0, 195, 255));
 					}
 					@Override
 					public void mouseExited(MouseEvent e) 
 					{
-						lblSubtractionTestnumbers.setForeground(Color.WHITE);
+						subtractionTest.setForeground(Color.WHITE);
 					}
 				});
 				
 				JEditorPane editorPane_1 = new JEditorPane();
 				editorPane_1.setBackground(new Color(23, 38, 83));
 				editorPane_1.setBounds(175, 246, 953, 74);
-				frame_1.getContentPane().add(editorPane_1);
+				frame.getContentPane().add(editorPane_1);
 				
-				JLabel label_name_1_1_1_1 = new JLabel("Measuremnt & Data Test");
-				label_name_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-				label_name_1_1_1_1.setForeground(Color.WHITE);
-				label_name_1_1_1_1.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-				label_name_1_1_1_1.setBackground(new Color(0, 0, 153));
-				label_name_1_1_1_1.setBounds(189, 354, 925, 44);
-				frame_1.getContentPane().add(label_name_1_1_1_1);
+				JLabel trueOrFalseTest = new JLabel("True Or False Test");
+				trueOrFalseTest.setHorizontalAlignment(SwingConstants.CENTER);
+				trueOrFalseTest.setForeground(Color.WHITE);
+				trueOrFalseTest.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+				trueOrFalseTest.setBackground(new Color(0, 0, 153));
+				trueOrFalseTest.setBounds(189, 354, 925, 44);
+				frame.getContentPane().add(trueOrFalseTest);
 				
-				label_name_1_1_1_1.addMouseListener(new MouseAdapter() 
+				trueOrFalseTest.addMouseListener(new MouseAdapter() 
 				{
 					@Override
 					public void mouseEntered(MouseEvent e) 
 					{
-						label_name_1_1_1_1.setForeground(new Color(0, 195, 255));
+						trueOrFalseTest.setForeground(new Color(0, 195, 255));
 					}
 					@Override
 					public void mouseExited(MouseEvent e) 
 					{
-						label_name_1_1_1_1.setForeground(Color.WHITE);
+						trueOrFalseTest.setForeground(Color.WHITE);
 					}
 				});
 				
 				JEditorPane editorPane_2 = new JEditorPane();
 				editorPane_2.setBackground(new Color(23, 38, 83));
 				editorPane_2.setBounds(175, 343, 953, 74);
-				frame_1.getContentPane().add(editorPane_2);
+				frame.getContentPane().add(editorPane_2);
 				
-				JLabel label_name_1_1_1_2 = new JLabel("Place Value Test");
-				label_name_1_1_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-				label_name_1_1_1_2.setForeground(Color.WHITE);
-				label_name_1_1_1_2.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
-				label_name_1_1_1_2.setBackground(new Color(0, 0, 153));
-				label_name_1_1_1_2.setBounds(189, 456, 925, 44);
-				frame_1.getContentPane().add(label_name_1_1_1_2);
+				JLabel fillInTheBlankTest = new JLabel("Fill In The Blank Test");
+				fillInTheBlankTest.setHorizontalAlignment(SwingConstants.CENTER);
+				fillInTheBlankTest.setForeground(Color.WHITE);
+				fillInTheBlankTest.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
+				fillInTheBlankTest.setBackground(new Color(0, 0, 153));
+				fillInTheBlankTest.setBounds(189, 456, 925, 44);
+				frame.getContentPane().add(fillInTheBlankTest);
 				
-				label_name_1_1_1_2.addMouseListener(new MouseAdapter() 
+				fillInTheBlankTest.addMouseListener(new MouseAdapter() 
 				{
 					@Override
 					public void mouseEntered(MouseEvent e) 
 					{
-						label_name_1_1_1_2.setForeground(new Color(0, 195, 255));
+						fillInTheBlankTest.setForeground(new Color(0, 195, 255));
 					}
 					@Override
 					public void mouseExited(MouseEvent e) 
 					{
-						label_name_1_1_1_2.setForeground(Color.WHITE);
+						fillInTheBlankTest.setForeground(Color.WHITE);
 					}
 				});
 				
 				JEditorPane editorPane_2_1 = new JEditorPane();
 				editorPane_2_1.setBackground(new Color(23, 38, 83));
 				editorPane_2_1.setBounds(175, 439, 953, 74);
-				frame_1.getContentPane().add(editorPane_2_1);
+				frame.getContentPane().add(editorPane_2_1);
 				
 
 				

@@ -10,7 +10,7 @@ public class TrueOrFalse extends Question{
 		
 	}
 //Returns a String[] with the first index being the ToF Statement, and the second being the answer.
-	public static String[] generateToF(int grade){
+	public String[] generateToF(int grade){
 		
 		String statement = "";
 		String[] TFStatement = new String[2];

@@ -11,8 +11,8 @@ public class Visual extends JFrame
 {
 
 	private JFrame frame;
-	private JTextField text_username;
-	private JPasswordField text_password;
+	private JTextField textUsername;
+	private JPasswordField textPassword;
 	private Student goku = new Student("goku7", "menameisgoku@gmail.com", "dragonballs", 1234, 1, 1);
 
 	/**
@@ -49,46 +49,46 @@ public class Visual extends JFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		lblNewLabel.setBounds(373, 292, 337, 81);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel labelUsername = new JLabel("Username");
+		labelUsername.setForeground(Color.WHITE);
+		labelUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+		labelUsername.setBounds(373, 292, 337, 81);
+		frame.getContentPane().add(labelUsername);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(373, 430, 220, 68);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel labelPassword = new JLabel("Password");
+		labelPassword.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+		labelPassword.setForeground(Color.WHITE);
+		labelPassword.setBounds(373, 430, 220, 68);
+		frame.getContentPane().add(labelPassword);
 		
-		JLabel lblNewLabel_2 = new JLabel("ASTROMATH");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("a Atmospheric", Font.PLAIN, 84));
-		lblNewLabel_2.setBounds(310, 147, 745, 156);
-		frame.getContentPane().add(lblNewLabel_2);
+		JLabel astromath = new JLabel("ASTROMATH");
+		astromath.setForeground(Color.WHITE);
+		astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 84));
+		astromath.setBounds(310, 147, 745, 156);
+		frame.getContentPane().add(astromath);
 		
-		text_username = new JTextField();
-		text_username.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
-		text_username.setForeground(Color.WHITE);
-		text_username.setBackground(new Color(26, 38, 83));
-		text_username.setBounds(373, 357, 447, 81);
-		frame.getContentPane().add(text_username);
-		text_username.setColumns(10);
+		textUsername = new JTextField();
+		textUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
+		textUsername.setForeground(Color.WHITE);
+		textUsername.setBackground(new Color(26, 38, 83));
+		textUsername.setBounds(373, 357, 447, 81);
+		frame.getContentPane().add(textUsername);
+		textUsername.setColumns(10);
 		
-		text_password = new JPasswordField();
-		text_password.setForeground(Color.WHITE);
-		text_password.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
-		text_password.setColumns(10);
-		text_password.setBackground(new Color(26, 38, 83));
-		text_password.setBounds(373, 496, 447, 81);
-		frame.getContentPane().add(text_password);
+		textPassword = new JPasswordField();
+		textPassword.setForeground(Color.WHITE);
+		textPassword.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
+		textPassword.setColumns(10);
+		textPassword.setBackground(new Color(26, 38, 83));
+		textPassword.setBounds(373, 496, 447, 81);
+		frame.getContentPane().add(textPassword);
 		
-		JLabel label_incorrect = new JLabel("Incorrect username or password!");
-		label_incorrect.setVisible(false);
-		label_incorrect.setForeground(new Color(255, 66, 66));
-		label_incorrect.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		label_incorrect.setBounds(373, 276, 487, 26);
-		frame.getContentPane().add(label_incorrect);
+		JLabel labelIncorrect = new JLabel("Incorrect username or password!");
+		labelIncorrect.setVisible(false);
+		labelIncorrect.setForeground(new Color(255, 66, 66));
+		labelIncorrect.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+		labelIncorrect.setBounds(373, 276, 487, 26);
+		frame.getContentPane().add(labelIncorrect);
 		
 		
 		JButton btnLogin = new JButton("Login");
@@ -96,7 +96,7 @@ public class Visual extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				if(goku.getLogin(text_username.getText(), String.valueOf(text_password.getPassword())))
+				if(goku.getLogin(textUsername.getText(), String.valueOf(textPassword.getPassword())))
 				{
 					MainWindow home = new MainWindow();
 					frame.dispose();
@@ -104,7 +104,7 @@ public class Visual extends JFrame
 				else
 				{
 					
-					label_incorrect.setVisible(true);
+					labelIncorrect.setVisible(true);
 				}
 			}
 		});

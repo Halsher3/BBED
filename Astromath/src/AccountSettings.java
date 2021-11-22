@@ -64,55 +64,55 @@ public class AccountSettings {
 		frame_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame_1.getContentPane().setLayout(null);
 		
-		JLabel image_home = new JLabel("");
-		image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
-		image_home.setBounds(40, 21, 64, 74);
-		frame_1.getContentPane().add(image_home);
+		JLabel imageHome = new JLabel("");
+		imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
+		imageHome.setBounds(40, 21, 64, 74);
+		frame_1.getContentPane().add(imageHome);
 		// Placeholder variables to use for Student name and Student grade
 		
 		String studentName = "Jack";
 		String grade = "Grade 1";
 		
-		JLabel label_grade = new JLabel(grade);
-		label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-		label_grade.setForeground(new Color(0, 195, 255));
-		label_grade.setBounds(874, 59, 308, 44);
-		frame_1.getContentPane().add(label_grade);
+		JLabel labelGrade = new JLabel(grade);
+		labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+		labelGrade.setForeground(new Color(0, 195, 255));
+		labelGrade.setBounds(874, 59, 308, 44);
+		frame_1.getContentPane().add(labelGrade);
 		
 		
-		JLabel label_name = new JLabel(studentName);
-		label_name.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_name.setForeground(Color.WHITE);
-		label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-		label_name.setBounds(765, 21, 417, 44);
-		frame_1.getContentPane().add(label_name);
+		JLabel labelName = new JLabel(studentName);
+		labelName.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelName.setForeground(Color.WHITE);
+		labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+		labelName.setBounds(765, 21, 417, 44);
+		frame_1.getContentPane().add(labelName);
 		
 		
 		// Code for the logo in the upper left corner and Astromath text
 		
-		JLabel label_logo = new JLabel("ASTROMATH");
+		JLabel labelLogo = new JLabel("ASTROMATH");
 		
-		label_logo.setIcon(null);
-		label_logo.setHorizontalAlignment(SwingConstants.CENTER);
-		label_logo.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
-		label_logo.setForeground(new Color(255, 255, 255));
-		label_logo.setBounds(97, 21, 318, 85);
-		frame_1.getContentPane().add(label_logo);
+		labelLogo.setIcon(null);
+		labelLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		labelLogo.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
+		labelLogo.setForeground(new Color(255, 255, 255));
+		labelLogo.setBounds(97, 21, 318, 85);
+		frame_1.getContentPane().add(labelLogo);
 		
 		// Does a hover effect on the AstroMath text with the home button
 		
-		label_logo.addMouseListener(new MouseAdapter() 
+		labelLogo.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				label_logo.setForeground(new Color(0, 195, 255));
+				labelLogo.setForeground(new Color(0, 195, 255));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) 
 			{
-				label_logo.setForeground(Color.WHITE);
+				labelLogo.setForeground(Color.WHITE);
 			}
 		});
 		
@@ -122,112 +122,112 @@ public class AccountSettings {
 		
 		// Logout button
 		
-		JLabel image_logout = new JLabel("");
-		image_logout.addMouseListener(new MouseAdapter() 
+		JLabel imageLogout = new JLabel("");
+		imageLogout.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
+				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) 
 			{
-				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 			}
 		});
-		image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
-		image_logout.setBounds(1192, 15, 72, 91);
-		frame_1.getContentPane().add(image_logout);
+		imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+		imageLogout.setBounds(1192, 15, 72, 91);
+		frame_1.getContentPane().add(imageLogout);
 		
-		JLabel image_settings = new JLabel("");
-		image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
-		image_settings.setBounds(1188, 99, 64, 64);
-		frame_1.getContentPane().add(image_settings);
+		JLabel imageSettings = new JLabel("");
+		imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+		imageSettings.setBounds(1188, 99, 64, 64);
+		frame_1.getContentPane().add(imageSettings);
 		
-		JLabel lblNewLabel = new JLabel("Account Settings");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-		lblNewLabel.setBounds(97, 89, 782, 96);
-		frame_1.getContentPane().add(lblNewLabel);
+		JLabel accountSettings = new JLabel("Account Settings");
+		accountSettings.setForeground(Color.WHITE);
+		accountSettings.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+		accountSettings.setBounds(97, 89, 782, 96);
+		frame_1.getContentPane().add(accountSettings);
 		
-		JLabel lblNewLabel_1 = new JLabel("Change Password");
-		lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(97, 285, 533, 119);
-		frame_1.getContentPane().add(lblNewLabel_1);
+		JLabel changePassword = new JLabel("Change Password");
+		changePassword.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+		changePassword.setForeground(Color.WHITE);
+		changePassword.setBounds(97, 285, 533, 119);
+		frame_1.getContentPane().add(changePassword);
 		
-		lblNewLabel_1.addMouseListener(new MouseAdapter() 
+		changePassword.addMouseListener(new MouseAdapter() 
         {
             @Override
             public void mouseEntered(MouseEvent e) 
             {
-            	lblNewLabel_1.setForeground(new Color(0, 195, 255));
+            	changePassword.setForeground(new Color(0, 195, 255));
             }
             @Override
             public void mouseExited(MouseEvent e) 
             {
-            	lblNewLabel_1.setForeground(Color.WHITE);
+            	changePassword.setForeground(Color.WHITE);
             }
         });
 		
-		JLabel lblNewLabel_2 = new JLabel("Change Email Address");
-		lblNewLabel_2.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setBounds(97, 396, 533, 110);
-		frame_1.getContentPane().add(lblNewLabel_2);
+		JLabel changeEmail = new JLabel("Change Email Address");
+		changeEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+		changeEmail.setForeground(Color.WHITE);
+		changeEmail.setBounds(97, 396, 533, 110);
+		frame_1.getContentPane().add(changeEmail);
 		
-		lblNewLabel_2.addMouseListener(new MouseAdapter() 
+		changeEmail.addMouseListener(new MouseAdapter() 
         {
             @Override
             public void mouseEntered(MouseEvent e) 
             {
-            	lblNewLabel_2.setForeground(new Color(0, 195, 255));
+            	changeEmail.setForeground(new Color(0, 195, 255));
             }
             @Override
             public void mouseExited(MouseEvent e) 
             {
-            	lblNewLabel_2.setForeground(Color.WHITE);
+            	changeEmail.setForeground(Color.WHITE);
             }
         });
 		
-		JLabel lblNewLabel_3 = new JLabel("Change Username");
-		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-		lblNewLabel_3.setBounds(97, 519, 376, 96);
-		frame_1.getContentPane().add(lblNewLabel_3);
+		JLabel changeUsername = new JLabel("Change Username");
+		changeUsername.setForeground(Color.WHITE);
+		changeUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+		changeUsername.setBounds(97, 519, 376, 96);
+		frame_1.getContentPane().add(changeUsername);
 		
-		lblNewLabel_3.addMouseListener(new MouseAdapter() 
+		changeUsername.addMouseListener(new MouseAdapter() 
         {
             @Override
             public void mouseEntered(MouseEvent e) 
             {
-            	lblNewLabel_3.setForeground(new Color(0, 195, 255));
+            	changeUsername.setForeground(new Color(0, 195, 255));
             }
             @Override
             public void mouseExited(MouseEvent e) 
             {
-            	lblNewLabel_3.setForeground(Color.WHITE);
+            	changeUsername.setForeground(Color.WHITE);
             }
         });
 		
-		JLabel lblNewLabel_4 = new JLabel("Verify Email Address");
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-		lblNewLabel_4.setBounds(98, 206, 444, 64);
-		frame_1.getContentPane().add(lblNewLabel_4);
+		JLabel verifyEmail = new JLabel("Verify Email Address");
+		verifyEmail.setForeground(Color.WHITE);
+		verifyEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+		verifyEmail.setBounds(98, 206, 444, 64);
+		frame_1.getContentPane().add(verifyEmail);
 		
-		lblNewLabel_4.addMouseListener(new MouseAdapter() 
+		verifyEmail.addMouseListener(new MouseAdapter() 
         {
             @Override
             public void mouseEntered(MouseEvent e) 
             {
-            	lblNewLabel_4.setForeground(new Color(0, 195, 255));
+            	verifyEmail.setForeground(new Color(0, 195, 255));
             }
             @Override
             public void mouseExited(MouseEvent e) 
             {
-            	lblNewLabel_4.setForeground(Color.WHITE);
+            	verifyEmail.setForeground(Color.WHITE);
             }
         });
 		
@@ -235,10 +235,10 @@ public class AccountSettings {
 		label.setBounds(1193, 670, -432, -417);
 		frame_1.getContentPane().add(label);
 		
-		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\BBED-main\\BBED-main\\Astromath\\Assets\\images\\astronaut.png"));
-		lblNewLabel_5.setBounds(552, 99, 609, 679);
-		frame_1.getContentPane().add(lblNewLabel_5);
+		JLabel astronaut = new JLabel("");
+		astronaut.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\BBED-main\\BBED-main\\Astromath\\Assets\\images\\astronaut.png"));
+		astronaut.setBounds(552, 99, 609, 679);
+		frame_1.getContentPane().add(astronaut);
 	}
 
 }
