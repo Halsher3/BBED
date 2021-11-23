@@ -1,5 +1,4 @@
 	import java.awt.EventQueue;
-	import java.awt.*;
 	import java.util.Random;
 	
 	import java.awt.Color;
@@ -25,11 +24,6 @@ import javax.swing.JFrame;
 		private int[] equation = new int[4];
 		private int numOfQuestions;
 		private String[] tofPhrase = new String[numOfQuestions];
-		private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		private int height = screenSize.height;
-		private int width = screenSize.width;
-		private JLabel labelName = new JLabel("Goku");
-		private JLabel labelGrade = new JLabel("1st Grade");
 	
 		/**
 		 * Launch the application.
@@ -58,7 +52,10 @@ import javax.swing.JFrame;
 		 * Initialize the contents of the frame.
 		 */
 		private void initialize() {
-
+			frame = new JFrame();
+			frame.setBounds(100, 100, 450, 300);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
 			// Creates the JFrame, and sets the background color and bounds to 1280 x 720 resolution
 					frame = new JFrame();
 					frame.getContentPane().addMouseListener(new MouseAdapter() 
@@ -77,11 +74,6 @@ import javax.swing.JFrame;
 					frame.setBounds(100, 100, 1280, 720);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.getContentPane().setLayout(null);
-					
-					int x = ((width / 2) - (width / 3));
-					int y = ((height / 2) - (height / 3));
-					
-					frame.setLocation(x, y);
 					
 					JLabel home = new JLabel("");
 					home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
@@ -102,26 +94,6 @@ import javax.swing.JFrame;
 					astromath.setBounds(97, 21, 318, 85);
 					frame.getContentPane().add(astromath);
 					
-					astromath.addMouseListener(new MouseAdapter() 
-					{
-						@Override
-						public void mouseEntered(MouseEvent e) 
-						{
-							astromath.setForeground(new Color(0, 195, 255));
-						}
-						@Override
-						public void mouseExited(MouseEvent e) 
-						{
-							astromath.setForeground(Color.WHITE);
-						}
-						@Override
-						public void mouseClicked(MouseEvent e) 
-						{
-							MainWindow home = new MainWindow();
-							frame.dispose();
-						}
-					});
-					
 					// Does a hover effect on the AstroMath text with the home button
 					
 					astromath.addMouseListener(new MouseAdapter() 
@@ -139,15 +111,17 @@ import javax.swing.JFrame;
 					});
 					
 					// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
-	
+					String studentName = "Jack";
+					String grade = "Grade 1";
 					
-
-					 labelName.setHorizontalAlignment(SwingConstants.RIGHT);
-					 labelName.setForeground(Color.WHITE);
-					 labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-					 labelName.setBounds(765, 21, 417, 44);
-					frame.getContentPane().add(labelName);
+					JLabel name = new JLabel(studentName);
+					name.setHorizontalAlignment(SwingConstants.RIGHT);
+					name.setForeground(Color.WHITE);
+					name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+					name.setBounds(765, 21, 417, 44);
+					frame.getContentPane().add(name);
 					
+					JLabel labelGrade = new JLabel(grade);
 					labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
 					labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 					labelGrade.setForeground(new Color(0, 195, 255));
@@ -181,35 +155,18 @@ import javax.swing.JFrame;
 					imageLogout.setBounds(1192, 15, 72, 91);
 					frame.getContentPane().add(imageLogout);
 					
-					JLabel image_settings = new JLabel("");
-					image_settings.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							AccountSettings as = new AccountSettings();
-							frame.dispose();
-						}
-						@Override
-						public void mouseEntered(MouseEvent e) 
-						{
-							image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear v2.png"));
-						}
-						@Override
-						public void mouseExited(MouseEvent e) 
-						{
-							image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
-						}
-					});
-					image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
-					image_settings.setBounds(1188, 99, 64, 64);
-					frame.getContentPane().add(image_settings);
+					JLabel imageSettings = new JLabel("");
+					imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+					imageSettings.setBounds(1188, 99, 64, 64);
+					frame.getContentPane().add(imageSettings);
 					
 					//TEST COMPONENTS
 					
 					JLabel practiceProblems = new JLabel("Practice Problems");
 					practiceProblems.setHorizontalAlignment(SwingConstants.CENTER);
-					practiceProblems.setForeground(new Color(0, 195, 255));
-					practiceProblems.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
-					practiceProblems.setBounds(22, 94, 530, 44);
+					practiceProblems.setForeground(Color.WHITE);
+					practiceProblems.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+					practiceProblems.setBounds(475, 99, 530, 44);
 					frame.getContentPane().add(practiceProblems);
 					
 	
