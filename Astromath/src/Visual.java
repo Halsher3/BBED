@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
@@ -72,6 +74,7 @@ public class Visual extends JFrame
 		textUsername.setForeground(Color.WHITE);
 		textUsername.setBackground(new Color(26, 38, 83));
 		textUsername.setBounds(373, 357, 447, 81);
+		textUsername.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
 		frame.getContentPane().add(textUsername);
 		textUsername.setColumns(10);
 		
@@ -81,6 +84,7 @@ public class Visual extends JFrame
 		textPassword.setColumns(10);
 		textPassword.setBackground(new Color(26, 38, 83));
 		textPassword.setBounds(373, 496, 447, 81);
+		textPassword.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
 		frame.getContentPane().add(textPassword);
 		
 		JLabel labelIncorrect = new JLabel("Incorrect username or password!");
