@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.*;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -14,6 +15,12 @@ import javax.swing.border.LineBorder;
 public class GradePage {
 
 	private JFrame frame;
+	private JLabel labelName = new JLabel("Goku");
+	private JLabel labelGrade = new JLabel("1st Grade");
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int height = screenSize.height;
+	private int width = screenSize.width;
+
 
 	/**
 	 * Launch the application.
@@ -42,13 +49,16 @@ public class GradePage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(77,58,129));
 		frame.setBounds(100, 100, 1280, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		int x = ((width / 2) - (width / 3));
+		int y = ((height / 2) - (height / 3));
+		
+		frame.setLocation(x, y);
 		
 		JLabel imageHome = new JLabel("");
 		imageHome.setBounds(40, 21, 64, 74);
@@ -64,10 +74,9 @@ public class GradePage {
 		frame.getContentPane().add(imageHome);
 		// Placeholder variables to use for Student name and Student grade
 		
-		String studentName = "Jack";
-		String grade = "Grade 1";
+
 		
-		JLabel labelGrade = new JLabel(grade);
+		
 		labelGrade.setBounds(874, 59, 308, 44);
 		labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
@@ -75,7 +84,7 @@ public class GradePage {
 		frame.getContentPane().add(labelGrade);
 		
 		
-		JLabel labelName = new JLabel(studentName);
+	
 		labelName.setBounds(765, 21, 417, 44);
 		labelName.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelName.setForeground(Color.WHITE);
@@ -107,6 +116,11 @@ public class GradePage {
 			public void mouseExited(MouseEvent e) 
 			{
 				labelLogo.setForeground(Color.WHITE);
+			}
+			public void mouseClicked(MouseEvent e) 
+			{
+				MainWindow home = new MainWindow();
+				frame.dispose();
 			}
 		});
 		
@@ -146,9 +160,9 @@ public class GradePage {
 		frame.getContentPane().add(imageSettings);
 		
 		JLabel lblNewLabel = new JLabel("Grades - 1st Grade");
-		lblNewLabel.setBounds(97, 89, 782, 96);
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+		lblNewLabel.setBounds(82, 89, 782, 96);
+		lblNewLabel.setForeground(new Color(0, 195, 255));
+		lblNewLabel.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
 		frame.getContentPane().add(lblNewLabel);
 		
 		//background for the grades

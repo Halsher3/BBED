@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.*;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -13,6 +14,13 @@ import javax.swing.JEditorPane;
 public class TestSelection {
 
 	private JFrame frame;
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int height = screenSize.height;
+	private int width = screenSize.width;
+	private JLabel labelName = new JLabel("Goku");
+	private JLabel labelGrade = new JLabel("1st Grade");
+
+	
 
 
 	/**
@@ -43,11 +51,6 @@ public class TestSelection {
 	 */
 	private void initialize() {
 		
-		
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		// Creates the JFrame, and sets the background color and bounds to 1280 x 720 resolution
 				frame = new JFrame();
 				frame.getContentPane().addMouseListener(new MouseAdapter() 
@@ -67,6 +70,11 @@ public class TestSelection {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.getContentPane().setLayout(null);
 				
+				int x = ((width / 2) - (width / 3));
+				int y = ((height / 2) - (height / 3));
+				
+				frame.setLocation(x, y);
+				
 				JLabel image_home = new JLabel("");
 				image_home.addMouseListener(new MouseAdapter() {
 					@Override
@@ -79,9 +87,6 @@ public class TestSelection {
 				image_home.setBounds(40, 21, 64, 74);
 				frame.getContentPane().add(image_home);
 				// Placeholder variables to use for Student name and Student grade
-				
-				String studentName = "Jack";
-				String grade = "Grade 1";
 				
 				// Code for the logo in the upper left corner and Astromath text
 				
@@ -108,18 +113,22 @@ public class TestSelection {
 					{
 						astromath.setForeground(Color.WHITE);
 					}
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						MainWindow home = new MainWindow();
+						frame.dispose();
+					}
 				});
 				
 				// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
 				
-				JLabel name = new JLabel(studentName);
-				name.setHorizontalAlignment(SwingConstants.RIGHT);
-				name.setForeground(Color.WHITE);
-				name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				name.setBounds(765, 21, 417, 44);
-				frame.getContentPane().add(name);
+				labelName.setHorizontalAlignment(SwingConstants.RIGHT);
+				labelName.setForeground(Color.WHITE);
+				labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				labelName.setBounds(765, 21, 417, 44);
+				frame.getContentPane().add(labelName);
 				
-				JLabel labelGrade = new JLabel(grade);
 				labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
 				labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 				labelGrade.setForeground(new Color(0, 195, 255));
@@ -142,22 +151,59 @@ public class TestSelection {
 						imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 					}
 				});
-				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
-				imageLogout.setBounds(1192, 15, 72, 91);
-				frame.getContentPane().add(imageLogout);
+				JLabel image_logout = new JLabel("");
+				image_logout.addMouseListener(new MouseAdapter() 
+				{
+					@Override
+					public void mouseEntered(MouseEvent e) 
+					{
+						image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
+					}
+					@Override
+					public void mouseExited(MouseEvent e) 
+					{
+						image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+					}
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						Visual vis = new Visual();
+						frame.dispose();
+					}
+				});
+				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+				image_logout.setBounds(1192, 15, 72, 91);
+				frame.getContentPane().add(image_logout);
 				
-				JLabel imageSettings = new JLabel("");
-				imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
-				imageSettings.setBounds(1188, 99, 64, 64);
-				frame.getContentPane().add(imageSettings);
+				JLabel image_settings = new JLabel("");
+				image_settings.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						AccountSettings as = new AccountSettings();
+						frame.dispose();
+					}
+					@Override
+					public void mouseEntered(MouseEvent e) 
+					{
+						image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear v2.png"));
+					}
+					@Override
+					public void mouseExited(MouseEvent e) 
+					{
+						image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+					}
+				});
+				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+				image_settings.setBounds(1188, 99, 64, 64);
+				frame.getContentPane().add(image_settings);
 				
 				//Test Selection options
 				
 				JLabel grade1Tests = new JLabel("Grade 1 Tests");
 				grade1Tests.setHorizontalAlignment(SwingConstants.CENTER);
-				grade1Tests.setForeground(Color.WHITE);
-				grade1Tests.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-				grade1Tests.setBounds(475, 99, 417, 44);
+				grade1Tests.setForeground(new Color(0, 195, 255));
+				grade1Tests.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
+				grade1Tests.setBounds(10, 99, 417, 44);
 				frame.getContentPane().add(grade1Tests);
 				
 				JLabel additionTest = new JLabel("Addition Test (Numbers within 20)");

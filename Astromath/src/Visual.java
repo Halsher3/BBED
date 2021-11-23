@@ -1,13 +1,12 @@
 import java.awt.EventQueue;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.*;
 
 public class Visual extends JFrame
 {
@@ -16,6 +15,9 @@ public class Visual extends JFrame
 	private JTextField textUsername;
 	private JPasswordField textPassword;
 	private Student goku = new Student("goku7", "menameisgoku@gmail.com", "dragonballs", 1234, 1, 1);
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int height = screenSize.height;
+	private int width = screenSize.width;
 
 	/**
 	 * Launch the application.
@@ -51,6 +53,12 @@ public class Visual extends JFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		int x = ((width / 2) - (width / 3));
+		int y = ((height / 2) - (height / 3));
+		
+		frame.setLocation(x, y);
+		
+		
 		JLabel labelUsername = new JLabel("Username");
 		labelUsername.setForeground(Color.WHITE);
 		labelUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
@@ -66,7 +74,7 @@ public class Visual extends JFrame
 		JLabel astromath = new JLabel("ASTROMATH");
 		astromath.setForeground(Color.WHITE);
 		astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 84));
-		astromath.setBounds(310, 147, 745, 156);
+		astromath.setBounds(261, 146, 745, 156);
 		frame.getContentPane().add(astromath);
 		
 		textUsername = new JTextField();
@@ -116,6 +124,19 @@ public class Visual extends JFrame
 		btnLogin.setFont(new Font("A-Space Demo", Font.PLAIN, 24));
 		btnLogin.setBounds(412, 588, 370, 68);
 		frame.getContentPane().add(btnLogin);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(".\\\\assets\\\\images\\\\astro.png"));
+		lblNewLabel.setBounds(-19, 325, 370, 424);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JButton lblNewLabel_1 = new JButton("New Student?");
+		lblNewLabel_1.setBackground(new Color(26, 38, 83));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+		lblNewLabel_1.setForeground(new Color(127, 255, 212));
+		lblNewLabel_1.setBounds(964, 602, 288, 68);
+		frame.getContentPane().add(lblNewLabel_1);
 		
 		frame.setVisible(true);
 		

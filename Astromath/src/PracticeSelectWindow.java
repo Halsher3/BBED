@@ -15,6 +15,9 @@ public class PracticeSelectWindow
 {
 
 	private JFrame frame;
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int height = screenSize.height;
+	private int width = screenSize.width;
 
 	/**
 	 * Launch the application.
@@ -63,6 +66,12 @@ public class PracticeSelectWindow
 		frame.setBounds(100, 100, 1280, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+
+		int x = ((width / 2) - (width / 3));
+		int y = ((height / 2) - (height / 3));
+		
+		frame.setLocation(x, y);
 		
 		
 		// Code for the logo in the upper left corner and Astromath text
@@ -163,6 +172,12 @@ public class PracticeSelectWindow
 				imagePractice.setIcon(new ImageIcon(".\\assets\\images\\homework.png"));
 				labelPractice.setForeground(Color.WHITE);
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				PracticeQuestions pq = new PracticeQuestions();
+				frame.dispose();
+			}
 		});
 		
 		
@@ -173,7 +188,7 @@ public class PracticeSelectWindow
 		name.setBounds(765, 21, 417, 44);
 		frame.getContentPane().add(name);
 		
-		 JLabel labelGrade = new JLabel("First Grade");
+		 JLabel labelGrade = new JLabel("1st Grade");
 		labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 		labelGrade.setForeground(new Color(0, 195, 255));

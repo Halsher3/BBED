@@ -16,11 +16,11 @@ public class MainWindow extends JFrame
 	
 	private JFrame frame  = new JFrame();
 	private JLabel label_logo = new JLabel("ASTROMATH");
-	private JLabel label_name = new JLabel("Welcome back, " + "Goku");
+	private JLabel label_name = new JLabel("Goku");
 	private JLabel image_ringPlanet = new JLabel("");
 	private JLabel image_earth = new JLabel("");
 	private JLabel image_redPlanet = new JLabel("");
-	private JLabel label_grade = new JLabel("First Grade");
+	private JLabel label_grade = new JLabel("1st Grade");
 	private JLabel image_bluePlanet = new JLabel("");
 	private JLabel image_sun = new JLabel("");
 	private JLabel image_home = new JLabel("");
@@ -30,6 +30,9 @@ public class MainWindow extends JFrame
 	private JLabel label_profile = new JLabel("Profile");
 	private JLabel image_logout = new JLabel("");
 	private JLabel image_settings = new JLabel("");
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int height = screenSize.height;
+	private int width = screenSize.width;
 	
 
 	/**
@@ -82,6 +85,13 @@ public class MainWindow extends JFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		
+
+		int x = ((width / 2) - (width / 3));
+		int y = ((height / 2) - (height / 3));
+		
+		frame.setLocation(x, y);
+		
 		// Placeholder variables to use for Student name and Student grade
 		
 
@@ -97,21 +107,6 @@ public class MainWindow extends JFrame
 		label_logo.setBounds(97, 21, 318, 85);
 		frame.getContentPane().add(label_logo);
 		
-		// Does a hover effect on the AstroMath text with the home button
-		
-		label_logo.addMouseListener(new MouseAdapter() 
-		{
-			@Override
-			public void mouseEntered(MouseEvent e) 
-			{
-				label_logo.setForeground(new Color(0, 195, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) 
-			{
-				label_logo.setForeground(Color.WHITE);
-			}
-		});
 		
 		// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
 		
@@ -215,6 +210,12 @@ public class MainWindow extends JFrame
 			{
 				image_bluePlanet.setIcon(new ImageIcon(".\\assets\\images\\blue planet.png"));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				GradePage gr = new GradePage();
+				frame.dispose();
+			}
 		});
 		
 		image_sun = new JLabel("");
@@ -297,6 +298,16 @@ public class MainWindow extends JFrame
 			public void mouseClicked(MouseEvent e) {
 				AccountSettings as = new AccountSettings();
 				frame.dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear v2.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 			}
 		});
 		image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));

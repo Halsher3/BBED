@@ -8,11 +8,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.*;
 
 public class AccountSettings {
 
 
 	private JFrame frame;
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int height = screenSize.height;
+	private int width = screenSize.width;
+	private JLabel labelName = new JLabel("Goku");
+	private JLabel labelGrade = new JLabel("1st Grade");
 
 	/**
 	 * Launch the application.
@@ -41,9 +47,6 @@ public class AccountSettings {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Creates the JFrame, and sets the background color and bounds to 1280 x 720 resolution
 		frame = new JFrame();
@@ -64,6 +67,12 @@ public class AccountSettings {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+
+		int x = ((width / 2) - (width / 3));
+		int y = ((height / 2) - (height / 3));
+		
+		frame.setLocation(x, y);
+		
 		JLabel imageHome = new JLabel("");
 		imageHome.addMouseListener(new MouseAdapter() {
 			@Override
@@ -76,11 +85,8 @@ public class AccountSettings {
 		imageHome.setBounds(40, 21, 64, 74);
 		frame.getContentPane().add(imageHome);
 		// Placeholder variables to use for Student name and Student grade
+	
 		
-		String studentName = "Jack";
-		String grade = "Grade 1";
-		
-		JLabel labelGrade = new JLabel(grade);
 		labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 		labelGrade.setForeground(new Color(0, 195, 255));
@@ -88,7 +94,6 @@ public class AccountSettings {
 		frame.getContentPane().add(labelGrade);
 		
 		
-		JLabel labelName = new JLabel(studentName);
 		labelName.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelName.setForeground(Color.WHITE);
 		labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
@@ -121,6 +126,12 @@ public class AccountSettings {
 			{
 				labelLogo.setForeground(Color.WHITE);
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				MainWindow home = new MainWindow();
+				frame.dispose();
+			}
 		});
 		
 		// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
@@ -129,23 +140,29 @@ public class AccountSettings {
 		
 		// Logout button
 		
-		JLabel imageLogout = new JLabel("");
-		imageLogout.addMouseListener(new MouseAdapter() 
+		JLabel image_logout = new JLabel("");
+		image_logout.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
+				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) 
 			{
-				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Visual vis = new Visual();
+				frame.dispose();
 			}
 		});
-		imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
-		imageLogout.setBounds(1192, 15, 72, 91);
-		frame.getContentPane().add(imageLogout);
+		image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+		image_logout.setBounds(1192, 15, 72, 91);
+		frame.getContentPane().add(image_logout);
 		
 		JLabel imageSettings = new JLabel("");
 		imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
@@ -153,9 +170,9 @@ public class AccountSettings {
 		frame.getContentPane().add(imageSettings);
 		
 		JLabel accountSettings = new JLabel("Account Settings");
-		accountSettings.setForeground(Color.WHITE);
-		accountSettings.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-		accountSettings.setBounds(97, 89, 782, 96);
+		accountSettings.setForeground(new Color(0, 195, 255));
+		accountSettings.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
+		accountSettings.setBounds(68, 77, 782, 96);
 		frame.getContentPane().add(accountSettings);
 		
 		JLabel changePassword = new JLabel("Change Password");
@@ -243,7 +260,7 @@ public class AccountSettings {
 		frame.getContentPane().add(label);
 		
 		JLabel astronaut = new JLabel("");
-		astronaut.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\BBED-main\\BBED-main\\Astromath\\Assets\\images\\astronaut.png"));
+		astronaut.setIcon(new ImageIcon(".\\assets\\images\\astronaut.png"));
 		astronaut.setBounds(552, 99, 609, 679);
 		frame.getContentPane().add(astronaut);
 		
