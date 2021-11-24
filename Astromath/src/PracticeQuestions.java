@@ -34,6 +34,8 @@ import javax.swing.JTextPane;
 		private int width = screenSize.width;
 		private JLabel labelName = new JLabel("Goku");
 		private JLabel labelGrade = new JLabel("1st Grade");
+		int difficulty = 0;
+
 	
 		/**
 		 * Launch the application.
@@ -228,20 +230,19 @@ import javax.swing.JTextPane;
 						questionSelect = rand.nextInt(3);
 					}
 					
-					switch(questionSelect) {
+					
+					switch(0) {
 					case 0: 
 						MultipleChoice mp = new MultipleChoice(1, 4);
 						
 
 						
 						
-						equation = mp.generateAddSub(1, 20, 0);
+						equation = mp.generateAddSub(20, 4, 5);
 						
 						
-						
-						int difficulty = 1;
 
-						answerKey = MultipleChoice.generateQuestions(equation[3], 4, difficulty);
+						answerKey = MultipleChoice.generateQuestions(equation[3], 4);
 						//ANSWER KEY NUMBERS
 						String answerKey0 = String.format("%d", answerKey[0]); 
 						String answerKey1 = String.format("%d", answerKey[1]); 
@@ -361,13 +362,13 @@ import javax.swing.JTextPane;
 						mpEquation2.setBounds(750, 260, 197, 91);
 						frame.getContentPane().add(mpEquation2);
 				
-						/*		
-						JLabel mpEquation4 = new JLabel(" = _");
+							
+						JLabel mpEquation4 = new JLabel("");
 						mpEquation4.setForeground(new Color(255, 255, 255));
 						mpEquation4.setFont(new Font("A-Space Demo", Font.PLAIN, 60));
-						mpEquation4.setBounds(750, 260, 197, 91);
+						mpEquation4.setBounds(950, 260, 197, 91);
 						frame.getContentPane().add(mpEquation4);
-						*/
+						
 						
 						
 					

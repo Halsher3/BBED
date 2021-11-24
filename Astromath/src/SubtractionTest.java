@@ -167,7 +167,7 @@ public class SubtractionTest {
 				int[] equation = new int[4];
 				int[][] questionArray = new int[10][1];
 				for(int i = 0; i < 10; i++) {
-					equation = mp.generateAddSub(1, 20, 1);
+					equation = mp.generateAddSub(20, 1, 5);
 					questionArray[i] = equation;
 				}
 				
@@ -194,7 +194,7 @@ public class SubtractionTest {
 				int problem = 0;
 				int difficulty = 1;
 				int[] answerKey = new int[4];
-				answerKey = mp.generateQuestions(questionArray[problem][3], 4, difficulty);
+				answerKey = mp.generateQuestions(questionArray[problem][3], 4);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
 				String answerKey1 = String.format("%d", answerKey[1]); 

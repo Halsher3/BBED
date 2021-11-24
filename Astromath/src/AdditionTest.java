@@ -175,13 +175,13 @@ public class AdditionTest {
 				int[] equation = new int[4];
 				
 				
-				equation = mp.generateAddSub(1, 20, 0);
+				equation = mp.generateAddSub(20, 1, 5);
 				
 				
 				
 				int difficulty = 1;
 				int[] answerKey = new int[4];
-				answerKey = MultipleChoice.generateQuestions(equation[3], 4, difficulty);
+				answerKey = MultipleChoice.generateQuestions(equation[3], 4);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
 				String answerKey1 = String.format("%d", answerKey[1]); 

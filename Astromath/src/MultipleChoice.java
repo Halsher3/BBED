@@ -12,26 +12,23 @@ public class MultipleChoice extends Question{
 		
 	}
 	
-	public int[] generateAddSub(int min, int max, int operand) {
+	public int[] generateAddSub(int maxNum, int operand, int floor) {
 		if(operand == 4) {
 		 operand = rand.nextInt(2); //next number 0 or 1
 		}
-		int maxNum= 20;
 		int halfNum = maxNum/2;
-		int floor = 5;
-		int[] equation = new int[5];
+		int[] equation = new int[4];
 		
 		//add a floor if you want to increase the base of the random
-		int firstNum = rand.nextInt(halfNum) + floor;
-		int secondNum = rand.nextInt(halfNum) + floor;
+		int firstNum = rand.nextInt(maxNum - floor) + floor;
+		int secondNum = rand.nextInt(maxNum - floor) + floor;
 		int transitionNum;
-		answer = firstNum + secondNum;
 
 		//while loop to continuously generate new numbers in the event that the random numbers are larger than halfNum, or the total is greater than maxNum
 
 		while(firstNum + secondNum > maxNum){
-		firstNum = rand.nextInt(halfNum) + floor;
-		secondNum = rand.nextInt(halfNum) + floor;
+		firstNum = rand.nextInt(maxNum - floor) + floor;
+		secondNum = rand.nextInt(maxNum - floor) + floor;
 		}
 
 		
@@ -76,16 +73,12 @@ public class MultipleChoice extends Question{
 	//iterate through the array to find duplicates
 
 	public static Boolean hasNoDuplicate(int[] answers){
-        Boolean duplicates = true;
+        Boolean duplicates = false;
         for(int i = 0; i < answers.length; i++){
-          for( int j = i+1; j < answers.length; j++){
-            if(answers[i] == answers[j]){
+          for( int j = 0; j < answers.length; j++){
+            if(answers[i] == answers[j] && i != j){
                duplicates = true;
              
-            }
-            else
-            {
-            	duplicates = false;
             }
           }
         }
@@ -93,42 +86,22 @@ public class MultipleChoice extends Question{
       }
 	
 	public static Boolean hasNoNegatives(int[] answers){
-        Boolean negatives = true;
+        Boolean negatives = false;
         for(int i = 0; i < answers.length; i++){
           
             if(answers[i] < 0){
                negatives = true;
              
           }
-            else
-            {
-            	negatives = false;
-            }
         }
          return negatives;
       }
 	
-	   public static Boolean hasNoZeroes(int[] answers){
-	        Boolean zeroes = true;
-	        for(int i = 0; i < answers.length; i++){
-	          for( int j = i+1; j < answers.length; j++){
-	            if(answers[i] == 0){
-	               zeroes = true;
-	             
-	            }
-	            else
-	            {
-	            	zeroes = false;
-	            }
-	          }
-	         }
-	        return zeroes;
-	        }
-	
+
 	
 		//method for generating the multiple choice questions, call this in the above method
 	
-		public static int[] generateQuestions(int answer, int numOfQuestions, int difficulty){
+		public static int[] generateQuestions(int answer, int numOfQuestions){
 
 		//generate 3 random answers for multiple choice within +-5 of the actual answer
 	      
@@ -141,33 +114,27 @@ public class MultipleChoice extends Question{
 	      //generate 4 random answers for multiple choice within +-spread of the actual answer
 	      do{
 	      for(int i = 0; i < numOfQuestions; i++){
-
-	            int spread = rand.nextInt(numOfQuestions+difficulty);
+	    	  
+	    	  	int maxSpread = numOfQuestions * 2 + 1;
+	            int spread = rand.nextInt(numOfQuestions - 1) + 1;
 	            int operand = rand.nextInt(2);
 	            
-	            if((2 * spread+ 1) < numOfQuestions) {
+	            if(maxSpread < numOfQuestions) {
 	  	    	  spread++;
 	  	    	  }
 	            
-	            
-	              answers1[i] = answer + spread;
-	            
-	        
 	          if(operand == 0){
 	            answers1[i] = answer + spread;
 	          } else if(operand == 1){
 	            answers1[i] = answer - spread;
 	          }
 	        
-	          if(hasNoNegatives(answers1))
-	          {
-	        	  answers1[i] = answers1[i] * (-1);
-	          }
-	
+
 	      }
+          answers1[multChoiceAnswer1] = answer;
 	      }
-	      while(hasNoDuplicate(answers1) || hasNoNegatives(answers1) || hasNoZeroes(answers1));
-	            answers1[multChoiceAnswer1] = answer;
+	      while(hasNoDuplicate(answers1) || hasNoNegatives(answers1));
+
 			
 		
 
@@ -176,6 +143,7 @@ public class MultipleChoice extends Question{
 		
 		
 	}
+		}
 
-}
+
 
