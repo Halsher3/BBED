@@ -76,12 +76,16 @@ public class MultipleChoice extends Question{
 	//iterate through the array to find duplicates
 
 	public static Boolean hasNoDuplicate(int[] answers){
-        Boolean duplicates = false;
+        Boolean duplicates = true;
         for(int i = 0; i < answers.length; i++){
           for( int j = i+1; j < answers.length; j++){
             if(answers[i] == answers[j]){
                duplicates = true;
              
+            }
+            else
+            {
+            	duplicates = false;
             }
           }
         }
@@ -89,17 +93,39 @@ public class MultipleChoice extends Question{
       }
 	
 	public static Boolean hasNoNegatives(int[] answers){
-        Boolean negatives = false;
+        Boolean negatives = true;
         for(int i = 0; i < answers.length; i++){
-          for( int j = i+1; j < answers.length; j++){
+          
             if(answers[i] < 0){
                negatives = true;
              
-            }
           }
+            else
+            {
+            	negatives = false;
+            }
         }
          return negatives;
       }
+	
+	   public static Boolean hasNoZeroes(int[] answers){
+	        Boolean zeroes = true;
+	        for(int i = 0; i < answers.length; i++){
+	          for( int j = i+1; j < answers.length; j++){
+	            if(answers[i] == 0){
+	               zeroes = true;
+	             
+	            }
+	            else
+	            {
+	            	zeroes = false;
+	            }
+	          }
+	         }
+	        return zeroes;
+	        }
+	
+	
 		//method for generating the multiple choice questions, call this in the above method
 	
 		public static int[] generateQuestions(int answer, int numOfQuestions, int difficulty){
@@ -109,31 +135,38 @@ public class MultipleChoice extends Question{
 	        Random rand = new Random();
 	      int[] answers1 = new int[numOfQuestions];
 	      int multChoiceAnswer1 = rand.nextInt(numOfQuestions);
-
+	      
+	      
+	      
 	      //generate 4 random answers for multiple choice within +-spread of the actual answer
 	      do{
 	      for(int i = 0; i < numOfQuestions; i++){
-	        for(int j = i+1; j < numOfQuestions; j++){
-	            int spread = rand.nextInt(numOfQuestions+difficulty) + (1+difficulty);
+
+	            int spread = rand.nextInt(numOfQuestions+difficulty);
 	            int operand = rand.nextInt(2);
-	            if(answers1[i] == answers1[j] && i != multChoiceAnswer1 ){
+	            
+	            if((2 * spread+ 1) < numOfQuestions) {
+	  	    	  spread++;
+	  	    	  }
+	            
+	            
 	              answers1[i] = answer + spread;
-	            } else if (answers1[i] == answers1[j]){
-	              answers1[j] = answer + spread;
-	            }
+	            
 	        
 	          if(operand == 0){
 	            answers1[i] = answer + spread;
 	          } else if(operand == 1){
 	            answers1[i] = answer - spread;
 	          }
-	        }
-	        if(i == multChoiceAnswer1){
-	            answers1[i] = answer;
+	        
+	          if(hasNoNegatives(answers1))
+	          {
+	        	  answers1[i] = answers1[i] * (-1);
+	          }
+	
 	      }
 	      }
-	      }
-	      while(hasNoDuplicate(answers1) || hasNoNegatives(answers1));
+	      while(hasNoDuplicate(answers1) || hasNoNegatives(answers1) || hasNoZeroes(answers1));
 	            answers1[multChoiceAnswer1] = answer;
 			
 		

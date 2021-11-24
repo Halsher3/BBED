@@ -154,10 +154,27 @@ public class GradePage {
 		imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 		frame.getContentPane().add(imageLogout);
 		
-		JLabel imageSettings = new JLabel("");
-		imageSettings.setBounds(1188, 99, 64, 64);
-		imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
-		frame.getContentPane().add(imageSettings);
+		JLabel image_settings = new JLabel("");
+		image_settings.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccountSettings as = new AccountSettings();
+				frame.dispose();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear v2.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+			}
+		});
+		image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+		image_settings.setBounds(1188, 99, 64, 64);
+		frame.getContentPane().add(image_settings);
 		
 		JLabel lblNewLabel = new JLabel("Grades - 1st Grade");
 		lblNewLabel.setBounds(82, 89, 782, 96);
