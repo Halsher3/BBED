@@ -175,7 +175,7 @@ public class AdditionTest {
 				int[] equation = new int[4];
 				
 				
-				equation = mp.generateAddSub(20, 1, 5);
+				equation = mp.generateEquation(1, 1, 5);
 				
 				
 				

@@ -231,14 +231,14 @@ import javax.swing.JTextPane;
 					}
 					
 					
-					switch(0) {
+					switch(questionSelect) {
 					case 0: 
 						MultipleChoice mp = new MultipleChoice(1, 4);
 						
 
 						
 						
-						equation = mp.generateAddSub(20, 4, 5);
+						equation = mp.generateEquation(0, 4, 1);
 						
 						
 
@@ -469,7 +469,7 @@ import javax.swing.JTextPane;
 			
 			
 			
-			phrase1 = fitb.generateFITB(1);
+			phrase1 = fitb.generateFITB(0);
 			
 			
 			

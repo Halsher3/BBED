@@ -167,7 +167,7 @@ public class SubtractionTest {
 				int[] equation = new int[4];
 				int[][] questionArray = new int[10][1];
 				for(int i = 0; i < 10; i++) {
-					equation = mp.generateAddSub(20, 1, 5);
+					equation = mp.generateEquation(1, 1, 5);
 					questionArray[i] = equation;
 				}
 				
