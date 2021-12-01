@@ -181,7 +181,7 @@ public class AdditionTest {
 				
 				int difficulty = 1;
 				int[] answerKey = new int[4];
-				answerKey = MultipleChoice.generateQuestions(equation[3], 4);
+				answerKey = MultipleChoice.generateQuestions(2, equation[3], 4);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
 				String answerKey1 = String.format("%d", answerKey[1]); 

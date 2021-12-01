@@ -27,6 +27,7 @@ public class MultipleChoice extends Question{
 		return answer;
 	}
 	
+
 	
 	
 	public int[] generateEquation(int grade, int operand, int floor) {
@@ -103,7 +104,47 @@ public class MultipleChoice extends Question{
 		generateOperandBasedAnswer(operand, firstNum, secondNum);
 		
 		break;
-		}
+		
+		
+		case 2:
+			
+			int[] baseTen = new int[9];
+			for(int i = 0; i < baseTen.length-1; i++) {
+				baseTen[i] = (i+1) * 10;
+			}
+			
+			maxNum = 100;
+			
+			if(operand == 4) {
+			 operand = rand.nextInt(2); 
+			}
+		
+			
+			 firstNum = baseTen[rand.nextInt(9)];
+			 secondNum = baseTen[rand.nextInt(9)];
+
+			//while loop to continuously generate new numbers in the event that the random numbers are larger than halfNum, or the total is greater than maxNum
+
+			while(firstNum + secondNum > maxNum){
+				 firstNum = baseTen[rand.nextInt(9)];
+				 secondNum = baseTen[rand.nextInt(9)];
+			}
+
+			
+			//to avoid negative numbers, we check if the operand is subtraction and then if the firstNum is less than secondNum
+			avNeg = avoidNegatives(firstNum, secondNum, operand);
+			firstNum = avNeg[0];
+			secondNum = avNeg[1];
+			
+			//random operand for + or -
+			generateOperandBasedAnswer(operand, firstNum, secondNum);
+
+			
+			
+			
+			
+			break;
+	}
 		
 		equation[0] = firstNum;
 	    equation[1] = operand;
@@ -123,19 +164,59 @@ public class MultipleChoice extends Question{
 	
 	
 
+	public static int[] generateQuestionsBaseTen(int answer, int numOfQuestions){
+        Random rand = new Random();
+      int[] answers1 = new int[numOfQuestions];
+      int multChoiceAnswer1 = rand.nextInt(numOfQuestions);
+      int[] baseTen = new int[9];
+		for(int i = 0; i < baseTen.length-1; i++) {
+			baseTen[i] = (i+1) * 10;
+		}
+      
+      
+      
+      //generate 4 random answers for multiple choice within +-spread of the actual answer
+      do{
+      for(int i = 0; i < numOfQuestions; i++){
+    	  
+    	  	int maxSpread = numOfQuestions * 2 + 1;
+            int spread = rand.nextInt(numOfQuestions - 1) + 1;
+            int operand = rand.nextInt(2);
+            
+            if(maxSpread < numOfQuestions) {
+  	    	  spread++;
+  	    	  }
+            
+          if(operand == 0){
+            answers1[i] = baseTen[rand.nextInt(9)];
+          } else if(operand == 1){
+            answers1[i] = baseTen[rand.nextInt(9)];
+          }
+        
+
+      }
+      answers1[multChoiceAnswer1] = answer;
+      }
+      while(hasNoDuplicate(answers1) || hasNoNegatives(answers1));
+
+		
+	
+
+	return answers1;
+		
+	}
 	
 		//method for generating the multiple choice questions, call this in the above method
 	
-		public static int[] generateQuestions(int answer, int numOfQuestions){
-
+		public static int[] generateQuestions(int grade, int answer, int numOfQuestions){
+			   	  Random rand = new Random();
+			      int[] answers1 = new int[numOfQuestions];
+			      int multChoiceAnswer1 = rand.nextInt(numOfQuestions);
+			     
+			      
 		//generate 3 random answers for multiple choice within +-5 of the actual answer
-	      
-	        Random rand = new Random();
-	      int[] answers1 = new int[numOfQuestions];
-	      int multChoiceAnswer1 = rand.nextInt(numOfQuestions);
-	      
-	      
-	      
+	      if(grade != 2) {
+
 	      //generate 4 random answers for multiple choice within +-spread of the actual answer
 	      do{
 	      for(int i = 0; i < numOfQuestions; i++){
@@ -151,7 +232,7 @@ public class MultipleChoice extends Question{
 	          if(operand == 0){
 	            answers1[i] = answer + spread;
 	          } else if(operand == 1){
-	            answers1[i] = answer - spread;
+	            answers1[i] = answer - spread ;
 	          }
 	        
 
@@ -159,16 +240,50 @@ public class MultipleChoice extends Question{
           answers1[multChoiceAnswer1] = answer;
 	      }
 	      while(hasNoDuplicate(answers1) || hasNoNegatives(answers1));
+	      } else if (grade == 2) {
+	          int[] baseTen = new int[9];
+	  		for(int i = 0; i < baseTen.length-1; i++) {
+	  			baseTen[i] = (i+1) * 10;
+	  		}
+	        
+	        
+	        
+	        //generate 4 random answers for multiple choice within +-spread of the actual answer
+	        do{
+	        for(int i = 0; i < numOfQuestions; i++){
+	      	  
+	      	  	int maxSpread = numOfQuestions * 2 + 1;
+	              int spread = rand.nextInt(numOfQuestions - 1) + 1;
+	              int operand = rand.nextInt(2);
+	              
+	              if(maxSpread < numOfQuestions) {
+	    	    	  spread++;
+	    	    	  }
+	              
+	            if(operand == 0){
+	              answers1[i] = baseTen[rand.nextInt(9)];
+	            } else if(operand == 1){
+	              answers1[i] = baseTen[rand.nextInt(9)];
+	            }
+	          
 
+	        }
+	        answers1[multChoiceAnswer1] = answer;
+	        }
+	        while(hasNoDuplicate(answers1) || hasNoNegatives(answers1));
+	      }
 			
 		
 
-		//returns numOfQuestions-1 amount of randomly generated answers, and one real answer randomly assorted in, as an array
 		return answers1;
 		
 		
 	}
+
+		
 		}
+
+
 
 
 

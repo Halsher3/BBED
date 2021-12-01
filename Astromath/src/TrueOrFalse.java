@@ -114,8 +114,55 @@ public class TrueOrFalse extends Question{
 			  
 		  }
 		  break;
+		
+		case 2:
+			maxNum = 999;
+			firstNum = rand.nextInt(maxNum - 100) + 100;
+			secondNum = rand.nextInt(maxNum - 100) + 100;
+		prompt = rand.nextInt(3);
+			
+		switch(prompt) {
+		case 0:
+				statement = String.format("%d < %d", firstNum, secondNum);
+				break;
+		case 1:
+			statement = String.format("%d > %d", firstNum, secondNum);
+				break;
+		case 2:
+			statement = String.format("%d = %d", firstNum, secondNum);
+				break;			
 		}
-		  
+		TFStatement[0] = statement;
+		
+		  if(prompt == 0) {
+			  
+			  if(firstNum < secondNum) {
+				  TFStatement[1] = "True";
+			  } else {
+				  TFStatement[1] = "False";
+			  }
+			  
+		  } else if (prompt == 1) {
+			  
+			  if(firstNum >  secondNum) {
+				  TFStatement[1] = "True";
+			  }  else  {
+				  TFStatement[1] = "False";
+			  }
+			  
+		  } else if (prompt == 2) {
+			  if(firstNum == secondNum) {
+				  TFStatement[1] = "True";
+			  } else {
+				  TFStatement[1] = "False";
+				  
+			  }
+		  }
+		
+			
+			break;
+	
+		}
 		return TFStatement;
 	}
 	

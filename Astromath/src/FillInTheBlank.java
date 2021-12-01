@@ -9,6 +9,8 @@ public class FillInTheBlank extends Question{
 		
 	}
 	
+	
+	
 	public String[] generateFITB(int grade) {
 	String[] FITBStatement = new String[2];
 	String statement = "";
@@ -87,6 +89,59 @@ public class FillInTheBlank extends Question{
 		  
 
 	  }
+	  break;
+	
+	case 2:
+		 firstNum = rand.nextInt(5 - 2) + 2;
+		 secondNum = rand.nextInt(5 - 2) + 2;
+		int objectRoll2 = rand.nextInt(4);
+		int sumCoins = 0;
+		
+		names1[0] = "Bruce"; names1[1] = "Brandon"; names1[2] = "Eddy"; names1[3] = "Dylan";
+		names2[0] = "Peter"; names2[1] = "Mark"; names2[2] = "Garen";
+		object[0] = "Pennies"; object[1] = "Nickles"; object[2] = "Dimes"; object[3] = "Quarters";
+		while(objectRoll == objectRoll2) {
+			objectRoll2 = rand.nextInt(4);
+		}
+		
+		
+		statement = String.format("%s has %d %s and %d %s. How much money does %s have?", names1[name1Roll], firstNum, object[objectRoll], secondNum, object[objectRoll2], names1[name1Roll]);
+		
+		
+		//calculates cents
+		switch(objectRoll) {
+		case 0:
+			sumCoins += firstNum;
+			break;
+		case 1:
+			sumCoins += firstNum * 5;
+			break;
+		case 2:
+			sumCoins += firstNum * 10;
+			break;
+		case 3: 
+			sumCoins += firstNum * 25;
+			break;
+		}
+		
+		switch(objectRoll2) {
+		case 0:
+			sumCoins += secondNum;
+			break;
+		case 1:
+			sumCoins += secondNum * 5;
+			break;
+		case 2:
+			sumCoins += secondNum * 10;
+			break;
+		case 3: 
+			sumCoins += secondNum * 25;
+			break;
+		}
+		
+		FITBStatement[0] = statement;
+		FITBStatement[1] = String.format("%d", sumCoins);
+		
 	  break;
 	}
 

@@ -194,7 +194,7 @@ public class SubtractionTest {
 				int problem = 0;
 				int difficulty = 1;
 				int[] answerKey = new int[4];
-				answerKey = mp.generateQuestions(questionArray[problem][3], 4);
+				answerKey = mp.generateQuestions(2, questionArray[problem][3], 4);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
 				String answerKey1 = String.format("%d", answerKey[1]); 

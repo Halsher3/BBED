@@ -231,18 +231,18 @@ import javax.swing.JTextPane;
 					}
 					
 					
-					switch(questionSelect) {
+					switch(2) {
 					case 0: 
 						MultipleChoice mp = new MultipleChoice(1, 4);
 						
 
 						
 						
-						equation = mp.generateEquation(0, 4, 1);
+						equation = mp.generateEquation(2, 4, 1);
 						
 						
-
-						answerKey = MultipleChoice.generateQuestions(equation[3], 4);
+						
+						answerKey = MultipleChoice.generateQuestions(2, equation[3], 4);
 						//ANSWER KEY NUMBERS
 						String answerKey0 = String.format("%d", answerKey[0]); 
 						String answerKey1 = String.format("%d", answerKey[1]); 
@@ -397,7 +397,7 @@ import javax.swing.JTextPane;
 
 						
 						
-						tofPhrase = tof.generateToF(1);
+						tofPhrase = tof.generateToF(2);
 						
 						
 						//EQUATION NUMBERS
@@ -469,7 +469,7 @@ import javax.swing.JTextPane;
 			
 			
 			
-			phrase1 = fitb.generateFITB(0);
+			phrase1 = fitb.generateFITB(2);
 			
 			
 			
