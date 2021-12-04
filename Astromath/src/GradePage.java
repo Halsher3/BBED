@@ -8,11 +8,12 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-public class GradePage {
+public class GradePage extends JPanel {
 
 	private JFrame frame;
 	private JLabel labelName = new JLabel("Goku");
@@ -20,58 +21,21 @@ public class GradePage {
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
+	
+	private JPanel panel_grades = new JPanel();
 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GradePage window = new GradePage();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public GradePage(JLayeredPane lp) 
+	{
 
-	/**
-	 * Create the application.
-	 */
-	public GradePage() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(77,58,129));
-		frame.setBounds(100, 100, 1280, 720);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		int x = ((width / 2) - (width / 3));
-		int y = ((height / 2) - (height / 3));
-		
-		frame.setLocation(x, y);
+		panel_grades.setBounds(0, 0, 1262, 681);
+		panel_grades.setBackground(new Color(77,58,129));
+		panel_grades.setLayout(null);
 		
 		JLabel imageHome = new JLabel("");
 		imageHome.setBounds(40, 21, 64, 74);
-		imageHome.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				MainWindow mw = new MainWindow();
-				frame.dispose();
-			}
-		});
-		frame.getContentPane().setLayout(null);
 		imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
-		frame.getContentPane().add(imageHome);
+		panel_grades.add(imageHome);
 		// Placeholder variables to use for Student name and Student grade
 		
 
@@ -81,7 +45,7 @@ public class GradePage {
 		labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 		labelGrade.setForeground(new Color(0, 195, 255));
-		frame.getContentPane().add(labelGrade);
+		panel_grades.add(labelGrade);
 		
 		
 	
@@ -89,7 +53,7 @@ public class GradePage {
 		labelName.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelName.setForeground(Color.WHITE);
 		labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-		frame.getContentPane().add(labelName);
+		panel_grades.add(labelName);
 		
 		
 		// Code for the logo in the upper left corner and Astromath text
@@ -101,7 +65,7 @@ public class GradePage {
 		labelLogo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelLogo.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
 		labelLogo.setForeground(new Color(255, 255, 255));
-		frame.getContentPane().add(labelLogo);
+		panel_grades.add(labelLogo);
 		
 		// Does a hover effect on the AstroMath text with the home button
 		
@@ -119,8 +83,9 @@ public class GradePage {
 			}
 			public void mouseClicked(MouseEvent e) 
 			{
-				MainWindow home = new MainWindow();
-				frame.dispose();
+				MainWindow panel_home = new MainWindow(lp);
+				switch_screen(panel_home.getPanel(), lp);
+
 			}
 		});
 		
@@ -147,19 +112,20 @@ public class GradePage {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				Visual vis = new Visual();
-				frame.dispose();
+				Login panel_login = new Login(lp);
+				switch_screen(panel_login.getPanel(), lp);
+
 			}
 		});
 		imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
-		frame.getContentPane().add(imageLogout);
+		panel_grades.add(imageLogout);
 		
 		JLabel image_settings = new JLabel("");
 		image_settings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountSettings as = new AccountSettings();
-				frame.dispose();
+				AccountSettings panel_acc = new AccountSettings(lp);
+				switch_screen(panel_acc.getPanel(), lp);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -174,13 +140,13 @@ public class GradePage {
 		});
 		image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 		image_settings.setBounds(1188, 99, 64, 64);
-		frame.getContentPane().add(image_settings);
+		panel_grades.add(image_settings);
 		
 		JLabel lblNewLabel = new JLabel("Grades - 1st Grade");
 		lblNewLabel.setBounds(82, 89, 782, 96);
 		lblNewLabel.setForeground(new Color(0, 195, 255));
 		lblNewLabel.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
-		frame.getContentPane().add(lblNewLabel);
+		panel_grades.add(lblNewLabel);
 		
 		//background for the grades
 		
@@ -188,7 +154,7 @@ public class GradePage {
 		panel.setBounds(42, 220, 1140, 430);
 		panel.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
 		panel.setBackground(new Color(26, 38, 83));
-		frame.getContentPane().add(panel);
+		panel_grades.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Addition Test within 20");
@@ -228,6 +194,22 @@ public class GradePage {
 		lblNewLabel_6.setBounds(740, 302, 183, 70);
 		panel.add(lblNewLabel_6);
 		
-		frame.setVisible(true);
 	}
+
+	public JPanel getPanel()
+	{
+		return panel_grades;
+		
+	}
+	public void switch_screen(JPanel p, JLayeredPane lp)
+	{
+		lp.removeAll();
+		p.setLayout(null);
+		lp.add(p);
+		lp.repaint();
+		lp.revalidate();
+		
+
+	}
+	
 }

@@ -18,6 +18,10 @@ public class Visual extends JFrame
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
+	
+	private final JLayeredPane layeredPane = new JLayeredPane();
+	
+	JPanel panel_login = new JPanel();
 
 	/**
 	 * Launch the application.
@@ -53,94 +57,40 @@ public class Visual extends JFrame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+	
+		
 		int x = ((width / 2) - (width / 3));
 		int y = ((height / 2) - (height / 3));
 		
 		frame.setLocation(x, y);
 		
+		layeredPane.setBounds(0, 0, 1262, 681);
+		frame.getContentPane().add(layeredPane);
 		
-		JLabel labelUsername = new JLabel("Username");
-		labelUsername.setForeground(Color.WHITE);
-		labelUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		labelUsername.setBounds(373, 292, 337, 81);
-		frame.getContentPane().add(labelUsername);
-		
-		JLabel labelPassword = new JLabel("Password");
-		labelPassword.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		labelPassword.setForeground(Color.WHITE);
-		labelPassword.setBounds(373, 430, 220, 68);
-		frame.getContentPane().add(labelPassword);
-		
-		JLabel astromath = new JLabel("ASTROMATH");
-		astromath.setForeground(Color.WHITE);
-		astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 84));
-		astromath.setBounds(261, 146, 745, 156);
-		frame.getContentPane().add(astromath);
-		
-		textUsername = new JTextField();
-		textUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
-		textUsername.setForeground(Color.WHITE);
-		textUsername.setBackground(new Color(26, 38, 83));
-		textUsername.setBounds(373, 357, 447, 81);
-		textUsername.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
-		frame.getContentPane().add(textUsername);
-		textUsername.setColumns(10);
-		
-		textPassword = new JPasswordField();
-		textPassword.setForeground(Color.WHITE);
-		textPassword.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
-		textPassword.setColumns(10);
-		textPassword.setBackground(new Color(26, 38, 83));
-		textPassword.setBounds(373, 496, 447, 81);
-		textPassword.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
-		frame.getContentPane().add(textPassword);
-		
-		JLabel labelIncorrect = new JLabel("Incorrect username or password!");
-		labelIncorrect.setVisible(false);
-		labelIncorrect.setForeground(new Color(255, 66, 66));
-		labelIncorrect.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		labelIncorrect.setBounds(373, 276, 487, 26);
-		frame.getContentPane().add(labelIncorrect);
+		Login l = new Login(layeredPane);
 		
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				if(goku.getLogin(textUsername.getText(), String.valueOf(textPassword.getPassword())))
-				{
-					MainWindow home = new MainWindow();
-					frame.dispose();
-				}
-				else
-				{
-					
-					labelIncorrect.setVisible(true);
-				}
-			}
-		});
-		btnLogin.setForeground(Color.BLACK);
-		btnLogin.setFont(new Font("A-Space Demo", Font.PLAIN, 24));
-		btnLogin.setBounds(412, 588, 370, 68);
-		frame.getContentPane().add(btnLogin);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(".\\\\assets\\\\images\\\\astro.png"));
-		lblNewLabel.setBounds(-19, 325, 370, 424);
-		frame.getContentPane().add(lblNewLabel);
+		layeredPane.add(l);
 		
-		JButton lblNewLabel_1 = new JButton("New Student?");
-		lblNewLabel_1.setBackground(new Color(26, 38, 83));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
-		lblNewLabel_1.setForeground(new Color(127, 255, 212));
-		lblNewLabel_1.setBounds(964, 602, 288, 68);
-		frame.getContentPane().add(lblNewLabel_1);
+		
 		
 		frame.setVisible(true);
 		
 		
 		
 	}
+	
+	public void switch_screen(JPanel p, JLayeredPane lp)
+	{
+		lp.removeAll();
+		p.setLayout(null);
+		lp.add(p);
+		lp.repaint();
+		lp.revalidate();
+		
+
+	}
+
+	
 }
