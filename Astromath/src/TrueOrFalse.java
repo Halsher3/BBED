@@ -161,6 +161,39 @@ public class TrueOrFalse extends Question{
 		
 			
 			break;
+			
+		case 3:
+			prompt = rand.nextInt(2);
+			maxNum = 180;
+			names1[0] = "Bruce"; names1[1] = "Brandon"; names1[2] = "Eddy"; names1[3] = "Dylan";
+			object[0] = " a Soccer game"; object[1] = "class"; object[2] = "store"; object[3] = "a basketball game";
+			int[] minutes = new int[3];
+
+			minutes[0] = rand.nextInt(5) + 10; minutes[1] = rand.nextInt(10) + 30; minutes[2] = rand.nextInt(20) + 25;
+			firstNum = rand.nextInt(maxNum - 10) + 10;
+
+			int minutesRand = rand.nextInt(3);
+			
+			int time = rand.nextInt(10) + 1;
+			switch(prompt) {
+			
+			case 0: 
+				statement = String.format("%s has to go to %s. It takes %d minutes to get there, and it's %d:05 now. Does %s have enough time to get there if it closes at %d:%d?", names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time, names1[name1Roll], (time+1), minutes[minutesRand]);
+				if(firstNum < 60+minutes[minutesRand]) {
+					TFStatement[1] = "True";
+					
+				} else {
+					TFStatement[1] = "False";
+				}
+				break;
+			case 1:
+				firstNum = rand.nextInt(55) + 5;
+				statement = String.format("%s has to go to %s. It takes %d minutes to get there, and it's %d:05 now. Does %s have enough time to get there if it closes at %d:%d?", names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time, names1[name1Roll], (time+1), minutes[minutesRand]);
+				TFStatement[1] = "True";
+				break;
+		}
+			TFStatement[0] = statement;
+
 	
 		}
 		return TFStatement;

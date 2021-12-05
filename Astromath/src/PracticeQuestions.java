@@ -194,18 +194,18 @@ import javax.swing.JTextPane;
 			}
 			
 			
-			switch(2) {
+			switch(questionSelect) {
 			case 0: 
 				MultipleChoice mp = new MultipleChoice(1, 4);
 				
 
 				
 				
-				equation = mp.generateEquation(2, 4, 1);
+				equation = mp.generateEquation(3, 4, 1);
 				
 				
 				
-				answerKey = MultipleChoice.generateQuestions(2, equation[3], 4);
+				answerKey = MultipleChoice.generateQuestions(3, equation[3], 4);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
 				String answerKey1 = String.format("%d", answerKey[1]); 
@@ -337,14 +337,20 @@ import javax.swing.JTextPane;
 				
 			
 				//OPERAND PART
-				String equation1;
+				String equation1 = "";
 				if (equation[1] == 0){
 				
 				equation1 = "+";
 				}
 				
-				else {
+				else if(equation[1] == 1){
 					equation1 = "-";
+				}
+				else if(equation[1] == 2){
+					equation1 = "x";
+				}
+				else if(equation[1] == 3){
+					equation1 = "÷";
 				}
 				JLabel mpEquation3 = new JLabel(equation1);
 				mpEquation3.setForeground(new Color(255, 255, 255));
@@ -361,14 +367,14 @@ import javax.swing.JTextPane;
 
 				
 				
-				tofPhrase = tof.generateToF(2);
+				tofPhrase = tof.generateToF(3);
 				
 				
 				//EQUATION NUMBERS
 				JLabel tofPhrase1 = new JLabel(tofPhrase[0]);
 				tofPhrase1.setHorizontalAlignment(SwingConstants.CENTER);
 				tofPhrase1.setForeground(new Color(255, 255, 255));
-				tofPhrase1.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
+				tofPhrase1.setFont(new Font("A-Space Demo", Font.PLAIN, 10));
 				tofPhrase1.setBounds(-50, 266,1400,200);
 				panel_practiceQuestions.add(tofPhrase1);
 				
@@ -433,7 +439,7 @@ case 2:
 	
 	
 	
-	phrase1 = fitb.generateFITB(2);
+	phrase1 = fitb.generateFITB(3);
 	
 	
 	

@@ -138,11 +138,63 @@ public class MultipleChoice extends Question{
 			
 			//random operand for + or -
 			generateOperandBasedAnswer(operand, firstNum, secondNum);
+			break;
 
 			
 			
 			
+		case 3:
 			
+			if(operand == 4) {
+				 operand = rand.nextInt(2) + 2; //next number 2 or 3 or 
+				}
+				double divisionAnswer;
+				double zero = 0.0000;
+				double one = 1.0000;
+			
+				maxNum = 100;
+				halfNum = maxNum/2;
+				floor = 2;
+			
+				
+				//add a floor if you want to increase the base of the random
+				 firstNum = rand.nextInt(maxNum - floor) + floor;
+				 secondNum = rand.nextInt(maxNum - floor) + floor;
+
+				//while loop to continuously generate new numbers in the event that the random numbers are larger than halfNum, or the total is greater than maxNum
+				if(operand == 2) {
+				while(firstNum * secondNum > maxNum){
+				firstNum = rand.nextInt(maxNum - floor) + floor;
+				secondNum = rand.nextInt(maxNum - floor) + floor;
+				}
+				} else {
+
+					avNeg = avoidNegatives(firstNum, secondNum, operand);
+					firstNum = avNeg[0];
+					secondNum = avNeg[1];
+
+
+				divisionAnswer = firstNum/(double)secondNum;
+				
+				do {
+                    firstNum = rand.nextInt(maxNum - floor) + floor;
+                    secondNum = rand.nextInt(maxNum - floor) + floor;
+                    divisionAnswer = firstNum/(double)secondNum;
+                    
+					
+				}
+                    while((divisionAnswer%2 != zero && divisionAnswer%2 != one) || (firstNum == secondNum));
+				}
+                        
+                    
+                
+				
+
+				
+				
+				//random operand for + or -
+				generateOperandBasedAnswer(operand, firstNum, secondNum);
+		
 			break;
 	}
 		

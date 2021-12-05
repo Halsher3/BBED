@@ -143,6 +143,30 @@ public class FillInTheBlank extends Question{
 		FITBStatement[1] = String.format("%d", sumCoins);
 		
 	  break;
+	case 3:
+		maxNum = 100;
+		halfNum = maxNum/2;
+		floor = 2;
+		
+	
+		
+		//add a floor if you want to increase the base of the random
+		 firstNum = rand.nextInt(maxNum - floor) + floor;
+		 secondNum = rand.nextInt(maxNum - floor) + floor;
+
+		//while loop to continuously generate new numbers in the event that the random numbers are larger than halfNum, or the total is greater than maxNum
+
+		while(firstNum * secondNum > maxNum){
+		firstNum = rand.nextInt(maxNum - floor) + floor;
+		secondNum = rand.nextInt(maxNum - floor) + floor;
+		}
+		
+		statement = String.format("%d x _ = %d", firstNum, (firstNum*secondNum));
+		FITBStatement[0] = statement;
+		
+		statement = String.format("%d", secondNum);
+		FITBStatement[1] = statement;
+		break;
 	}
 
 	return FITBStatement;

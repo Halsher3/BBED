@@ -52,7 +52,7 @@ public class Question {
 	public int[] avoidNegatives(int firstNum, int secondNum, int operand) {
 		int[] avNeg = new int[2];
 		int transitionNum = 0;
-		if(operand == 1 && firstNum < secondNum){
+		if(operand == 1 && firstNum < secondNum || operand == 3 && firstNum < secondNum){
 		transitionNum = secondNum;
 		secondNum = firstNum;
 		firstNum = transitionNum;
