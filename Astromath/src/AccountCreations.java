@@ -5,7 +5,16 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+
+//sql stuff
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AccountCreations {
 
@@ -45,6 +54,7 @@ public class AccountCreations {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+	
 		JLabel userLabel = new JLabel("Create a Username");
 		userLabel.setForeground(Color.WHITE);
 		userLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
@@ -71,29 +81,29 @@ public class AccountCreations {
 		astromath.setBounds(98, 39, 745, 52);
 		frame.getContentPane().add(astromath);
 		
-		JTextField textField = new JTextField();
-		textField.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
-		textField.setForeground(Color.WHITE);
-		textField.setBackground(new Color(26, 38, 83));
-		textField.setBounds(98, 175, 592, 81);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		JTextField userName = new JTextField();
+		userName.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
+		userName.setForeground(Color.WHITE);
+		userName.setBackground(new Color(26, 38, 83));
+		userName.setBounds(98, 175, 592, 81);
+		frame.getContentPane().add(userName);
+		userName.setColumns(10);
 		
-		JTextField textField_1 = new JTextField();
-		textField_1.setForeground(Color.WHITE);
-		textField_1.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
-		textField_1.setColumns(10);
-		textField_1.setBackground(new Color(26, 38, 83));
-		textField_1.setBounds(98, 322, 592, 81);
-		frame.getContentPane().add(textField_1);
+		JTextField userEmail = new JTextField();
+		userEmail.setForeground(Color.WHITE);
+		userEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
+		userEmail.setColumns(10);
+		userEmail.setBackground(new Color(26, 38, 83));
+		userEmail.setBounds(98, 322, 592, 81);
+		frame.getContentPane().add(userEmail);
 		
-		JTextField textField_2 = new JTextField();
-		textField_2.setForeground(Color.WHITE);
-		textField_2.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
-		textField_2.setColumns(10);
-		textField_2.setBackground(new Color(26, 38, 83));
-		textField_2.setBounds(98, 468, 592, 81);
-		frame.getContentPane().add(textField_2);
+		JTextField userPassword = new JTextField();
+		userPassword.setForeground(Color.WHITE);
+		userPassword.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
+		userPassword.setColumns(10);
+		userPassword.setBackground(new Color(26, 38, 83));
+		userPassword.setBounds(98, 468, 592, 81);
+		frame.getContentPane().add(userPassword);
 		
 		JLabel astronaut = new JLabel("");
 		astronaut.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\astronaut.png"));
@@ -122,8 +132,47 @@ public class AccountCreations {
 		home.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\home.png"));
 		home.setBounds(30, 23, 78, 81);
 		frame.getContentPane().add(home);
+		
+		//my sql database register stuff
+		JButton registerButton = new JButton("Register");
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String username = userName.getText();
+				String email = userEmail.getText();
+				String password = userEmail.getText();
+				//String grade = userEmail.getText(); this will hopefull be grade when i get this working
+              
+				try {
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/userregistration","root","ubuntu123");
+
+                    String query = "INSERT INTO account values('" + username + "','" + password + "','" + email + "')";
+
+                    Statement sta = connection.createStatement();
+                    int x = sta.executeUpdate(query);
+                    if (x == 0) {
+                        JOptionPane.showMessageDialog(registerButton, "This is alredy exist");
+                    } else {
+                        String msg = null;
+						JOptionPane.showMessageDialog(registerButton,
+                            "Welcome, " + msg + "Your account is sucessfully created");
+                    }
+                    connection.close();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });	
+		registerButton.setFont(new Font("A-Space Demo", Font.PLAIN, 27));
+		registerButton.setBounds(674, 594, 218, 68);
+		frame.getContentPane().add(registerButton);
+		
+		//end of button function to create a user
+		
+		
+		
+	
 
 		
 	}
-
 }
