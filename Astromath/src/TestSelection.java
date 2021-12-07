@@ -1,221 +1,297 @@
-
-
-import java.awt.*;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-
+import java.awt.*;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PracticeSelectWindow extends JPanel
-{
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.JEditorPane;
+
+public class TestSelection extends JPanel {
 
 	private JFrame frame;
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
+	private JLabel labelName = new JLabel("Goku");
+	private JLabel labelGrade = new JLabel("1st Grade");
+
+	private JPanel panel_testSelect = new JPanel();
+
+
 	
-	private JPanel panel_practiceSelect = new JPanel();
-
-
-
-	/**
-	 * Create the application.
-	 */
-	public PracticeSelectWindow(JLayeredPane lp) 
+	public TestSelection(JLayeredPane lp) 
 	{
+
+		panel_testSelect.setBounds(0, 0, 1262, 681);
+		panel_testSelect.setBackground(new Color(77,58,129));
+		panel_testSelect.setLayout(null);
 		
-		panel_practiceSelect.setBounds(0, 0, 1262, 681);
-		panel_practiceSelect.setBackground(new Color(77,58,129));
-		panel_practiceSelect.setLayout(null);
+		
+		JLabel image_home = new JLabel("");
+		image_home.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) { 
+				MainWindow panel_home = new MainWindow(lp);
+				switch_screen(panel_home.getPanel(), lp);
+			}
+		});
+		image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
+		image_home.setBounds(40, 21, 64, 74);
+		panel_testSelect.add(image_home);
+		// Placeholder variables to use for Student name and Student grade
 		
 		// Code for the logo in the upper left corner and Astromath text
 		
-				JLabel astromath = new JLabel("ASTROMATH");
-				
-				astromath.setHorizontalAlignment(SwingConstants.CENTER);
-				astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
-				astromath.setForeground(new Color(255, 255, 255));
-				astromath.setBounds(97, 21, 318, 85);
-				panel_practiceSelect.add(astromath);
-				
-				// Does a hover effect on the AstroMath text with the home button
-				
-				astromath.addMouseListener(new MouseAdapter() 
-				{
-					@Override
-					public void mouseEntered(MouseEvent e) 
-					{
-						astromath.setForeground(new Color(0, 195, 255));
-					}
-					@Override
-					public void mouseExited(MouseEvent e) 
-					{
-						astromath.setForeground(Color.WHITE);
-					}
-					@Override
-					public void mouseClicked(MouseEvent e) 
-					{
-						MainWindow panel_home = new MainWindow(lp);
-						switch_screen(panel_home.getPanel(), lp);
-
-					}
-				});
-				
-				JLabel imageHome = new JLabel("");
-				imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
-				imageHome.setBounds(40, 21, 64, 74);
-				panel_practiceSelect.add(imageHome);
-				
-				JLabel labelLearn = new JLabel("Learn");
-				labelLearn.setHorizontalAlignment(SwingConstants.CENTER);
-				labelLearn.setForeground(Color.WHITE);
-				labelLearn.setFont(new Font("A-Space Demo", Font.PLAIN, 45));
-				labelLearn.setBounds(210, 581, 254, 44);
-				panel_practiceSelect.add(labelLearn);
-				
-				JLabel labelPractice = new JLabel("Practice");
-				labelPractice.setHorizontalAlignment(SwingConstants.CENTER);
-				labelPractice.setForeground(Color.WHITE);
-				labelPractice.setFont(new Font("A-Space Demo", Font.PLAIN, 45));
-				labelPractice.setBounds(786, 572, 247, 53);
-				panel_practiceSelect.add(labelPractice);
-				
-				JLabel label_pageTitle = new JLabel("practice");
-				label_pageTitle.setForeground(new Color(0, 195, 255));
-				label_pageTitle.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
-				label_pageTitle.setBounds(97, 106, 318, 74);
-				panel_practiceSelect.add(label_pageTitle);
-				
-				JLabel imageLearn = new JLabel("");
-				imageLearn.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent e) 
-					{
-						imageLearn.setIcon(new ImageIcon(".\\Assets\\images\\The Guys v2.png"));
-						labelLearn.setForeground(new Color(0, 195, 255));
-						
-						
-					}
-					@Override
-					public void mouseExited(MouseEvent e) 
-					{
-						imageLearn.setIcon(new ImageIcon(".\\Assets\\images\\The Guys.png"));
-						labelLearn.setForeground(Color.WHITE);
-					}
-				});
-				imageLearn.setIcon(new ImageIcon(".\\Assets\\images\\The Guys.png"));
-				imageLearn.setBounds(86, 117, 480, 480);
-				panel_practiceSelect.add(imageLearn);
-				
-				JLabel imagePractice = new JLabel("");
-				imagePractice.setIcon(new ImageIcon(".\\Assets\\images\\homework.png"));
-				imagePractice.setBounds(663, 117, 480, 480);
-				panel_practiceSelect.add(imagePractice);
-				
-				imagePractice.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent e) 
-					{
-						imagePractice.setIcon(new ImageIcon(".\\Assets\\images\\homework v2.png"));
-						labelPractice.setForeground(new Color(0, 195, 255));
-						
-						
-					}
-					@Override
-					public void mouseExited(MouseEvent e) 
-					{
-						imagePractice.setIcon(new ImageIcon(".\\assets\\images\\homework.png"));
-						labelPractice.setForeground(Color.WHITE);
-					}
-					@Override
-					public void mouseClicked(MouseEvent e) 
-					{
-						PracticeQuestions panel_question = new PracticeQuestions(lp);
-						switch_screen(panel_question.getPanel(), lp);
-					}
-				});
-				
-				
-				JLabel name = new JLabel("Goku");
-				name.setHorizontalAlignment(SwingConstants.RIGHT);
-				name.setForeground(Color.WHITE);
-				name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				name.setBounds(765, 21, 417, 44);
-				panel_practiceSelect.add(name);
-				
-				 JLabel labelGrade = new JLabel("1st Grade");
-				labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				labelGrade.setForeground(new Color(0, 195, 255));
-				labelGrade.setBounds(874, 59, 308, 44);
-				panel_practiceSelect.add(labelGrade);
-				
-				
-				JLabel imageLogout = new JLabel("");
-				imageLogout.addMouseListener(new MouseAdapter() 
-				{
-					@Override
-					public void mouseEntered(MouseEvent e) 
-					{
-						imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
-					}
-					@Override
-					public void mouseExited(MouseEvent e) 
-					{
-						imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
-					}
-					@Override
-					public void mouseClicked(MouseEvent e) 
-					{
-						Login panel_login = new Login(lp);
-						switch_screen(panel_login.getPanel(), lp);
-
-					}
-				});
+		JLabel astromath = new JLabel("ASTROMATH");
+		
+		astromath.setIcon(null);
+		astromath.setHorizontalAlignment(SwingConstants.CENTER);
+		astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
+		astromath.setForeground(new Color(255, 255, 255));
+		astromath.setBounds(97, 21, 318, 85);
+		panel_testSelect.add(astromath);
+		
+		// Does a hover effect on the AstroMath text with the home button
+		
+		astromath.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				astromath.setForeground(new Color(0, 195, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				astromath.setForeground(Color.WHITE);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				MainWindow panel_home = new MainWindow(lp);
+				switch_screen(panel_home.getPanel(), lp);
+			}
+		});
+		
+		// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
+		
+		labelName.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelName.setForeground(Color.WHITE);
+		labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+		labelName.setBounds(765, 21, 417, 44);
+		panel_testSelect.add(labelName);
+		
+		labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+		labelGrade.setForeground(new Color(0, 195, 255));
+		labelGrade.setBounds(874, 59, 308, 44);
+		panel_testSelect.add(labelGrade);
+		
+		// Logout button
+		
+		JLabel imageLogout = new JLabel("");
+		imageLogout.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
 				imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
-				imageLogout.setBounds(1192, 15, 72, 91);
-				panel_practiceSelect.add(imageLogout);
-				
-				JLabel image_settings = new JLabel("");
-				image_settings.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						AccountSettings panel_acc = new AccountSettings(lp);
-						switch_screen(panel_acc.getPanel(), lp);
-
-					}
-					@Override
-					public void mouseEntered(MouseEvent e) 
-					{
-						image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear v2.png"));
-					}
-					@Override
-					public void mouseExited(MouseEvent e) 
-					{
-						image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
-					}
-				});
+			}
+		});
+		JLabel image_logout = new JLabel("");
+		image_logout.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout v2.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Login panel_login = new Login(lp);
+				switch_screen(panel_login.getPanel(), lp);
+			}
+		});
+		image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
+		image_logout.setBounds(1192, 15, 72, 91);
+		panel_testSelect.add(image_logout);
+		
+		JLabel image_settings = new JLabel("");
+		image_settings.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AccountSettings panel_acc = new AccountSettings(lp);
+				switch_screen(panel_acc.getPanel(), lp);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear v2.png"));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
 				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
-				image_settings.setBounds(1188, 99, 64, 64);
-				panel_practiceSelect.add(image_settings);
+			}
+		});
+		image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+		image_settings.setBounds(1188, 99, 64, 64);
+		panel_testSelect.add(image_settings);
+		
+		//Test Selection options
+		
+		JLabel grade1Tests = new JLabel("Grade 1 Tests");
+		grade1Tests.setHorizontalAlignment(SwingConstants.CENTER);
+		grade1Tests.setForeground(new Color(0, 195, 255));
+		grade1Tests.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
+		grade1Tests.setBounds(10, 99, 417, 44);
+		panel_testSelect.add(grade1Tests);
+		
+		JLabel additionTest = new JLabel("Addition Test (Numbers within 20)");
+		additionTest.setBackground(new Color(0, 0, 153));
+		additionTest.setHorizontalAlignment(SwingConstants.CENTER);
+		additionTest.setForeground(Color.WHITE);
+		additionTest.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+		additionTest.setBounds(189, 171, 925, 44);
+		panel_testSelect.add(additionTest);
+		
+		additionTest.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				additionTest.setForeground(new Color(0, 195, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				additionTest.setForeground(Color.WHITE);
+			}
+		});
+		
+		JEditorPane editorPane = new JEditorPane();
+		editorPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				
+			}
+		});
+		
+		editorPane.setBackground(new Color(23, 38, 83));
+		editorPane.setBounds(175, 153, 953, 74);
+		panel_testSelect.add(editorPane);
+		
+		JLabel subtractionTest = new JLabel("Subtraction Test (Numbers within 20)");
+		subtractionTest.setHorizontalAlignment(SwingConstants.CENTER);
+		subtractionTest.setForeground(Color.WHITE);
+		subtractionTest.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
+		subtractionTest.setBackground(new Color(0, 0, 153));
+		subtractionTest.setBounds(189, 263, 925, 44);
+		panel_testSelect.add(subtractionTest);
+		
+		subtractionTest.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				subtractionTest.setForeground(new Color(0, 195, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				subtractionTest.setForeground(Color.WHITE);
+			}
+		});
+		
+		JEditorPane editorPane_1 = new JEditorPane();
+		editorPane_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		editorPane_1.setBackground(new Color(23, 38, 83));
+		editorPane_1.setBounds(175, 246, 953, 74);
+		panel_testSelect.add(editorPane_1);
+		
+		JLabel trueOrFalseTest = new JLabel("True Or False Test");
+		trueOrFalseTest.setHorizontalAlignment(SwingConstants.CENTER);
+		trueOrFalseTest.setForeground(Color.WHITE);
+		trueOrFalseTest.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+		trueOrFalseTest.setBackground(new Color(0, 0, 153));
+		trueOrFalseTest.setBounds(189, 354, 925, 44);
+		panel_testSelect.add(trueOrFalseTest);
+		
+		trueOrFalseTest.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				trueOrFalseTest.setForeground(new Color(0, 195, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				trueOrFalseTest.setForeground(Color.WHITE);
+			}
+		});
+		
+		JEditorPane editorPane_2 = new JEditorPane();
+		editorPane_2.setBackground(new Color(23, 38, 83));
+		editorPane_2.setBounds(175, 343, 953, 74);
+		panel_testSelect.add(editorPane_2);
+		
+		JLabel fillInTheBlankTest = new JLabel("Fill In The Blank Test");
+		fillInTheBlankTest.setHorizontalAlignment(SwingConstants.CENTER);
+		fillInTheBlankTest.setForeground(Color.WHITE);
+		fillInTheBlankTest.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
+		fillInTheBlankTest.setBackground(new Color(0, 0, 153));
+		fillInTheBlankTest.setBounds(189, 456, 925, 44);
+		panel_testSelect.add(fillInTheBlankTest);
+		
+		fillInTheBlankTest.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				fillInTheBlankTest.setForeground(new Color(0, 195, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				fillInTheBlankTest.setForeground(Color.WHITE);
+			}
+		});
+		
+		JEditorPane editorPane_2_1 = new JEditorPane();
+		editorPane_2_1.setBackground(new Color(23, 38, 83));
+		editorPane_2_1.setBounds(175, 439, 953, 74);
+		panel_testSelect.add(editorPane_2_1);
 	}
 
-	
 	public JPanel getPanel()
 	{
-		return panel_practiceSelect;
+		return panel_testSelect;
 		
 	}
-
 	public void switch_screen(JPanel p, JLayeredPane lp)
 	{
 		lp.removeAll();
