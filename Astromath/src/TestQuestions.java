@@ -1,4 +1,5 @@
 	import java.awt.EventQueue;
+
 	import java.awt.*;
 	import java.util.Random;
 	
@@ -9,20 +10,21 @@
 	import java.awt.event.MouseEvent;
 	
 	import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+	import javax.swing.JButton;
+	import javax.swing.JFrame;
 	import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+	import javax.swing.JLayeredPane;
+	import javax.swing.JPanel;
+	import javax.swing.JTextField;
+	import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
-import javax.swing.JTextPane;
+	import javax.swing.JTextPane;
 	
 	import javax.swing.JFrame;
-import javax.swing.JProgressBar;
+	import javax.swing.JProgressBar;
 	
-	public class PracticeQuestions {
+	public class TestQuestions {
 	
 		private JFrame frame;
 		public int questionsRight = 0;
@@ -37,23 +39,24 @@ import javax.swing.JProgressBar;
 		private int width = screenSize.width;
 		private JLabel labelName = new JLabel("Goku");
 		private JLabel labelGrade = new JLabel("1st Grade");
+
 		
 
-		private JPanel panel_practiceQuestions = new JPanel();
+		private JPanel panel_TestQuestions = new JPanel();
 	
 		
 		/**
 		 * Create the application.
 		 */
-		public PracticeQuestions(JLayeredPane lp, Test test) {
-			panel_practiceQuestions.setBounds(0, 0, 1262, 681);
-			panel_practiceQuestions.setBackground(new Color(77,58,129));
-			panel_practiceQuestions.setLayout(null);
+		public TestQuestions(JLayeredPane lp, Test test, int questionSelect, int operand) {
+			panel_TestQuestions.setBounds(0, 0, 1262, 681);
+			panel_TestQuestions.setBackground(new Color(77,58,129));
+			panel_TestQuestions.setLayout(null);
 			
 			JLabel home = new JLabel("");
 			home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 			home.setBounds(40, 21, 64, 74);
-			panel_practiceQuestions.add(home);
+			panel_TestQuestions.add(home);
 			// Placeholder variables to use for Student name and Student grade
 			
 
@@ -67,7 +70,7 @@ import javax.swing.JProgressBar;
 			astromath.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
 			astromath.setForeground(new Color(255, 255, 255));
 			astromath.setBounds(97, 21, 318, 85);
-			panel_practiceQuestions.add(astromath);
+			panel_TestQuestions.add(astromath);
 			
 			astromath.addMouseListener(new MouseAdapter() 
 			{
@@ -114,13 +117,13 @@ import javax.swing.JProgressBar;
 			 labelName.setForeground(Color.WHITE);
 			 labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 			 labelName.setBounds(765, 21, 417, 44);
-			panel_practiceQuestions.add(labelName);
+			panel_TestQuestions.add(labelName);
 			
 			labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
 			labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 			labelGrade.setForeground(new Color(0, 195, 255));
 			labelGrade.setBounds(874, 59, 308, 44);
-			panel_practiceQuestions.add(labelGrade);
+			panel_TestQuestions.add(labelGrade);
 			
 			
 			// Logout button
@@ -148,7 +151,7 @@ import javax.swing.JProgressBar;
 			});
 			imageLogout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 			imageLogout.setBounds(1192, 15, 72, 91);
-			panel_practiceQuestions.add(imageLogout);
+			panel_TestQuestions.add(imageLogout);
 			
 			JLabel image_settings = new JLabel("");
 			image_settings.addMouseListener(new MouseAdapter() {
@@ -171,8 +174,14 @@ import javax.swing.JProgressBar;
 			});
 			image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 			image_settings.setBounds(1188, 99, 64, 64);
-			panel_practiceQuestions.add(image_settings);
+			panel_TestQuestions.add(image_settings);
 			
+	
+			
+			
+			if(test.getNumQuestions() == 10) {
+			System.out.println(test.calculateGrade(test.getScoreSheet()));
+			} else {
 			//TEST COMPONENTS
 			
 			JLabel practiceProblems = new JLabel("Practice Problems");
@@ -180,15 +189,22 @@ import javax.swing.JProgressBar;
 			practiceProblems.setForeground(new Color(0, 195, 255));
 			practiceProblems.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
 			practiceProblems.setBounds(22, 94, 530, 44);
-			panel_practiceQuestions.add(practiceProblems);
+			panel_TestQuestions.add(practiceProblems);
 			
-			int diff = test.getDifficulty();
+			int diff = test.getNumQuestions();
+			JProgressBar progressBar = new JProgressBar();
+			progressBar.setBackground(new Color(255, 0, 153));
+			progressBar.setForeground(new Color(0, 255, 153));
+			progressBar.setMaximum(10);
+			progressBar.setBounds((0), 681-20, 1262, 20);
+			progressBar.setValue(diff);
+			panel_TestQuestions.add(progressBar);
 			
 			lp.revalidate();
 			
 			JLabel lblNewLabel = new JLabel(String.format("%d",  diff));
 			lblNewLabel.setBounds(634, 61, 46, 14);
-			panel_practiceQuestions.add(lblNewLabel);
+			panel_TestQuestions.add(lblNewLabel);
 			
 
 			
@@ -197,25 +213,20 @@ import javax.swing.JProgressBar;
 
 			
 			//RANDOM EQUATION MAKER This accesses MultipleChoice.java
-			Random rand = new Random(); 
-			Boolean canRoll = true;
-			int questionSelect = rand.nextInt(3);
-			if(canRoll) {
-				questionSelect = rand.nextInt(3);
-			}
+
+
 			
 			
-			switch(0) {
+			switch(questionSelect) {
 			case 0: 
 				MultipleChoice mp = new MultipleChoice(1, 4);
 				
 
 				
 				
-				equation = mp.generateEquation(3, 4, 1);
+				equation = mp.generateEquation(3, operand, 1);
 				
-				
-				
+
 				answerKey = MultipleChoice.generateQuestions(3, equation[3], 4);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
@@ -228,23 +239,28 @@ import javax.swing.JProgressBar;
 				mpAnswer1.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
 				mpAnswer1.setBounds(50, 460, 200, 200);
 				mpAnswer1.setBackground(new Color(0, 255, 153));
-				panel_practiceQuestions.add(mpAnswer1);
+				panel_TestQuestions.add(mpAnswer1);
 				mpAnswer1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
 						if(answerKey[0] == equation[3])
 						{
-							test.setDifficulty(test.getDifficulty());
-
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
+							test.setScoreSheet(1);
+							test.setNumQuestions(test.getNumQuestions());
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
 							switch_screen(panel_question.getPanel(), lp, test);
 							
 
 						}
 						else
 						{
-							mpAnswer1.setVisible(false);
+							test.setScoreSheet(0);
+							test.setNumQuestions(test.getNumQuestions());
+							mpAnswer1.setBackground(new Color(255, 0, 153));
+							
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 					}
@@ -255,22 +271,27 @@ import javax.swing.JProgressBar;
 				mpAnswer2.setForeground(Color.WHITE);
 				mpAnswer2.setBounds(350, 460, 200, 200);
 				mpAnswer2.setBackground(new Color(0, 255, 153));
-				panel_practiceQuestions.add(mpAnswer2);
+				panel_TestQuestions.add(mpAnswer2);
 				mpAnswer2.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
 						if(answerKey[1] == equation[3])
 						{
-							test.setDifficulty(test.getDifficulty());
-
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
+							test.setScoreSheet(1);
+							test.setNumQuestions(test.getNumQuestions());
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
 							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 						else
 						{
-							mpAnswer2.setVisible(false);
+							test.setScoreSheet(0);
+							test.setNumQuestions(test.getNumQuestions());
+							
+							mpAnswer2.setBackground(new Color(255, 0, 153));
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 					}
@@ -281,22 +302,26 @@ import javax.swing.JProgressBar;
 				mpAnswer3.setFont(new Font("A-Space Demo", Font.PLAIN, 78));
 				mpAnswer3.setBounds(650, 460, 200, 200);
 				mpAnswer3.setBackground(new Color(0, 255, 153));
-				panel_practiceQuestions.add(mpAnswer3);
+				panel_TestQuestions.add(mpAnswer3);
 				mpAnswer3.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
 						if(answerKey[2] == equation[3])
 						{
-							test.setDifficulty(test.getDifficulty());
-
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
+							test.setScoreSheet(1);
+							test.setNumQuestions(test.getNumQuestions());
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
 							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 						else
 						{
-							mpAnswer3.setVisible(false);
+							test.setScoreSheet(0);
+							test.setNumQuestions(test.getNumQuestions());
+							mpAnswer3.setBackground(new Color(255, 0, 153));
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 					}
@@ -307,22 +332,26 @@ import javax.swing.JProgressBar;
 				mpAnswer4.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
 				mpAnswer4.setBounds(950, 460, 200, 200);
 				mpAnswer4.setBackground(new Color(0, 255, 153));
-				panel_practiceQuestions.add(mpAnswer4);
+				panel_TestQuestions.add(mpAnswer4);
 				mpAnswer4.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
 						if(answerKey[3] == equation[3])
 						{
-							test.setDifficulty(test.getDifficulty());
-
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
+							test.setScoreSheet(1);
+							test.setNumQuestions(test.getNumQuestions());
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
 							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 						else
 						{
-							mpAnswer4.setVisible(false);
+							test.setScoreSheet(0);
+							test.setNumQuestions(test.getNumQuestions());
+							mpAnswer4.setBackground(new Color(255, 0, 153));
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 					}
@@ -339,7 +368,7 @@ import javax.swing.JProgressBar;
 				mpEquation1.setBounds(350, 260, 197, 91);
 				mpEquation1.setForeground(new Color(255, 255, 255));
 				mpEquation1.setFont(new Font("A-Space Demo", Font.PLAIN, 60));
-				panel_practiceQuestions.add(mpEquation1);
+				panel_TestQuestions.add(mpEquation1);
 				
 
 				
@@ -347,14 +376,14 @@ import javax.swing.JProgressBar;
 				mpEquation2.setForeground(new Color(255, 255, 255));
 				mpEquation2.setFont(new Font("A-Space Demo", Font.PLAIN, 60));
 				mpEquation2.setBounds(750, 260, 197, 91);
-				panel_practiceQuestions.add(mpEquation2);
+				panel_TestQuestions.add(mpEquation2);
 		
 					
 				JLabel mpEquation4 = new JLabel("");
 				mpEquation4.setForeground(new Color(255, 255, 255));
 				mpEquation4.setFont(new Font("A-Space Demo", Font.PLAIN, 60));
 				mpEquation4.setBounds(950, 260, 197, 91);
-				panel_practiceQuestions.add(mpEquation4);
+				panel_TestQuestions.add(mpEquation4);
 				
 				
 				
@@ -379,7 +408,7 @@ import javax.swing.JProgressBar;
 				mpEquation3.setForeground(new Color(255, 255, 255));
 				mpEquation3.setFont(new Font("A-Space Demo", Font.PLAIN, 60));
 				mpEquation3.setBounds(590, 260, 197, 91);
-				panel_practiceQuestions.add(mpEquation3);
+				panel_TestQuestions.add(mpEquation3);
 				break;
 				
 			
@@ -399,7 +428,7 @@ import javax.swing.JProgressBar;
 				tofPhrase1.setForeground(new Color(255, 255, 255));
 				tofPhrase1.setFont(new Font("A-Space Demo", Font.PLAIN, 10));
 				tofPhrase1.setBounds(-50, 266,1400,200);
-				panel_practiceQuestions.add(tofPhrase1);
+				panel_TestQuestions.add(tofPhrase1);
 				
 				String trueButton = "True";
 				
@@ -409,19 +438,25 @@ import javax.swing.JProgressBar;
 				tofPhrase2.setFont(new Font("A-Space Demo", Font.PLAIN, 45));
 				tofPhrase2.setBounds(350, 460, 200, 200);
 				tofPhrase2.setBackground(new Color(0, 255, 153));
-				panel_practiceQuestions.add(tofPhrase2);
+				panel_TestQuestions.add(tofPhrase2);
 				tofPhrase2.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
 						if(tofPhrase[1].equals(trueButton))
 						{
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp);
+							test.setScoreSheet(1);
+							test.setNumQuestions(test.getNumQuestions());
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+							switch_screen(panel_question.getPanel(), lp, test);
 						}
 						else
 						{
-							tofPhrase2.setVisible(false);
+							test.setScoreSheet(0);
+							test.setNumQuestions(test.getNumQuestions());
+							tofPhrase2.setBackground(new Color(255, 0, 153));
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 					}
@@ -435,19 +470,25 @@ import javax.swing.JProgressBar;
 				tofPhrase3.setFont(new Font("A-Space Demo", Font.PLAIN, 45));
 				tofPhrase3.setBounds(650, 460, 200, 200);
 				tofPhrase3.setBackground(new Color(0, 255, 153));
-				panel_practiceQuestions.add(tofPhrase3);
+				panel_TestQuestions.add(tofPhrase3);
 				tofPhrase3.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
 						if(tofPhrase[1].equals(falseButton))
 						{
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp);
+							test.setScoreSheet(1);
+							test.setNumQuestions(test.getNumQuestions());
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+							switch_screen(panel_question.getPanel(), lp, test);
 						}
 						else
 						{
-							tofPhrase3.setVisible(false);
+							test.setScoreSheet(0);
+							test.setNumQuestions(test.getNumQuestions());
+							tofPhrase3.setBackground(new Color(255, 0, 153));
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+							switch_screen(panel_question.getPanel(), lp, test);
 							
 						}
 					}
@@ -475,15 +516,15 @@ case 2:
 	fitbPhrase1.setForeground(new Color(255, 255, 255));
 	fitbPhrase1.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
 	fitbPhrase1.setBounds(-50, 266,1400,200);
-	panel_practiceQuestions.add(fitbPhrase1);
+	panel_TestQuestions.add(fitbPhrase1);
 	
-	textAnswer = new JTextField();
+	textAnswer = new JTextField("");
 	textAnswer.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
 	textAnswer.setForeground(Color.WHITE);
 	textAnswer.setBackground(new Color(26, 38, 83));
 	textAnswer.setBounds(372, 450, 589, 106);
 	textAnswer.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
-	panel_practiceQuestions.add(textAnswer);
+	panel_TestQuestions.add(textAnswer);
 	textAnswer.setColumns(10);
 	
 	JButton lblNewLabel_1 = new JButton("Submit");
@@ -492,7 +533,7 @@ case 2:
 	lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
 	lblNewLabel_1.setForeground(new Color(127, 255, 212));
 	lblNewLabel_1.setBounds(964, 602, 288, 68);
-	panel_practiceQuestions.add(lblNewLabel_1);
+	panel_TestQuestions.add(lblNewLabel_1);
 	
 	lblNewLabel_1.addMouseListener(new MouseAdapter() {
 		@Override
@@ -500,14 +541,19 @@ case 2:
 		{
 			if(textAnswer.getText().equals(phrase1[1]))
 			{
-				PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-				switch_screen(panel_question.getPanel(), lp);
+				test.setScoreSheet(1);
+				test.setNumQuestions(test.getNumQuestions());
+				TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+				switch_screen(panel_question.getPanel(), lp, test);
 			}
 			else
 			{
-				/*
-				labelIncorrect.setVisible(true);
-				*/
+				
+				test.setScoreSheet(0);
+				test.setNumQuestions(test.getNumQuestions());
+				TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
+				switch_screen(panel_question.getPanel(), lp, test);
+				
 			}
 		}
 	});
@@ -521,11 +567,13 @@ case 2:
 
 						
 		}
+		}
 		public JPanel getPanel()
 		{
-			return panel_practiceQuestions;
+			return panel_TestQuestions;
 			
 		}
+		
 
 public void switch_screen(JPanel p, JLayeredPane lp, Test test)
 	{
@@ -537,7 +585,10 @@ public void switch_screen(JPanel p, JLayeredPane lp, Test test)
 		
 
 	}
+
+
 	}
+	
 					
 		
 	

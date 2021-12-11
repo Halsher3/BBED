@@ -122,9 +122,7 @@ public class MultipleChoice extends Question{
 			
 			 firstNum = baseTen[rand.nextInt(9)];
 			 secondNum = baseTen[rand.nextInt(9)];
-
 			//while loop to continuously generate new numbers in the event that the random numbers are larger than halfNum, or the total is greater than maxNum
-
 			while(firstNum + secondNum > maxNum){
 				 firstNum = baseTen[rand.nextInt(9)];
 				 secondNum = baseTen[rand.nextInt(9)];

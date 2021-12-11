@@ -29,7 +29,7 @@ public class PracticeSelectWindow extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public PracticeSelectWindow(JLayeredPane lp) 
+	public PracticeSelectWindow(JLayeredPane lp, Test test) 
 	{
 		
 		panel_practiceSelect.setBounds(0, 0, 1262, 681);
@@ -138,7 +138,7 @@ public class PracticeSelectWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						PracticeQuestions panel_question = new PracticeQuestions(lp);
+						PracticeQuestions panel_question = new PracticeQuestions(lp, test);
 						switch_screen(panel_question.getPanel(), lp);
 					}
 				});

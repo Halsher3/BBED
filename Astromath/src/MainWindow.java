@@ -47,7 +47,7 @@ public class MainWindow extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public MainWindow(JLayeredPane lp) 
+	public MainWindow(JLayeredPane lp, Test test) 
 	{
 		
 				panel_home.setBounds(0, 0, 1262, 681);
@@ -102,7 +102,7 @@ public class MainWindow extends JPanel
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						TestSelection panel_ts = new TestSelection(lp);
+						TestSelection panel_ts = new TestSelection(lp, test);
 						switch_screen(panel_ts.getPanel(), lp);
 					}
 				});
@@ -125,7 +125,7 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						PracticeSelectWindow panel_ps = new PracticeSelectWindow(lp);
+						PracticeSelectWindow panel_ps = new PracticeSelectWindow(lp, test);
 						switch_screen(panel_ps.getPanel(), lp);
 
 					}
@@ -255,7 +255,7 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Login panel_login = new Login(lp);
+						Login panel_login = new Login(lp, test);
 						switch_screen(panel_login.getPanel(), lp);
 					}
 				});

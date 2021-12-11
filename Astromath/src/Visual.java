@@ -18,6 +18,8 @@ public class Visual extends JFrame
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
+	public Test test = new Test(0, 0);
+
 	
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	
@@ -27,6 +29,7 @@ public class Visual extends JFrame
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -67,7 +70,7 @@ public class Visual extends JFrame
 		layeredPane.setBounds(0, 0, 1262, 681);
 		frame.getContentPane().add(layeredPane);
 		
-		Login l = new Login(layeredPane);
+		Login l = new Login(layeredPane, test);
 		
 		
 		
@@ -81,8 +84,9 @@ public class Visual extends JFrame
 		
 	}
 	
-	public void switch_screen(JPanel p, JLayeredPane lp)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test)
 	{
+		
 		lp.removeAll();
 		p.setLayout(null);
 		lp.add(p);

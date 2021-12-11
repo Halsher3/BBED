@@ -23,10 +23,12 @@ public class TestSelection extends JPanel {
 	private JLabel labelGrade = new JLabel("1st Grade");
 
 	private JPanel panel_testSelect = new JPanel();
+	private int questionSelect;
+	private int operand;
 
 
 	
-	public TestSelection(JLayeredPane lp) 
+	public TestSelection(JLayeredPane lp, Test test) 
 	{
 
 		panel_testSelect.setBounds(0, 0, 1262, 681);
@@ -38,8 +40,8 @@ public class TestSelection extends JPanel {
 		image_home.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) { 
-				MainWindow panel_home = new MainWindow(lp);
-				switch_screen(panel_home.getPanel(), lp);
+				MainWindow panel_home = new MainWindow(lp, test);
+				switch_screen(panel_home.getPanel(), lp, test, questionSelect, operand);
 			}
 		});
 		image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
@@ -75,8 +77,8 @@ public class TestSelection extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				MainWindow panel_home = new MainWindow(lp);
-				switch_screen(panel_home.getPanel(), lp);
+				MainWindow panel_home = new MainWindow(lp, test);
+				switch_screen(panel_home.getPanel(), lp, test, questionSelect, operand);
 			}
 		});
 		
@@ -126,8 +128,8 @@ public class TestSelection extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				Login panel_login = new Login(lp);
-				switch_screen(panel_login.getPanel(), lp);
+				Login panel_login = new Login(lp, test);
+				switch_screen(panel_login.getPanel(), lp, test, questionSelect, operand);
 			}
 		});
 		image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
@@ -138,8 +140,8 @@ public class TestSelection extends JPanel {
 		image_settings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountSettings panel_acc = new AccountSettings(lp);
-				switch_screen(panel_acc.getPanel(), lp);
+				AccountSettings panel_acc= new AccountSettings(lp);
+				switch_screen(panel_acc.getPanel(), lp, test, questionSelect, operand);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -176,6 +178,13 @@ public class TestSelection extends JPanel {
 		additionTest.addMouseListener(new MouseAdapter() 
 		{
 			@Override
+			public void mouseClicked(MouseEvent e) {
+				questionSelect = 0;
+				operand = 0;
+				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand);
+				switch_screen(panel_testQ.getPanel(), lp,test, questionSelect, operand);
+			}
+			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
 				additionTest.setForeground(new Color(0, 195, 255));
@@ -210,6 +219,13 @@ public class TestSelection extends JPanel {
 		subtractionTest.addMouseListener(new MouseAdapter() 
 		{
 			@Override
+			public void mouseClicked(MouseEvent e) {
+				questionSelect = 0;
+				operand = 1;
+				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand);
+				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand);
+			}
+			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
 				subtractionTest.setForeground(new Color(0, 195, 255));
@@ -243,6 +259,13 @@ public class TestSelection extends JPanel {
 		trueOrFalseTest.addMouseListener(new MouseAdapter() 
 		{
 			@Override
+			public void mouseClicked(MouseEvent e) {
+				questionSelect = 1;
+				operand = 0;
+				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand);
+				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand);
+			}
+			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
 				trueOrFalseTest.setForeground(new Color(0, 195, 255));
@@ -270,6 +293,13 @@ public class TestSelection extends JPanel {
 		fillInTheBlankTest.addMouseListener(new MouseAdapter() 
 		{
 			@Override
+			public void mouseClicked(MouseEvent e) {
+				questionSelect = 2;
+				operand = 0;
+				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand);
+				switch_screen(panel_testQ.getPanel(), lp, test,  questionSelect, operand);
+			}
+			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
 				fillInTheBlankTest.setForeground(new Color(0, 195, 255));
@@ -279,7 +309,7 @@ public class TestSelection extends JPanel {
 			{
 				fillInTheBlankTest.setForeground(Color.WHITE);
 			}
-		});
+			});
 		
 		JEditorPane editorPane_2_1 = new JEditorPane();
 		editorPane_2_1.setBackground(new Color(23, 38, 83));
@@ -292,7 +322,7 @@ public class TestSelection extends JPanel {
 		return panel_testSelect;
 		
 	}
-	public void switch_screen(JPanel p, JLayeredPane lp)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, int questionSelect, int operand)
 	{
 		lp.removeAll();
 		p.setLayout(null);
