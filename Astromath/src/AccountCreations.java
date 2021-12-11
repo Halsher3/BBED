@@ -2,6 +2,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import java.util.Random;
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,6 +15,7 @@ import javax.swing.JButton;
 //sql stuff
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -150,6 +154,10 @@ public class AccountCreations {
 		home.setBounds(30, 23, 78, 81);
 		frame.getContentPane().add(home);
 		
+
+		
+		
+		
 		//my sql database register stuff
 		JButton registerButton = new JButton("Register");
 		registerButton.addActionListener(new ActionListener() {
@@ -160,15 +168,30 @@ public class AccountCreations {
 				var password = userEmail.getText();
 				var grade = gradeLevel.getText();
 				var name = GovName.getText();
-              
+				
+				//userID
+				int userID;
+				Random rand = new Random();
+				userID = rand.nextInt(1000000 - 100000) + 100000;
+				
 				try {
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/userregistration","root","ubuntu123");
-
-                    String query = "INSERT INTO userinfo(`username`, `email`, `password`, `grade`, `name`) "
-                    		+ "VALUES ('" + username + "','" + password + "','" + email + "','" + grade +"','" + name + "')";
                     
+                    String query  = "SELECT * from userinfo WHERE userID = '" + userID + "'";
+                    Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    ResultSet rs = st.executeQuery(query); // execute the query, and get a java resultset
+
+                    // if this ID already exists, we quit
+                    if(rs.absolute(1)) {
+                    	connection.close();
+                         return;
+                    }
+
+                    String query1 = "INSERT INTO userinfo(`username`, `email`, `password`, `grade`, `name`, userID) "
+                    		+ "VALUES ('" + username + "','" + password + "','" + email + "','" + grade +"','" + name + "','" + userID + "')";
+                                                    
                     Statement sta = connection.createStatement();
-                    int x = sta.executeUpdate(query);
+                    int x = sta.executeUpdate(query1);
                     if (x == 0) {
                         JOptionPane.showMessageDialog(registerButton, "This is alredy exist");
                     } else {

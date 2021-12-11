@@ -8,6 +8,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.*;
 
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Login extends JPanel 
 {
 
@@ -44,7 +52,7 @@ public class Login extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public Login(JLayeredPane lp) 
+	public Login(JLayeredPane lp, Test test)
 	{
 		
 		panel_login.setBackground(new Color(77,58,129));
@@ -97,6 +105,29 @@ public class Login extends JPanel
 		
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try  {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/userregistration","root","ubuntu123");
+					Statement stmt=con.createStatement();
+					var sql="Select * from userinfo where username='"+textUsername.getText()+"' and password='"+textPassword.getText()+"'";
+					ResultSet rs=stmt.executeQuery(sql);
+					if(rs.next())
+						JOptionPane.showMessageDialog(null,"Login Succ"); 
+					else
+						labelIncorrect.setVisible(true);
+					con.close();
+					
+					/*
+					 The login will connect and work but it needs to lead into the homepage with all its data
+					 */
+						
+				}catch(Exception w) {System.out.print(w);}
+			}
+		});
+		
+		/* OLD LOGIN STUFF
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -109,10 +140,12 @@ public class Login extends JPanel
 				else
 				{
 					
-					labelIncorrect.setVisible(true);
+					labelIncorrect.setVisible(true);;
 				}
 			}
 		});
+		*/
+		
 		btnLogin.setForeground(Color.BLACK);
 		btnLogin.setFont(new Font("A-Space Demo", Font.PLAIN, 24));
 		btnLogin.setBounds(412, 588, 370, 68);
