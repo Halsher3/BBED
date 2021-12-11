@@ -29,7 +29,7 @@ public class PracticeSelectWindow extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public PracticeSelectWindow(JLayeredPane lp, Test test) 
+	public PracticeSelectWindow(JLayeredPane lp) 
 	{
 		
 		panel_practiceSelect.setBounds(0, 0, 1262, 681);
@@ -110,6 +110,12 @@ public class PracticeSelectWindow extends JPanel
 						imageLearn.setIcon(new ImageIcon(".\\Assets\\images\\The Guys.png"));
 						labelLearn.setForeground(Color.WHITE);
 					}
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						LearnVideoWindow panel_vidWindow = new LearnVideoWindow(lp);
+						switch_screen(panel_vidWindow.getPanel(), lp);
+					}
 				});
 				imageLearn.setIcon(new ImageIcon(".\\Assets\\images\\The Guys.png"));
 				imageLearn.setBounds(86, 117, 480, 480);
@@ -138,7 +144,7 @@ public class PracticeSelectWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						PracticeQuestions panel_question = new PracticeQuestions(lp, test);
+						PracticeQuestions panel_question = new PracticeQuestions(lp);
 						switch_screen(panel_question.getPanel(), lp);
 					}
 				});
