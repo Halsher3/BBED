@@ -1,6 +1,10 @@
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
+import chrriis.dj.nativeswing.NativeSwing;
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
@@ -29,10 +33,12 @@ public class Visual extends JFrame
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-
+		NativeSwing.initialize();
+		NativeInterface.open();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					Visual window = new Visual();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -40,6 +46,13 @@ public class Visual extends JFrame
 				}
 			}
 		});
+		NativeInterface.runEventPump();
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+	        @Override
+	        public void run() {
+	            NativeInterface.close();
+	        }
+	    }));
 	}
 
 	/**
