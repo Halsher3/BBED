@@ -7,7 +7,7 @@ public class database {
 		try{
 			//the host server name along with my xampp user and the pass i gave it
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			con= DriverManager.getConnection("jdbc:mysql://localhost:3307/userregistration","root","ubuntu123"); 
+			//DATABASE CONNECTION LINE IS IN DISCORD  
 			if(!con.isClosed())
 				System.out.println("Successfully connected to MySQL server...");
 			}catch(Exception e) {

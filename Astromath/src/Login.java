@@ -109,7 +109,7 @@ public class Login extends JPanel
 			public void actionPerformed(ActionEvent e) {
 				try  {
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/userregistration","root","ubuntu123");
+					//DATABASE CONNECTION LINE IS IN DISCORD 
 					Statement stmt=con.createStatement();
 					var sql="Select * from userinfo where username='"+textUsername.getText()+"' and password='"+textPassword.getText()+"'";
 					ResultSet rs=stmt.executeQuery(sql);
