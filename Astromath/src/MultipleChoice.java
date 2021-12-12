@@ -5,13 +5,12 @@ public class MultipleChoice extends Question{
 	private static Random rand = new Random();
 	private static int answer;
 
-	public MultipleChoice(int grade, int numOfQuestions)  {
-		
+	
+	public MultipleChoice(int grade, int numOfQuestions) {
 		super(grade, numOfQuestions);
 		numOfQuestions = 4;
-		
 	}
-	
+
 	// creates an answer depending on which operand is given
 	public int generateOperandBasedAnswer(int operand, int firstNum, int secondNum) {
 		switch(operand) {

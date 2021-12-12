@@ -140,7 +140,7 @@ public class TestSelection extends JPanel {
 		image_settings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountSettings panel_acc= new AccountSettings(lp);
+				AccountSettings panel_acc= new AccountSettings(lp, test);
 				switch_screen(panel_acc.getPanel(), lp, test, questionSelect, operand);
 			}
 			@Override

@@ -33,7 +33,7 @@ public class AccountSettings extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public AccountSettings(JLayeredPane lp) 
+	public AccountSettings(JLayeredPane lp, Test test) 
 	{
 		
 				panel_accSettings.setBounds(0, 0, 1262, 681);
@@ -45,7 +45,7 @@ public class AccountSettings extends JPanel
 				imageHome.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						MainWindow panel_home = new MainWindow(lp);
+						MainWindow panel_home = new MainWindow(lp, test);
 						switch_screen(panel_home.getPanel(), lp);
 					}
 				});
@@ -97,7 +97,7 @@ public class AccountSettings extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						MainWindow panel_home = new MainWindow(lp);
+						MainWindow panel_home = new MainWindow(lp, test);
 						switch_screen(panel_home.getPanel(), lp);
 					}
 				});
@@ -124,7 +124,7 @@ public class AccountSettings extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Login panel_login = new Login(lp);
+						Login panel_login = new Login(lp, test);
 						switch_screen(panel_login.getPanel(), lp);
 					}
 				});

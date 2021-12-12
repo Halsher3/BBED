@@ -146,6 +146,12 @@ public class MainWindow extends JPanel
 					{
 						image_redPlanet.setIcon(new ImageIcon(".\\assets\\images\\red planet.png"));
 					}
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						Profile panel_profile = new Profile(lp, test);
+						switch_screen(panel_profile.getPanel(), lp);
+					}
 				});
 				image_redPlanet.setIcon(new ImageIcon(".\\assets\\images\\red planet.png"));
 				image_redPlanet.setBounds(900, 389, 224, 224);
@@ -183,7 +189,7 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						GradePage panel_grade = new GradePage(lp);
+						GradePage panel_grade = new GradePage(lp, test);
 						switch_screen(panel_grade.getPanel(), lp);
 
 					}
@@ -267,7 +273,7 @@ public class MainWindow extends JPanel
 				image_settings.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						AccountSettings panel_acc = new AccountSettings(lp);
+						AccountSettings panel_acc = new AccountSettings(lp, test);
 						switch_screen(panel_acc.getPanel(), lp);
 					}
 					@Override

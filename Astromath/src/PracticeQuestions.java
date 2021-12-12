@@ -154,7 +154,7 @@ import javax.swing.JProgressBar;
 			image_settings.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					AccountSettings panel_acc = new AccountSettings(lp);
+					AccountSettings panel_acc = new AccountSettings(lp, test);
 					switch_screen(panel_acc.getPanel(), lp, test);
 
 				}
@@ -417,7 +417,7 @@ import javax.swing.JProgressBar;
 						if(tofPhrase[1].equals(trueButton))
 						{
 							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp);
+							switch_screen(panel_question.getPanel(), lp, test);
 						}
 						else
 						{
@@ -443,7 +443,7 @@ import javax.swing.JProgressBar;
 						if(tofPhrase[1].equals(falseButton))
 						{
 							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp);
+							switch_screen(panel_question.getPanel(), lp, test);
 						}
 						else
 						{
@@ -501,7 +501,7 @@ case 2:
 			if(textAnswer.getText().equals(phrase1[1]))
 			{
 				PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-				switch_screen(panel_question.getPanel(), lp);
+				switch_screen(panel_question.getPanel(), lp, test);
 			}
 			else
 			{

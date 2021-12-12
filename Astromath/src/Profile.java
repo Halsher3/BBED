@@ -38,7 +38,7 @@ public class Profile extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public Profile(JLayeredPane lp) 
+	public Profile(JLayeredPane lp, Test test) 
 	{
 		
 				panel_profile.setBounds(0, 0, 1262, 681);
@@ -50,7 +50,7 @@ public class Profile extends JPanel
 				imageHome.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						MainWindow panel_home = new MainWindow(lp);
+						MainWindow panel_home = new MainWindow(lp, test);
 						switch_screen(panel_home.getPanel(), lp);
 					}
 				});
@@ -102,7 +102,7 @@ public class Profile extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						MainWindow panel_home = new MainWindow(lp);
+						MainWindow panel_home = new MainWindow(lp, test);
 						switch_screen(panel_home.getPanel(), lp);
 					}
 				});
@@ -129,7 +129,7 @@ public class Profile extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Login panel_login = new Login(lp);
+						Login panel_login = new Login(lp, test);
 						switch_screen(panel_login.getPanel(), lp);
 					}
 				});
@@ -215,7 +215,7 @@ public class Profile extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						//ProfileSettings panel_profileSet = new ProfileSettings(lp);
+						//ProfileSettings panel_profileSet = new ProfileSettings(lp, test);
 						//switch_screen(panel_profileSet.getPanel(), lp);
 					}
 				});

@@ -83,7 +83,7 @@ public class Visual extends JFrame
 		layeredPane.setBounds(0, 0, 1262, 681);
 		frame.getContentPane().add(layeredPane);
 		
-		Login l = new Login(layeredPane, test);
+		MainWindow l = new MainWindow(layeredPane, test);
 		
 		
 		

@@ -4,7 +4,8 @@ public class Question {
 	private static int grade;
 
 	//constructor
-	public Question(int grade, int numOfQuestions) {
+	public Question(int grade, int numOfQuestions) 
+	{
 		this.grade = grade;
 		this.numOfQuestions = numOfQuestions;
 	}
@@ -16,6 +17,9 @@ public class Question {
 	}
 	*/
 	
+	
+
+
 	public int getNumOfQuestions() {
 		return this.numOfQuestions;
 	}

@@ -77,7 +77,7 @@ public class LearnVideoWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						MainWindow panel_home = new MainWindow(lp);
+						MainWindow panel_home = new MainWindow(lp, test);
 						switch_screen(panel_home.getPanel(), lp);
 					}
 				});
@@ -125,7 +125,7 @@ public class LearnVideoWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Login panel_login = new Login(lp);
+						Login panel_login = new Login(lp, test);
 						switch_screen(panel_login.getPanel(), lp);
 					}
 				});

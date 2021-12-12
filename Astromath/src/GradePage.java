@@ -25,7 +25,7 @@ public class GradePage extends JPanel {
 	private JPanel panel_grades = new JPanel();
 
 
-	public GradePage(JLayeredPane lp) 
+	public GradePage(JLayeredPane lp, Test test) 
 	{
 
 		panel_grades.setBounds(0, 0, 1262, 681);
@@ -83,7 +83,7 @@ public class GradePage extends JPanel {
 			}
 			public void mouseClicked(MouseEvent e) 
 			{
-				MainWindow panel_home = new MainWindow(lp);
+				MainWindow panel_home = new MainWindow(lp, test);
 				switch_screen(panel_home.getPanel(), lp);
 
 			}
@@ -112,7 +112,7 @@ public class GradePage extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				Login panel_login = new Login(lp);
+				Login panel_login = new Login(lp, test);
 				switch_screen(panel_login.getPanel(), lp);
 
 			}
@@ -124,7 +124,7 @@ public class GradePage extends JPanel {
 		image_settings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountSettings panel_acc = new AccountSettings(lp);
+				AccountSettings panel_acc = new AccountSettings(lp, test);
 				switch_screen(panel_acc.getPanel(), lp);
 			}
 			@Override
