@@ -20,8 +20,8 @@ public class TestSelection extends JPanel {
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	private JLabel labelName = new JLabel("Goku");
-	private JLabel labelGrade = new JLabel("1st Grade");
+	private JLabel label_name = new JLabel("Goku");
+	private JLabel label_grade = new JLabel("1st Grade");
 
 	private JPanel panel_testSelect = new JPanel();
 	private int questionSelect;
@@ -85,17 +85,29 @@ public class TestSelection extends JPanel {
 		
 		// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
 		
-		labelName.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelName.setForeground(Color.WHITE);
-		labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-		labelName.setBounds(765, 21, 417, 44);
-		panel_testSelect.add(labelName);
+		label_name = new JLabel(student.getName());
+		label_name.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_name.setForeground(Color.WHITE);
+		label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+		label_name.setBounds(765, 21, 417, 44);
+		panel_testSelect.add(label_name);
 		
-		labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-		labelGrade.setForeground(new Color(0, 195, 255));
-		labelGrade.setBounds(874, 59, 308, 44);
-		panel_testSelect.add(labelGrade);
+		if(student.getGradeLevel() == 0) {
+			label_grade = new JLabel("K");
+			label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+			label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+			label_grade.setForeground(new Color(0, 195, 255));
+			label_grade.setBounds(874, 59, 308, 44);
+			panel_testSelect.add(label_grade);
+			
+		} else {
+		label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+		label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+		label_grade.setForeground(new Color(0, 195, 255));
+		label_grade.setBounds(874, 59, 308, 44);
+		panel_testSelect.add(label_grade);
+		}
 		
 		// Logout button
 		
@@ -161,14 +173,106 @@ public class TestSelection extends JPanel {
 		
 		//Test Selection options
 		
-		JLabel grade1Tests = new JLabel("Grade 1 Tests");
+		if(student.getGradeLevel() == 0) {
+		JLabel grade1Tests = new JLabel("Kindergarten Test");
 		grade1Tests.setHorizontalAlignment(SwingConstants.CENTER);
 		grade1Tests.setForeground(new Color(0, 195, 255));
 		grade1Tests.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
-		grade1Tests.setBounds(10, 99, 417, 44);
+		grade1Tests.setBounds(10, 99, 717, 44);
 		panel_testSelect.add(grade1Tests);
+		} else { 
+			JLabel grade1Tests = new JLabel(String.format("Grade %d Test",student.getGradeLevel()));
+			grade1Tests.setHorizontalAlignment(SwingConstants.CENTER);
+			grade1Tests.setForeground(new Color(0, 195, 255));
+			grade1Tests.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
+			grade1Tests.setBounds(10, 99, 417, 44);
+			panel_testSelect.add(grade1Tests);
+		}
 		
-		JLabel additionTest = new JLabel("Addition Test (Numbers within 20)");
+		if(student.getGradeLevel() >= 3) {
+			JLabel additionTest = new JLabel("Multiplication Test");
+			additionTest.setBackground(new Color(0, 0, 153));
+			additionTest.setHorizontalAlignment(SwingConstants.CENTER);
+			additionTest.setForeground(Color.WHITE);
+			additionTest.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+			additionTest.setBounds(189, 171, 925, 44);
+			panel_testSelect.add(additionTest);
+			
+			additionTest.addMouseListener(new MouseAdapter() 
+			{
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					questionSelect = 0;
+					operand = 2;
+					TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
+					switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) 
+				{
+					additionTest.setForeground(new Color(0, 195, 255));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) 
+				{
+					additionTest.setForeground(Color.WHITE);
+				}
+			});
+			
+			JEditorPane editorPane = new JEditorPane();
+			editorPane.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+				}
+			});
+			
+			editorPane.setBackground(new Color(23, 38, 83));
+			editorPane.setBounds(175, 153, 953, 74);
+			panel_testSelect.add(editorPane);
+			
+			JLabel subtractionTest = new JLabel("Division Test");
+			subtractionTest.setHorizontalAlignment(SwingConstants.CENTER);
+			subtractionTest.setForeground(Color.WHITE);
+			subtractionTest.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
+			subtractionTest.setBackground(new Color(0, 0, 153));
+			subtractionTest.setBounds(189, 263, 925, 44);
+			panel_testSelect.add(subtractionTest);
+			
+			subtractionTest.addMouseListener(new MouseAdapter() 
+			{
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					questionSelect = 0;
+					operand = 3;
+					TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
+					switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) 
+				{
+					subtractionTest.setForeground(new Color(0, 195, 255));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) 
+				{
+					subtractionTest.setForeground(Color.WHITE);
+				}
+			});
+			
+			JEditorPane editorPane_1 = new JEditorPane();
+			editorPane_1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+				}
+			});
+			editorPane_1.setBackground(new Color(23, 38, 83));
+			editorPane_1.setBounds(175, 246, 953, 74);
+			panel_testSelect.add(editorPane_1);
+			
+		}
+		JLabel additionTest = new JLabel("Addition Test");
 		additionTest.setBackground(new Color(0, 0, 153));
 		additionTest.setHorizontalAlignment(SwingConstants.CENTER);
 		additionTest.setForeground(Color.WHITE);
@@ -209,7 +313,7 @@ public class TestSelection extends JPanel {
 		editorPane.setBounds(175, 153, 953, 74);
 		panel_testSelect.add(editorPane);
 		
-		JLabel subtractionTest = new JLabel("Subtraction Test (Numbers within 20)");
+		JLabel subtractionTest = new JLabel("Subtraction Test");
 		subtractionTest.setHorizontalAlignment(SwingConstants.CENTER);
 		subtractionTest.setForeground(Color.WHITE);
 		subtractionTest.setFont(new Font("A-Space Demo", Font.PLAIN, 38));

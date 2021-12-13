@@ -9,10 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.*;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,7 +18,7 @@ public class Login extends JPanel
 	private JPanel panel_login = new JPanel();
 	private JTextField textUsername;
 	private JPasswordField textPassword;
-	private Student goku = new Student("goku7", "menameisgoku@gmail.com", "dragonballs", 1234, 1, 1);
+	private Student goku = new Student("goku7", "menameisgoku@gmail.com", "dragonballs", 1234, 1, 1, "");
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
@@ -115,14 +111,34 @@ public class Login extends JPanel
 					ResultSet rs=stmt.executeQuery(sql);
 					if(rs.next())
 					{
+						
+						
+						student.setUsername(labelUsername.getText());
+						student.setPassword(labelPassword.getText());
+						
+						String query = "Select userID, userLevel, grade, email, name from userinfo where username = '" +textUsername.getText() +  "'";
+						
+
+						try {
+							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+							 rs = st.executeQuery(query);
+							 rs.first();
+							 student.setAccNum(rs.getInt(1));
+							 student.setLevel(rs.getInt(2));
+							 student.setGradeLevel(rs.getInt(3));
+							 student.setEmail(rs.getString(4));
+							 student.setName(rs.getString(5));
+						} catch (SQLException e1) {
+
+							e1.printStackTrace();
+						}
 						JOptionPane.showMessageDialog(null,"Login Success!"); 	
 						MainWindow panel_home = new MainWindow(lp, test, student, con);
 						switch_screen(panel_home.getPanel(), lp, test, student, con);
 					}
 						
 					else
-						labelIncorrect.setVisible(true);
-					con.close();
+						labelIncorrect.setVisible(true);;
 					
 					/*
 					 The login will connect and work but it needs to lead into the homepage with all its data

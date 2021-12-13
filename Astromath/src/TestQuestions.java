@@ -38,8 +38,9 @@ import javax.swing.border.LineBorder;
 		private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		private int height = screenSize.height;
 		private int width = screenSize.width;
-		private JLabel labelName = new JLabel("Goku");
-		private JLabel labelGrade = new JLabel("1st Grade");
+		private JLabel label_name = new JLabel("Goku");
+		private JLabel label_grade = new JLabel("1st Grade");
+		
 
 		
 
@@ -50,6 +51,7 @@ import javax.swing.border.LineBorder;
 		 * Create the application.
 		 */
 		public TestQuestions(JLayeredPane lp, Test test, int questionSelect, int operand, Student student, Connection con) {
+			int grade = student.getGradeLevel();
 			panel_TestQuestions.setBounds(0, 0, 1262, 681);
 			panel_TestQuestions.setBackground(new Color(77,58,129));
 			panel_TestQuestions.setLayout(null);
@@ -114,17 +116,29 @@ import javax.swing.border.LineBorder;
 
 			
 
-			 labelName.setHorizontalAlignment(SwingConstants.RIGHT);
-			 labelName.setForeground(Color.WHITE);
-			 labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-			 labelName.setBounds(765, 21, 417, 44);
-			panel_TestQuestions.add(labelName);
+			label_name = new JLabel(student.getName());
+			label_name.setHorizontalAlignment(SwingConstants.RIGHT);
+			label_name.setForeground(Color.WHITE);
+			label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+			label_name.setBounds(765, 21, 417, 44);
+			panel_TestQuestions.add(label_name);
 			
-			labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
-			labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-			labelGrade.setForeground(new Color(0, 195, 255));
-			labelGrade.setBounds(874, 59, 308, 44);
-			panel_TestQuestions.add(labelGrade);
+			if(student.getGradeLevel() == 0) {
+				label_grade = new JLabel("K");
+				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_grade.setForeground(new Color(0, 195, 255));
+				label_grade.setBounds(874, 59, 308, 44);
+				panel_TestQuestions.add(label_grade);
+				
+			} else {
+			label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+			label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+			label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+			label_grade.setForeground(new Color(0, 195, 255));
+			label_grade.setBounds(874, 59, 308, 44);
+			panel_TestQuestions.add(label_grade);
+			}
 			
 			
 			// Logout button
@@ -220,15 +234,15 @@ import javax.swing.border.LineBorder;
 			
 			switch(questionSelect) {
 			case 0: 
-				MultipleChoice mp = new MultipleChoice(1, 4);
+				MultipleChoice mp = new MultipleChoice(grade, 4);
 				
 
 				
 				
-				equation = mp.generateEquation(3, operand, 1);
+				equation = mp.generateEquation(grade, operand, 1);
 				
 
-				answerKey = MultipleChoice.generateQuestions(3, equation[3], 4);
+				answerKey = MultipleChoice.generateQuestions(grade, equation[3], 4);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
 				String answerKey1 = String.format("%d", answerKey[1]); 
@@ -414,13 +428,13 @@ import javax.swing.border.LineBorder;
 				
 			
 			case 1:
-				TrueOrFalse tof = new TrueOrFalse(1, 2);
+				TrueOrFalse tof = new TrueOrFalse(grade, 2);
 				int numOfQuestions = 2;
 				
 
 				
 				
-				tofPhrase = tof.generateToF(3);
+				tofPhrase = tof.generateToF(grade);
 				
 				
 				//EQUATION NUMBERS
@@ -500,11 +514,11 @@ import javax.swing.border.LineBorder;
 
 case 2:
 	
-	FillInTheBlank fitb = new FillInTheBlank(1, 4);
+	FillInTheBlank fitb = new FillInTheBlank(grade, 4);
 	
 	
 	
-	phrase1 = fitb.generateFITB(3);
+	phrase1 = fitb.generateFITB(grade);
 	
 	
 	

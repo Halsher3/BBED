@@ -12,18 +12,20 @@ import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MainWindow extends JPanel
 {
 
-	private Student goku = new Student("goku7", "menameisgoku@gmail.com", "dragonballs", 1234, 1, 1);
 	
 	private JLabel label_logo = new JLabel("ASTROMATH");
-	private JLabel label_name = new JLabel("Goku");
+	private JLabel label_name = new JLabel("");
 	private JLabel image_ringPlanet = new JLabel("");
 	private JLabel image_earth = new JLabel("");
 	private JLabel image_redPlanet = new JLabel("");
-	private JLabel label_grade = new JLabel("1st Grade");
+	private JLabel label_grade = new JLabel("");
 	private JLabel image_bluePlanet = new JLabel("");
 	private JLabel image_sun = new JLabel("");
 	private JLabel image_home = new JLabel("");
@@ -49,8 +51,11 @@ public class MainWindow extends JPanel
 	 * Create the application.
 	 */
 	public MainWindow(JLayeredPane lp, Test test, Student student, Connection con) 
+
 	{
 		
+		
+				
 				panel_home.setBounds(0, 0, 1262, 681);
 				panel_home.setBackground(new Color(77,58,129));
 				panel_home.setLayout(null);
@@ -80,7 +85,7 @@ public class MainWindow extends JPanel
 				
 				// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
 				
-
+				label_name = new JLabel(student.getName());
 				label_name.setHorizontalAlignment(SwingConstants.RIGHT);
 				label_name.setForeground(Color.WHITE);
 				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
@@ -160,12 +165,22 @@ public class MainWindow extends JPanel
 				
 				// The student's grade level displayed under the welcome back message
 				
-				
+				if(student.getGradeLevel() == 0) {
+					label_grade = new JLabel("K");
+					label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+					label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+					label_grade.setForeground(new Color(0, 195, 255));
+					label_grade.setBounds(874, 59, 308, 44);
+					panel_home.add(label_grade);
+					
+				} else {
+				label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
 				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
 				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 				label_grade.setForeground(new Color(0, 195, 255));
 				label_grade.setBounds(874, 59, 308, 44);
 				panel_home.add(label_grade);
+				}
 				
 				//More planet images, and images in general
 				

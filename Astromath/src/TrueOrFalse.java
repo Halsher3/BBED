@@ -40,10 +40,18 @@ public class TrueOrFalse extends Question{
 			object[0] = "Stars"; object[1] = "Planets"; object[2] = "Rockets";
 			
 			floor = 0;
-			firstNum = rand.nextInt(maxNum) ;
+			firstNum = rand.nextInt(maxNum - 2)  + 2;
+			int randomPrompt = rand.nextInt(2);
+			if(randomPrompt == 0) {
+			secondNum = firstNum - 1;
+			}
+			else {
+				secondNum = firstNum + 1;
+			}
 			
 			switch(prompt) {
 			case 0:
+
 				 statement = String.format("%s counts %d %s. %s counts %d. %s is right.", names1[name1Roll], firstNum, object[objectRoll].toLowerCase(), names2[name2Roll], secondNum, names1[name1Roll]);
 				 break;
 			
@@ -191,8 +199,46 @@ public class TrueOrFalse extends Question{
 				statement = String.format("%s has to go to %s. It takes %d minutes to get there, and it's %d:05 now. Does %s have enough time to get there if it closes at %d:%d?", names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time, names1[name1Roll], (time+1), minutes[minutesRand]);
 				TFStatement[1] = "True";
 				break;
-		}
+				
+				
+				
+			}			
+						
 			TFStatement[0] = statement;
+			break;
+			
+		case 4:
+			
+			objectRoll = rand.nextInt(3);
+			object[0] = "n obtuse"; object[1] = " right"; object[2] = "n acute";
+			
+			firstNum = rand.nextInt(179) + 1;
+			
+			statement = String.format("If an angle is %d degrees, it's a%s angle.", firstNum, object[objectRoll]);
+			TFStatement[0] = statement;
+			
+			if(objectRoll == 0) {
+				if(firstNum > 90) {
+					TFStatement[1] = "True";
+				} else {
+					TFStatement[1] = "False";
+				}
+			}	else if(objectRoll == 1) {
+				if(firstNum == 90) {
+					TFStatement[1] = "True";
+				} else {
+					TFStatement[1] = "False";
+				}
+			}	else if(objectRoll == 2) {
+				if(firstNum < 90) {
+					TFStatement[1] = "True";
+				} else {
+					TFStatement[1] = "False";
+				}
+			}
+			
+			
+			
 
 	
 		}

@@ -16,6 +16,9 @@ import javax.swing.JTextArea;
 import java.text.*;
 import java.awt.print.*;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 ;public class TestResult extends JPanel 
@@ -26,8 +29,8 @@ import java.sql.Connection;
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	private JLabel labelName = new JLabel("Goku");
-	private JLabel labelGrade = new JLabel("1st Grade");
+	private JLabel label_name = new JLabel("Goku");
+	private JLabel label_grade = new JLabel("1st Grade");
 	
 	private JPanel panel_result = new JPanel();
 
@@ -41,7 +44,35 @@ import java.sql.Connection;
 	 */
 	public TestResult(JLayeredPane lp, Test test, Student student, Connection con) 
 	{
-		
+			int inc = student.getLevel();
+			inc = inc + 1;
+			student.setLevel(inc);
+			
+			try {
+				String query = "Update userinfo set userLevel = '" + student.getLevel() + "' where userID = '" + student.getAccNum() + "'";
+				Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				st.executeUpdate(query);
+
+
+
+
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
+			
+
+			try {
+				String query = "Select userLevel from userinfo where userID = '" +student.getAccNum() + "'";
+				Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				ResultSet rs = st.executeQuery(query);
+				 rs.first();
+				 student.setLevel(rs.getInt(1));
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
+			
 				panel_result.setBounds(0, 0, 1262, 681);
 				panel_result.setBackground(new Color(77,58,129));
 				panel_result.setLayout(null);
@@ -61,18 +92,30 @@ import java.sql.Connection;
 				// Placeholder variables to use for Student name and Student grade
 			
 				
-				labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				labelGrade.setForeground(new Color(0, 195, 255));
-				labelGrade.setBounds(874, 59, 308, 44);
-				panel_result.add(labelGrade);
+				if(student.getGradeLevel() == 0) {
+					label_grade = new JLabel("K");
+					label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+					label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+					label_grade.setForeground(new Color(0, 195, 255));
+					label_grade.setBounds(874, 59, 308, 44);
+					panel_result.add(label_grade);
+					
+				} else {
+				label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_grade.setForeground(new Color(0, 195, 255));
+				label_grade.setBounds(874, 59, 308, 44);
+				panel_result.add(label_grade);
+				}
 				
 				
-				labelName.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelName.setForeground(Color.WHITE);
-				labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				labelName.setBounds(765, 21, 417, 44);
-				panel_result.add(labelName);
+				label_name = new JLabel(student.getName());
+				label_name.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_name.setForeground(Color.WHITE);
+				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_name.setBounds(765, 21, 417, 44);
+				panel_result.add(label_name);
 				
 				
 				// Code for the logo in the upper left corner and Astromath text

@@ -22,8 +22,9 @@ public class PracticeSelectWindow extends JPanel
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	
+	private JLabel label_name = new JLabel("");
 	private JPanel panel_practiceSelect = new JPanel();
+	private JLabel label_grade = new JLabel("");
 
 
 
@@ -151,19 +152,30 @@ public class PracticeSelectWindow extends JPanel
 				});
 				
 				
-				JLabel name = new JLabel("Goku");
-				name.setHorizontalAlignment(SwingConstants.RIGHT);
-				name.setForeground(Color.WHITE);
-				name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				name.setBounds(765, 21, 417, 44);
-				panel_practiceSelect.add(name);
+				label_name = new JLabel(student.getName());
+				label_name.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_name.setForeground(Color.WHITE);
+				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_name.setBounds(765, 21, 417, 44);
+				panel_practiceSelect.add(label_name);
 				
-				 JLabel labelGrade = new JLabel("1st Grade");
-				labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				labelGrade.setForeground(new Color(0, 195, 255));
-				labelGrade.setBounds(874, 59, 308, 44);
-				panel_practiceSelect.add(labelGrade);
+				
+				if(student.getGradeLevel() == 0) {
+					label_grade = new JLabel("K");
+					label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+					label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+					label_grade.setForeground(new Color(0, 195, 255));
+					label_grade.setBounds(874, 59, 308, 44);
+					panel_practiceSelect.add(label_grade);
+					
+				} else {
+				label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_grade.setForeground(new Color(0, 195, 255));
+				label_grade.setBounds(874, 59, 308, 44);
+				panel_practiceSelect.add(label_grade);
+				}
 				
 				
 				JLabel imageLogout = new JLabel("");

@@ -34,15 +34,18 @@ public class FillInTheBlank extends Question{
 	case 0:
 		
 		maxNum = 10;
+		halfNum = maxNum/2;
 		names1[0] = "Angela"; names1[1] = "Bill"; names1[2] = "Joe"; names1[3] = "Ryan";
 		names2[0] = "John"; names2[1] = "Ellie"; names2[2] = "Goofy";
 		object[0] = "Stars"; object[1] = "Planets"; object[2] = "Rockets";
 		
 		floor = 0;
-		firstNum = rand.nextInt(maxNum -1) +1;
+		firstNum = rand.nextInt(halfNum -1) +1;
+		secondNum = rand.nextInt(halfNum -1) +1;
 		
-		FITBStatement[0] = String.format("How many are %s are there?", object[objectRoll]);
-		FITBStatement[1] = String.format("%s", firstNum);
+		
+		FITBStatement[0] = String.format("What comes after %d?", firstNum);
+		FITBStatement[1] = String.format("%s", (firstNum+1));
 		
 		break;
 		
@@ -167,6 +170,22 @@ public class FillInTheBlank extends Question{
 		statement = String.format("%d", secondNum);
 		FITBStatement[1] = statement;
 		break;
+		
+	case 4: 
+		firstNum = rand.nextInt(99) + 1;
+
+		secondNum = 100;
+		double fraction = (double)firstNum/ secondNum;
+		statement = String.format("Convert this decimal to a fraction over 100    %.2f", fraction);
+		
+		FITBStatement[0] = statement;
+		
+		statement = String.format("%d/%d", firstNum, secondNum);
+		
+		FITBStatement[1] = statement;
+		
+		
+		
 	}
 
 	return FITBStatement;

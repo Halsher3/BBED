@@ -27,6 +27,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JTextArea;
+import javax.swing.JPasswordField;
 
 
 public class AccountCreations extends JPanel {
@@ -91,7 +92,7 @@ public class AccountCreations extends JPanel {
 		userEmail.setBorder(new LineBorder(new Color(0, 195, 255), 3, true));
 		panel_accCreate.add(userEmail);
 		
-		JTextField userPassword = new JTextField();
+		JPasswordField userPassword = new JPasswordField();
 		userPassword.setForeground(Color.WHITE);
 		userPassword.setFont(new Font("A-Space Demo", Font.PLAIN, 26));
 		userPassword.setColumns(10);
@@ -159,6 +160,11 @@ public class AccountCreations extends JPanel {
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				String temp = userPassword.getText();
+				if(checkString(temp) && temp.length() >= 6) {
+					
+				
+				
 				String gradeString= gradeLevel.getText();
 				if(!(gradeString.equals("0")) && !(gradeString.equals("1")) && !(gradeString.equals("2")) && !(gradeString.equals("3")) && !(gradeString.equals("4"))){
 					gradeString = "0";
@@ -185,12 +191,13 @@ public class AccountCreations extends JPanel {
                     // if this ID already exists, we quit
                    if(rs.absolute(1)) {
                         
-                        JLabel labelIncorrect = new JLabel("Incorrect username or password!");
-                        labelIncorrect.setVisible(false);
+                        JLabel labelIncorrect = new JLabel("This account already exist");   
                         labelIncorrect.setForeground(new Color(255, 66, 66));
+                        labelIncorrect.setBackground(new Color(26, 38, 83));
                         labelIncorrect.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
                         labelIncorrect.setBounds(1009, 540, 218, 68);
                         panel_accCreate.add(labelIncorrect);
+  
                         
                         
                         
@@ -215,8 +222,17 @@ public class AccountCreations extends JPanel {
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
+				} else {
+					
+						specialCharReq.setForeground(new Color(255, 66, 66));
+						characterReq.setForeground(new Color(255, 66, 66));
+						casePasswordReq.setForeground(new Color(255, 66, 66));
+                     
+					
+				}
             }
         });	
+		
 		registerButton.setFont(new Font("A-Space Demo", Font.PLAIN, 27));
 		registerButton.setBounds(1009, 596, 218, 68);
 		panel_accCreate.add(registerButton);
@@ -241,6 +257,14 @@ public class AccountCreations extends JPanel {
 		astronaut.setIcon(new ImageIcon(".\\Assets\\images\\astronaut.png"));
 		astronaut.setBounds(614, -93, 1009, 960);
 		panel_accCreate.add(astronaut);
+		
+		JLabel labelIncorrect = new JLabel("");
+		labelIncorrect.setVisible(false);
+        labelIncorrect.setForeground(new Color(255, 66, 66));
+        labelIncorrect.setBackground(new Color(26, 38, 83));
+        labelIncorrect.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+        labelIncorrect.setBounds(1009, 540, 218, 68);
+        panel_accCreate.add(labelIncorrect);
 		
 
 		
@@ -269,4 +293,24 @@ public class AccountCreations extends JPanel {
 
 	}
 	
+	private static boolean checkString(String str) {
+	    char ch;
+	    boolean capitalFlag = false;
+	    boolean lowerCaseFlag = false;
+	    boolean numberFlag = false;
+	    for(int i=0;i < str.length();i++) {
+	        ch = str.charAt(i);
+	        if( Character.isDigit(ch)) {
+	            numberFlag = true;
+	        }
+	        else if (Character.isUpperCase(ch)) {
+	            capitalFlag = true;
+	        } else if (Character.isLowerCase(ch)) {
+	            lowerCaseFlag = true;
+	        }
+	        if(numberFlag && capitalFlag && lowerCaseFlag)
+	            return true;
+	    }
+	    return false;
+	}
 }

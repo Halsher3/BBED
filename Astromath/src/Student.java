@@ -5,9 +5,10 @@ public class Student{
 	private int accNum;
 	private int gradeLevel;
 	private int level;
+	private String name;
 
 	//constructs account info 
-	public Student(String username, String email, String password, int accNum, int gradeLevel, int level) 
+	public Student(String username, String email, String password, int accNum, int gradeLevel, int level, String name) 
 	{
 		this.username = username;
 		this.email = email;
@@ -15,6 +16,7 @@ public class Student{
 		this.accNum = accNum;
 		this.gradeLevel = gradeLevel;
 		this.level = level;
+		this.name = name;
 	} 
 
 	//user creates an account with username, email and password
@@ -28,6 +30,22 @@ public class Student{
 		this.email = email;
 	}
 
+	public void setAccNum(int accNum) {
+		this.accNum = accNum;
+	}
+	
+	public void setGradeLevel(int gradeLevel) {
+		this.gradeLevel = gradeLevel;
+	}
+	
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	//grants login given correct credentails are entered
 
 	public String getPassword(String password)
@@ -66,4 +84,7 @@ public class Student{
 		return level;
 	}
 
+	public String getName() {
+		return name;
+	}
 }

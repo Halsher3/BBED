@@ -20,7 +20,7 @@ public class Visual extends JFrame
 	private JFrame frame;
 	private JTextField textUsername;
 	private JPasswordField textPassword;
-	private Student student = new Student("", "", "", 1111, 1, 1);
+	private Student student = new Student("", "", "", 1111, 1, 1, "");
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;

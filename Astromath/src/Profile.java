@@ -26,8 +26,8 @@ public class Profile extends JPanel
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	private JLabel labelName = new JLabel("Goku");
-	private JLabel labelGrade = new JLabel("1st Grade");
+	private JLabel label_name = new JLabel("Goku");
+	private JLabel label_grade = new JLabel("1st Grade");
 	
 	private JPanel panel_profile = new JPanel();
 
@@ -61,18 +61,30 @@ public class Profile extends JPanel
 				// Placeholder variables to use for Student name and Student grade
 			
 				
-				labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				labelGrade.setForeground(new Color(0, 195, 255));
-				labelGrade.setBounds(874, 59, 308, 44);
-				panel_profile.add(labelGrade);
+				if(student.getGradeLevel() == 0) {
+					label_grade = new JLabel("K");
+					label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+					label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+					label_grade.setForeground(new Color(0, 195, 255));
+					label_grade.setBounds(874, 59, 308, 44);
+					panel_profile.add(label_grade);
+					
+				} else {
+				label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_grade.setForeground(new Color(0, 195, 255));
+				label_grade.setBounds(874, 59, 308, 44);
+				panel_profile.add(label_grade);
+				}
 				
 				
-				labelName.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelName.setForeground(Color.WHITE);
-				labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				labelName.setBounds(765, 21, 417, 44);
-				panel_profile.add(labelName);
+				label_name = new JLabel(student.getName());
+				label_name.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_name.setForeground(Color.WHITE);
+				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_name.setBounds(765, 21, 417, 44);
+				panel_profile.add(label_name);
 				
 				
 				// Code for the logo in the upper left corner and Astromath text
@@ -163,15 +175,15 @@ public class Profile extends JPanel
 				panel_profile.add(label_nameGrade);
 				
 				JLabel label_level = new JLabel("Level 4");
-				label_level.setForeground(new Color(0, 195, 255));
+				label_level.setForeground(Color.WHITE);
 				label_level.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
-				label_level.setBounds(227, 244, 262, 36);
+				label_level.setBounds(227, 208, 262, 36);
 				panel_profile.add(label_level);
 				
 				JLabel label_aboutMe = new JLabel("About Me:");
 				label_aboutMe.setForeground(Color.WHITE);
 				label_aboutMe.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
-				label_aboutMe.setBounds(97, 349, 336, 45);
+				label_aboutMe.setBounds(97, 282, 336, 45);
 				panel_profile.add(label_aboutMe);
 				
 				JTextArea aboutContent = new JTextArea();
@@ -181,7 +193,7 @@ public class Profile extends JPanel
 				aboutContent.setForeground(Color.WHITE);
 				aboutContent.setFont(new Font("A-Space Demo", Font.PLAIN, 20));
 				aboutContent.setBackground(new Color(26, 38, 83));
-				aboutContent.setBounds(98, 405, 592, 265);
+				aboutContent.setBounds(97, 338, 592, 265);
 				aboutContent.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
 				panel_profile.add(aboutContent);
 				
@@ -201,12 +213,6 @@ public class Profile extends JPanel
 				label_edit.setBounds(963, 613, 275, 45);
 				panel_profile.add(label_edit);
 				
-				JLabel label_state = new JLabel("Massachusetts");
-				label_state.setForeground(Color.WHITE);
-				label_state.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
-				label_state.setBounds(227, 197, 310, 36);
-				panel_profile.add(label_state);
-				
 				label_edit.addMouseListener(new MouseAdapter() 
 				{
 					@Override
@@ -222,8 +228,8 @@ public class Profile extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						ProfileSettings panel_profileSettings = new ProfileSettings(lp, test, student, con);
-						switch_screen(panel_profileSettings.getPanel(), lp, test, student, con);
+						//ProfileSettings panel_profileSet = new ProfileSettings(lp, test);
+						//switch_screen(panel_profileSet.getPanel(), lp);
 					}
 				});
 

@@ -193,6 +193,42 @@ public class MultipleChoice extends Question{
 				generateOperandBasedAnswer(operand, firstNum, secondNum);
 		
 			break;
+			case 4:
+				 zero = 0.0;
+				 one = 1.0;
+			if(operand == 4) {
+				operand =  rand.nextInt(2) + 2;
+			}
+			if(operand == 2) {
+			maxNum = 100000;
+			firstNum = rand.nextInt(maxNum - 1000) + 1000;
+			secondNum = rand.nextInt(9) + 1;
+			answer = firstNum*secondNum;
+			
+			}
+			else if(operand == 3){
+				maxNum = 100000;
+				firstNum = rand.nextInt(maxNum - 1000) + 1000;
+				secondNum = rand.nextInt(9) + 1;
+				avNeg = avoidNegatives(firstNum, secondNum, operand);
+				firstNum = avNeg[0];
+				secondNum = avNeg[1];
+
+
+			divisionAnswer = firstNum/(double)secondNum;
+			
+			do {
+                firstNum = rand.nextInt(maxNum - 1000) + 1000;
+                secondNum = rand.nextInt(9) + 1;
+                divisionAnswer = firstNum/(double)secondNum;
+                
+				
+			}
+                while((divisionAnswer%2 != zero && divisionAnswer%2 != one) || (firstNum == secondNum));
+			}
+			
+			generateOperandBasedAnswer(operand, firstNum, secondNum);
+			break;
 	}
 		
 		equation[0] = firstNum;

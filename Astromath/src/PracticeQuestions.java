@@ -8,6 +8,9 @@
 	import java.awt.event.MouseAdapter;
 	import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,8 +39,9 @@ import javax.swing.JProgressBar;
 		private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		private int height = screenSize.height;
 		private int width = screenSize.width;
-		private JLabel labelName = new JLabel("Goku");
-		private JLabel labelGrade = new JLabel("1st Grade");
+		private JLabel label_name = new JLabel("Goku");
+		private JLabel label_grade = new JLabel("1st Grade");
+		
 		
 
 		private JPanel panel_practiceQuestions = new JPanel();
@@ -47,6 +51,49 @@ import javax.swing.JProgressBar;
 		 * Create the application.
 		 */
 		public PracticeQuestions(JLayeredPane lp, Test test, Student student, Connection con)  {
+			
+			if(test.getDifficulty() == 20) {
+				test.resetDifficulty();
+				int inc = student.getLevel();
+				inc = inc + 1;
+				student.setLevel(inc);
+				
+				try {
+					String query = "Update userinfo set userLevel = '" + student.getLevel() + "' where userID = '" + student.getAccNum() + "'";
+					Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+					st.executeUpdate(query);
+
+
+
+
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+				}
+				
+
+				try {
+					String query = "Select userLevel from userinfo where userID = '" +student.getAccNum() + "'";
+					Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+					ResultSet rs = st.executeQuery(query);
+					 rs.first();
+					 student.setLevel(rs.getInt(1));
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				
+			}
+			
+			
+			
+			
+			int grade = student.getGradeLevel();
 			panel_practiceQuestions.setBounds(0, 0, 1262, 681);
 			panel_practiceQuestions.setBackground(new Color(77,58,129));
 			panel_practiceQuestions.setLayout(null);
@@ -111,18 +158,30 @@ import javax.swing.JProgressBar;
 
 			
 
-			 labelName.setHorizontalAlignment(SwingConstants.RIGHT);
-			 labelName.setForeground(Color.WHITE);
-			 labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-			 labelName.setBounds(765, 21, 417, 44);
-			panel_practiceQuestions.add(labelName);
+			label_name = new JLabel(student.getName());
+			label_name.setHorizontalAlignment(SwingConstants.RIGHT);
+			label_name.setForeground(Color.WHITE);
+			label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+			label_name.setBounds(765, 21, 417, 44);
+			panel_practiceQuestions.add(label_name);
 			
-			labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
-			labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-			labelGrade.setForeground(new Color(0, 195, 255));
-			labelGrade.setBounds(874, 59, 308, 44);
-			panel_practiceQuestions.add(labelGrade);
 			
+			if(student.getGradeLevel() == 0) {
+				label_grade = new JLabel("K");
+				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_grade.setForeground(new Color(0, 195, 255));
+				label_grade.setBounds(874, 59, 308, 44);
+				panel_practiceQuestions.add(label_grade);
+				
+			} else {
+			label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+			label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+			label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+			label_grade.setForeground(new Color(0, 195, 255));
+			label_grade.setBounds(874, 59, 308, 44);
+			panel_practiceQuestions.add(label_grade);
+			}
 			
 			// Logout button
 			
@@ -206,18 +265,18 @@ import javax.swing.JProgressBar;
 			}
 			
 			
-			switch(0) {
+			switch(questionSelect) {
 			case 0: 
-				MultipleChoice mp = new MultipleChoice(1, 4);
+				MultipleChoice mp = new MultipleChoice(grade, 4);
 				
 
 				
 				
-				equation = mp.generateEquation(3, 4, 1);
+				equation = mp.generateEquation(grade, 4, 1);
 				
 				
 				
-				answerKey = MultipleChoice.generateQuestions(3, equation[3], 4);
+				answerKey = MultipleChoice.generateQuestions(grade, equation[3], 4);
 				//ANSWER KEY NUMBERS
 				String answerKey0 = String.format("%d", answerKey[0]); 
 				String answerKey1 = String.format("%d", answerKey[1]); 
@@ -385,13 +444,13 @@ import javax.swing.JProgressBar;
 				
 			
 			case 1:
-				TrueOrFalse tof = new TrueOrFalse(1, 2);
+				TrueOrFalse tof = new TrueOrFalse(grade, 2);
 				int numOfQuestions = 2;
 				
 
 				
 				
-				tofPhrase = tof.generateToF(3);
+				tofPhrase = tof.generateToF(grade);
 				
 				
 				//EQUATION NUMBERS
@@ -417,6 +476,7 @@ import javax.swing.JProgressBar;
 					{
 						if(tofPhrase[1].equals(trueButton))
 						{
+							test.setDifficulty(test.getDifficulty());
 							PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
 							switch_screen(panel_question.getPanel(), lp, test, student, con);
 						}
@@ -443,6 +503,7 @@ import javax.swing.JProgressBar;
 					{
 						if(tofPhrase[1].equals(falseButton))
 						{
+							test.setDifficulty(test.getDifficulty());
 							PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
 							switch_screen(panel_question.getPanel(), lp, test, student, con);
 						}
@@ -459,11 +520,11 @@ import javax.swing.JProgressBar;
 
 case 2:
 	
-	FillInTheBlank fitb = new FillInTheBlank(1, 4);
+	FillInTheBlank fitb = new FillInTheBlank(grade, 4);
 	
 	
 	
-	phrase1 = fitb.generateFITB(3);
+	phrase1 = fitb.generateFITB(grade);
 	
 	
 	
@@ -501,6 +562,7 @@ case 2:
 		{
 			if(textAnswer.getText().equals(phrase1[1]))
 			{
+				test.setDifficulty(test.getDifficulty());
 				PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
 				switch_screen(panel_question.getPanel(), lp, test, student, con);
 			}

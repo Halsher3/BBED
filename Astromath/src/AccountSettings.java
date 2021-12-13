@@ -21,8 +21,8 @@ public class AccountSettings extends JPanel
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	private JLabel labelName = new JLabel("Goku");
-	private JLabel labelGrade = new JLabel("1st Grade");
+	private JLabel label_name = new JLabel("Goku");
+	private JLabel label_grade = new JLabel("1st Grade");
 	
 	private JPanel panel_accSettings = new JPanel();
 
@@ -56,18 +56,29 @@ public class AccountSettings extends JPanel
 				// Placeholder variables to use for Student name and Student grade
 			
 				
-				labelGrade.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				labelGrade.setForeground(new Color(0, 195, 255));
-				labelGrade.setBounds(874, 59, 308, 44);
-				panel_accSettings.add(labelGrade);
+				if(student.getGradeLevel() == 0) {
+					label_grade = new JLabel("K");
+					label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+					label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+					label_grade.setForeground(new Color(0, 195, 255));
+					label_grade.setBounds(874, 59, 308, 44);
+					panel_accSettings.add(label_grade);
+					
+				} else {
+				label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_grade.setForeground(new Color(0, 195, 255));
+				label_grade.setBounds(874, 59, 308, 44);
+				panel_accSettings.add(label_grade);
+				}
 				
-				
-				labelName.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelName.setForeground(Color.WHITE);
-				labelName.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				labelName.setBounds(765, 21, 417, 44);
-				panel_accSettings.add(labelName);
+				label_name = new JLabel(student.getName());
+				label_name.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_name.setForeground(Color.WHITE);
+				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_name.setBounds(765, 21, 417, 44);
+				panel_accSettings.add(label_name);
 				
 				
 				// Code for the logo in the upper left corner and Astromath text

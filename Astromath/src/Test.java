@@ -36,6 +36,10 @@ public class Test {
 		this.numQuestions = 0;
 	}
 	
+	public void resetDifficulty() {
+		this.difficulty = 0;
+	}
+	
 	public void setScoreSheet(int rightOrWrong){
 
 		for(int i = getNumQuestions(); i < questions.length; i++) {
