@@ -24,7 +24,7 @@ public class Visual extends JFrame
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	public Test test = new Test(0, 0);
+	public Test test = new Test(0, 0, "");
 	
 	
 

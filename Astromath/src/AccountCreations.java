@@ -203,11 +203,16 @@ public class AccountCreations extends JPanel {
                         
                     }
 
-                    String query1 = "INSERT INTO userinfo(`username`, `password`, `email`, `grade`, `name`, userID) "
+
+                   String  query1 = "INSERT INTO userinfo(`username`, `password`, `email`, `grade`, `name`, userID) "
                             + "VALUES ('" + username + "','" + password + "','" + email + "','" + grade +"','" + name + "','" + userID + "')";
                                                     
-                    Statement sta = connection.createStatement();
+                   Statement  sta = connection.createStatement();
                     int x = sta.executeUpdate(query1);
+                    
+
+                    
+
                     if (x == 0) {
                         JOptionPane.showMessageDialog(registerButton, "This account with this email already exists.");
                     } else {
@@ -218,6 +223,7 @@ public class AccountCreations extends JPanel {
                         	switch_screen(panel_login.getPanel(), lp, test, student, con);
 
                     }
+                    
                 
                 } catch (Exception exception) {
                     exception.printStackTrace();

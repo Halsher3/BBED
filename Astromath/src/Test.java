@@ -3,10 +3,12 @@ public class Test {
 	public int difficulty;
 	public int numQuestions;
 	public int[] questions = new int[10];
+	public String currentTest;
 
-	public Test(int difficulty, int numQuestions) {
+	public Test(int difficulty, int numQuestions, String currentTest) {
 		this.difficulty = difficulty;
 		this.numQuestions = numQuestions;
+		this.currentTest = currentTest;
 		
 
 	}
@@ -58,6 +60,14 @@ public class Test {
 			sum += questions[i];
 		}
 		return sum*10;
+	}
+	
+	public void setCurrentTest(String currentTest) {
+		this.currentTest = currentTest;
+	}
+	
+	public String getCurrentTest() {
+		return this.currentTest;
 	}
 	
 	

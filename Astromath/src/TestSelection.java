@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -420,6 +423,29 @@ public class TestSelection extends JPanel {
 		editorPane_2_1.setBackground(new Color(23, 38, 83));
 		editorPane_2_1.setBounds(175, 439, 953, 74);
 		panel_testSelect.add(editorPane_2_1);
+		
+		
+		
+		try {
+			
+			
+			
+			
+            String quer = "INSERT INTO testinfo(`userID`, `testName1`, `testName2`, `testName3`, `testName4`, `testScore1`, `testScore2`, `testScore3`, `testScore4`) "
+               		
+                            + "VALUES ('" + student.getAccNum() + "','" + additionTest.getText() + "','" + subtractionTest.getText() + "','" +  trueOrFalseTest.getText() +"','" + fillInTheBlankTest.getText() + "','" + 0 + "','"+ 0 + "','" + 0 + "','" + 0 + "')";
+                    
+                     Statement sta = con.createStatement();
+                     sta.executeUpdate(quer);
+
+			 
+			 
+
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		
 	}
 
 	public JPanel getPanel()
