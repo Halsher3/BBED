@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 	
 	import javax.swing.JFrame;
 	import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
 	
 	public class TestQuestions {
 	
@@ -192,10 +193,53 @@ import javax.swing.border.LineBorder;
 			panel_TestQuestions.add(image_settings);
 			
 	
+			JButton button_submit = new JButton("Finish");
+			button_submit.setVisible(false);
+			button_submit.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) 
+				{
+					TestResult panel_tr = new TestResult(lp, test, student, con);
+					switch_screen(panel_tr.getPanel(), lp, test, student, con);
+				}
+			});
+			button_submit.setBackground(new Color(26, 38, 83));
+			button_submit.setHorizontalAlignment(SwingConstants.CENTER);
+			button_submit.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+			button_submit.setForeground(new Color(127, 255, 212));
+			button_submit.setBounds(890, 602, 288, 68);
+			panel_TestQuestions.add(button_submit);
 			
+			JLabel label_testOver = new JLabel("The test is now over,");
+			label_testOver.setVisible(false);
+			label_testOver.setFont(new Font("A-Space Demo", Font.PLAIN, 45));
+			label_testOver.setForeground(Color.WHITE);
+			label_testOver.setBounds(309, 218, 610, 53);
+			panel_TestQuestions.add(label_testOver);
 			
-			if(test.getNumQuestions() == 10) {
+			JLabel label_clickButton = new JLabel("click the button to see your results.");
+			label_clickButton.setVisible(false);
+			label_clickButton.setForeground(Color.WHITE);
+			label_clickButton.setFont(new Font("A-Space Demo", Font.PLAIN, 45));
+			label_clickButton.setBounds(116, 282, 1061, 53);
+			panel_TestQuestions.add(label_clickButton);
+			
+			JLabel image_student = new JLabel("");
+			image_student.setVisible(false);
+			image_student.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\homework.png"));
+			image_student.setBounds(351, 282, 480, 480);
+			panel_TestQuestions.add(image_student);
+			
+			if(test.getNumQuestions() == 10) 
+			{
 			System.out.println(test.calculateGrade(test.getScoreSheet()));
+			button_submit.setVisible(true);
+			label_testOver.setVisible(true);
+			label_clickButton.setVisible(true);
+			image_student.setVisible(true);
+			test.resetNumQuestions();
+		
+			
 			} else {
 			//TEST COMPONENTS
 			
@@ -600,8 +644,6 @@ case 2:
 		
 
 	}
-
-
 	}
 	
 					

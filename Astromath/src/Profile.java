@@ -164,7 +164,7 @@ public class Profile extends JPanel
 			
 				
 				JLabel image_pfp = new JLabel("");
-				image_pfp.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\pfp3.png"));
+				image_pfp.setIcon(new ImageIcon(".\\\\assets\\\\images\\\\pfp3.png"));
 				image_pfp.setBounds(110, 161, 88, 83);
 				panel_profile.add(image_pfp);
 				
@@ -228,8 +228,8 @@ public class Profile extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						//ProfileSettings panel_profileSet = new ProfileSettings(lp, test);
-						//switch_screen(panel_profileSet.getPanel(), lp);
+						ProfileSettings panel_profileSet = new ProfileSettings(lp, test, student, con);
+						switch_screen(panel_profileSet.getPanel(), lp, test, student, con);
 					}
 				});
 

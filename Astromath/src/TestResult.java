@@ -29,8 +29,8 @@ import java.sql.Statement;
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	private JLabel label_name = new JLabel("Goku");
-	private JLabel label_grade = new JLabel("1st Grade");
+	private JLabel label_name;
+	private JLabel label_grade;
 	
 	private JPanel panel_result = new JPanel();
 
@@ -187,14 +187,15 @@ import java.sql.Statement;
 				panel_result.add(imageSettings);
 				
 				JLabel image_rocket = new JLabel("");
-				image_rocket.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\cursor.png"));
+				image_rocket.setIcon(new ImageIcon(".\\\\assets\\\\images\\\\cursor.png"));
 				image_rocket.setBounds(351, 584, 30, 49);
 				panel_result.add(image_rocket);
 				
-				JLabel label_congrats = new JLabel("Congratulations Goku!");
+				JLabel label_congrats = new JLabel("Congratulations " + student.getName() + "!");
+				label_congrats.setHorizontalAlignment(SwingConstants.CENTER);
 				label_congrats.setForeground(Color.WHITE);
-				label_congrats.setFont(new Font("A-Space Demo", Font.PLAIN, 54));
-				label_congrats.setBounds(211, 114, 843, 124);
+				label_congrats.setFont(new Font("A-Space Demo", Font.PLAIN, 50));
+				label_congrats.setBounds(-575, 106, 2352, 124);
 				panel_result.add(label_congrats);
 				
 				JLabel label_youScored = new JLabel("You scored");
@@ -204,14 +205,14 @@ import java.sql.Statement;
 				label_youScored.setBounds(183, 195, 843, 124);
 				panel_result.add(label_youScored);
 				
-				JLabel label_score = new JLabel("90%");
+				JLabel label_score = new JLabel("" + test.calculateGrade(test.getScoreSheet()));
 				label_score.setHorizontalAlignment(SwingConstants.CENTER);
 				label_score.setForeground(Color.YELLOW);
 				label_score.setFont(new Font("a Atmospheric", Font.PLAIN, 94));
 				label_score.setBounds(351, 274, 496, 219);
 				panel_result.add(label_score);
 				
-				JLabel lblOnTheAddition = new JLabel("on the Addition 20 test!");
+				JLabel lblOnTheAddition = new JLabel("on the " + "" + " test!");
 				lblOnTheAddition.setHorizontalAlignment(SwingConstants.CENTER);
 				lblOnTheAddition.setForeground(Color.WHITE);
 				lblOnTheAddition.setFont(new Font("A-Space Demo", Font.PLAIN, 44));
@@ -219,17 +220,17 @@ import java.sql.Statement;
 				panel_result.add(lblOnTheAddition);
 				
 				JLabel image_star = new JLabel("");
-				image_star.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\star.png"));
+				image_star.setIcon(new ImageIcon(".\\\\assets\\\\images\\\\star.png"));
 				image_star.setBounds(112, 231, 229, 220);
 				panel_result.add(image_star);
 				
 				JLabel image_star2 = new JLabel("");
-				image_star2.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\star.png"));
+				image_star2.setIcon(new ImageIcon(".\\\\assets\\\\images\\\\star.png"));
 				image_star2.setBounds(904, 230, 229, 220);
 				panel_result.add(image_star2);
 				
 				JLabel image_rocket2 = new JLabel("");
-				image_rocket2.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\cursor.png"));
+				image_rocket2.setIcon(new ImageIcon(".\\\\assets\\\\images\\\\cursor.png"));
 				image_rocket2.setBounds(885, 584, 30, 49);
 				panel_result.add(image_rocket2);
 				
