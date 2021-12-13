@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -187,6 +188,24 @@ public class PasswordChange extends JPanel {
 		panel_PasswordChange.add(label_grade);
 		}
 		
+		JLabel casePasswordReq = new JLabel("Your password must have at least 1 Uppercase character\r\n");
+		casePasswordReq.setForeground(Color.WHITE);
+		casePasswordReq.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		casePasswordReq.setBounds(52, 175, 604, 52);
+		panel_PasswordChange.add(casePasswordReq);
+		
+		JLabel characterReq = new JLabel("At least 6 characters long\r\n");
+		characterReq.setForeground(Color.WHITE);
+		characterReq.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		characterReq.setBounds(52, 205, 604, 39);
+		panel_PasswordChange.add(characterReq);
+		
+		JLabel specialCharReq = new JLabel("At least one special character (!, ?, /, *, &, ^, etc.)\r\n");
+		specialCharReq.setForeground(Color.WHITE);
+		specialCharReq.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		specialCharReq.setBounds(52, 235, 604, 39);
+		panel_PasswordChange.add(specialCharReq);
+		
 		//UPDATE STUFF
 		JButton updateButton = new JButton("Update");
         updateButton.addMouseListener(new MouseAdapter() {
@@ -206,6 +225,10 @@ public class PasswordChange extends JPanel {
                 	Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 	
                 	st.executeUpdate(query);
+					JOptionPane.showMessageDialog(null,"Password change is successful!"); 	
+					
+					AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
+					switch_screen(panel_acc.getPanel(), lp, test, student, con);
                 	
                 	
                 } catch (Exception exception) {
@@ -213,7 +236,9 @@ public class PasswordChange extends JPanel {
                 }
                 
 				} else {
-					
+					specialCharReq.setForeground(new Color(255, 66, 66));
+					characterReq.setForeground(new Color(255, 66, 66));
+					casePasswordReq.setForeground(new Color(255, 66, 66));
 				}
             }//needs password requirements
             

@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -201,6 +202,11 @@ public class EmailChange extends JPanel {
                 	Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 	
                 	st.executeUpdate(query);
+                	
+					JOptionPane.showMessageDialog(null,"Email change is successful!"); 	
+					
+					AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
+					switch_screen(panel_acc.getPanel(), lp, test, student, con);
                 	
                 	
                 } catch (Exception exception) {
