@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.text.*;
 import java.awt.print.*;
+import java.sql.Connection;
 
 
 ;public class TestResult extends JPanel 
@@ -38,7 +39,7 @@ import java.awt.print.*;
 	/**
 	 * Create the application.
 	 */
-	public TestResult(JLayeredPane lp, Test test) 
+	public TestResult(JLayeredPane lp, Test test, Student student, Connection con) 
 	{
 		
 				panel_result.setBounds(0, 0, 1262, 681);
@@ -50,8 +51,8 @@ import java.awt.print.*;
 				imageHome.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						MainWindow panel_home = new MainWindow(lp, test);
-						switch_screen(panel_home.getPanel(), lp);
+						MainWindow panel_home = new MainWindow(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
 					}
 				});
 				imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
@@ -102,8 +103,8 @@ import java.awt.print.*;
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						MainWindow panel_home = new MainWindow(lp, test);
-						switch_screen(panel_home.getPanel(), lp);
+						MainWindow panel_home = new MainWindow(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
 					}
 				});
 				
@@ -129,8 +130,8 @@ import java.awt.print.*;
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Login panel_login = new Login(lp, test);
-						switch_screen(panel_login.getPanel(), lp);
+						Login panel_login = new Login(lp, test, student, con);
+						switch_screen(panel_login.getPanel(), lp, test, student, con);
 					}
 				});
 				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
@@ -211,8 +212,8 @@ import java.awt.print.*;
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						TestSelection panel_select = new TestSelection(lp, test);
-						switch_screen(panel_select.getPanel(), lp);
+						TestSelection panel_select = new TestSelection(lp, test, student, con);
+						switch_screen(panel_select.getPanel(), lp, test, student, con);
 					}
 				});
 				
@@ -252,9 +253,12 @@ import java.awt.print.*;
 								
 								Graphics2D g2 = (Graphics2D)graphics;
 								g2.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-								g2.scale(0.24, 0.24);
+								g2.scale(0.48, 0.48);
+								//g2.rotate(45 * Math.PI/90);
+
 								
 								lp.paint(g2);
+								
 								return Printable.PAGE_EXISTS;
 
 							}
@@ -266,6 +270,7 @@ import java.awt.print.*;
 						{
 							try
 							{
+								
 								job.print();
 							}
 							catch (PrinterException ex) {}
@@ -286,7 +291,7 @@ import java.awt.print.*;
 		
 	}
 	
-	public void switch_screen(JPanel p, JLayeredPane lp)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);

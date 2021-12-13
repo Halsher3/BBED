@@ -7,8 +7,9 @@
 	import java.awt.Font;
 	import java.awt.event.MouseAdapter;
 	import java.awt.event.MouseEvent;
-	
-	import javax.swing.ImageIcon;
+import java.sql.Connection;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 	import javax.swing.JLabel;
@@ -45,7 +46,7 @@ import javax.swing.JProgressBar;
 		/**
 		 * Create the application.
 		 */
-		public PracticeQuestions(JLayeredPane lp, Test test) {
+		public PracticeQuestions(JLayeredPane lp, Test test, Student student, Connection con)  {
 			panel_practiceQuestions.setBounds(0, 0, 1262, 681);
 			panel_practiceQuestions.setBackground(new Color(77,58,129));
 			panel_practiceQuestions.setLayout(null);
@@ -84,8 +85,8 @@ import javax.swing.JProgressBar;
 				@Override
 				public void mouseClicked(MouseEvent e) 
 				{
-					MainWindow panel_home = new MainWindow(lp, test);
-					switch_screen(panel_home.getPanel(), lp, test);
+					MainWindow panel_home = new MainWindow(lp, test, student, con);
+					switch_screen(panel_home.getPanel(), lp, test, student, con);
 
 				}
 			});
@@ -141,8 +142,8 @@ import javax.swing.JProgressBar;
 				@Override
 				public void mouseClicked(MouseEvent e) 
 				{
-					Login panel_login = new Login(lp, test);
-					switch_screen(panel_login.getPanel(), lp, test);
+					Login panel_login = new Login(lp, test, student, con);
+					switch_screen(panel_login.getPanel(), lp, test, student, con);
 
 				}
 			});
@@ -154,8 +155,8 @@ import javax.swing.JProgressBar;
 			image_settings.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					AccountSettings panel_acc = new AccountSettings(lp, test);
-					switch_screen(panel_acc.getPanel(), lp, test);
+					AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
+					switch_screen(panel_acc.getPanel(), lp, test, student, con);
 
 				}
 				@Override
@@ -237,8 +238,8 @@ import javax.swing.JProgressBar;
 						{
 							test.setDifficulty(test.getDifficulty());
 
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp, test);
+							PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 
 						}
@@ -264,8 +265,8 @@ import javax.swing.JProgressBar;
 						{
 							test.setDifficulty(test.getDifficulty());
 
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp, test);
+							PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 						else
@@ -290,8 +291,8 @@ import javax.swing.JProgressBar;
 						{
 							test.setDifficulty(test.getDifficulty());
 
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp, test);
+							PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 						else
@@ -316,8 +317,8 @@ import javax.swing.JProgressBar;
 						{
 							test.setDifficulty(test.getDifficulty());
 
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp, test);
+							PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 						else
@@ -416,8 +417,8 @@ import javax.swing.JProgressBar;
 					{
 						if(tofPhrase[1].equals(trueButton))
 						{
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp, test);
+							PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 						}
 						else
 						{
@@ -442,8 +443,8 @@ import javax.swing.JProgressBar;
 					{
 						if(tofPhrase[1].equals(falseButton))
 						{
-							PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-							switch_screen(panel_question.getPanel(), lp, test);
+							PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 						}
 						else
 						{
@@ -500,8 +501,8 @@ case 2:
 		{
 			if(textAnswer.getText().equals(phrase1[1]))
 			{
-				PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-				switch_screen(panel_question.getPanel(), lp, test);
+				PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
+				switch_screen(panel_question.getPanel(), lp, test, student, con);
 			}
 			else
 			{
@@ -527,7 +528,7 @@ case 2:
 			
 		}
 
-public void switch_screen(JPanel p, JLayeredPane lp, Test test)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);

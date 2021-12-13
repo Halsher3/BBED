@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -38,7 +39,7 @@ public class Profile extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public Profile(JLayeredPane lp, Test test) 
+	public Profile(JLayeredPane lp, Test test, Student student, Connection con) 
 	{
 		
 				panel_profile.setBounds(0, 0, 1262, 681);
@@ -50,8 +51,8 @@ public class Profile extends JPanel
 				imageHome.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						MainWindow panel_home = new MainWindow(lp, test);
-						switch_screen(panel_home.getPanel(), lp);
+						MainWindow panel_home = new MainWindow(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
 					}
 				});
 				imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
@@ -102,8 +103,8 @@ public class Profile extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						MainWindow panel_home = new MainWindow(lp, test);
-						switch_screen(panel_home.getPanel(), lp);
+						MainWindow panel_home = new MainWindow(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
 					}
 				});
 				
@@ -129,8 +130,8 @@ public class Profile extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Login panel_login = new Login(lp, test);
-						switch_screen(panel_login.getPanel(), lp);
+						Login panel_login = new Login(lp, test, student, con);
+						switch_screen(panel_login.getPanel(), lp, test, student, con);
 					}
 				});
 				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
@@ -228,7 +229,7 @@ public class Profile extends JPanel
 		
 	}
 	
-	public void switch_screen(JPanel p, JLayeredPane lp)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);

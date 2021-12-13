@@ -52,7 +52,7 @@ public class Login extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public Login(JLayeredPane lp, Test test)
+	public Login(JLayeredPane lp, Test test, Student student, Connection con) 
 	{
 		
 		panel_login.setBackground(new Color(77,58,129));
@@ -109,12 +109,17 @@ public class Login extends JPanel
 			public void actionPerformed(ActionEvent e) {
 				try  {
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					//DATABASE CONNECTION LINE IS IN DISCORD 
+					Connection con= DriverManager.getConnection("jdbc:mysql://sql5.freesqldatabase.com/sql5458377","sql5458377","FKhgpmjDr9"); 
 					Statement stmt=con.createStatement();
 					var sql="Select * from userinfo where username='"+textUsername.getText()+"' and password='"+textPassword.getText()+"'";
 					ResultSet rs=stmt.executeQuery(sql);
 					if(rs.next())
-						JOptionPane.showMessageDialog(null,"Login Succ"); 
+					{
+						JOptionPane.showMessageDialog(null,"Login Success!"); 	
+						MainWindow panel_home = new MainWindow(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
+					}
+						
 					else
 						labelIncorrect.setVisible(true);
 					con.close();
@@ -157,6 +162,14 @@ public class Login extends JPanel
 		panel_login.add(lblNewLabel);
 		
 		JButton lblNewLabel_1 = new JButton("New Student?");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				AccountCreations panel_home = new AccountCreations(lp, test, student, con);
+				switch_screen(panel_home.getPanel(), lp, test, student, con);
+			}
+		});
 		lblNewLabel_1.setBackground(new Color(26, 38, 83));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
@@ -183,7 +196,7 @@ public class Login extends JPanel
 		return panel_login;
 		
 	}
-	public void switch_screen(JPanel p, JLayeredPane lp)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);

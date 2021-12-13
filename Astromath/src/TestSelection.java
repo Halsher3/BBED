@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -28,7 +29,7 @@ public class TestSelection extends JPanel {
 
 
 	
-	public TestSelection(JLayeredPane lp, Test test) 
+	public TestSelection(JLayeredPane lp, Test test, Student student, Connection con) 
 	{
 
 		panel_testSelect.setBounds(0, 0, 1262, 681);
@@ -40,8 +41,8 @@ public class TestSelection extends JPanel {
 		image_home.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) { 
-				MainWindow panel_home = new MainWindow(lp, test);
-				switch_screen(panel_home.getPanel(), lp, test, questionSelect, operand);
+				MainWindow panel_home = new MainWindow(lp, test, student, con);
+				switch_screen(panel_home.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
 		});
 		image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
@@ -77,8 +78,8 @@ public class TestSelection extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				MainWindow panel_home = new MainWindow(lp, test);
-				switch_screen(panel_home.getPanel(), lp, test, questionSelect, operand);
+				MainWindow panel_home = new MainWindow(lp, test, student, con);
+				switch_screen(panel_home.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
 		});
 		
@@ -128,8 +129,8 @@ public class TestSelection extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				Login panel_login = new Login(lp, test);
-				switch_screen(panel_login.getPanel(), lp, test, questionSelect, operand);
+				Login panel_login = new Login(lp, test, student, con);
+				switch_screen(panel_login.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
 		});
 		image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
@@ -140,8 +141,8 @@ public class TestSelection extends JPanel {
 		image_settings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountSettings panel_acc= new AccountSettings(lp, test);
-				switch_screen(panel_acc.getPanel(), lp, test, questionSelect, operand);
+				AccountSettings panel_acc= new AccountSettings(lp, test, student, con);
+				switch_screen(panel_acc.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -181,8 +182,8 @@ public class TestSelection extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				questionSelect = 0;
 				operand = 0;
-				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand);
-				switch_screen(panel_testQ.getPanel(), lp,test, questionSelect, operand);
+				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
+				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -222,8 +223,8 @@ public class TestSelection extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				questionSelect = 0;
 				operand = 1;
-				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand);
-				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand);
+				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
+				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -262,8 +263,8 @@ public class TestSelection extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				questionSelect = 1;
 				operand = 0;
-				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand);
-				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand);
+				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
+				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -296,8 +297,8 @@ public class TestSelection extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				questionSelect = 2;
 				operand = 0;
-				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand);
-				switch_screen(panel_testQ.getPanel(), lp, test,  questionSelect, operand);
+				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
+				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -322,7 +323,7 @@ public class TestSelection extends JPanel {
 		return panel_testSelect;
 		
 	}
-	public void switch_screen(JPanel p, JLayeredPane lp, Test test, int questionSelect, int operand)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, int questionSelect, int operand, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);

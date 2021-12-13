@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ public class GradePage extends JPanel {
 	private JPanel panel_grades = new JPanel();
 
 
-	public GradePage(JLayeredPane lp, Test test) 
+	public GradePage(JLayeredPane lp, Test test, Student student, Connection con) 
 	{
 
 		panel_grades.setBounds(0, 0, 1262, 681);
@@ -83,8 +84,8 @@ public class GradePage extends JPanel {
 			}
 			public void mouseClicked(MouseEvent e) 
 			{
-				MainWindow panel_home = new MainWindow(lp, test);
-				switch_screen(panel_home.getPanel(), lp);
+				MainWindow panel_home = new MainWindow(lp, test, student, con);
+				switch_screen(panel_home.getPanel(), lp, test, student, con);
 
 			}
 		});
@@ -112,8 +113,8 @@ public class GradePage extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				Login panel_login = new Login(lp, test);
-				switch_screen(panel_login.getPanel(), lp);
+				Login panel_login = new Login(lp, test, student, con);
+				switch_screen(panel_login.getPanel(), lp, test, student, con);
 
 			}
 		});
@@ -124,8 +125,8 @@ public class GradePage extends JPanel {
 		image_settings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AccountSettings panel_acc = new AccountSettings(lp, test);
-				switch_screen(panel_acc.getPanel(), lp);
+				AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
+				switch_screen(panel_acc.getPanel(), lp, test, student, con);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -201,7 +202,7 @@ public class GradePage extends JPanel {
 		return panel_grades;
 		
 	}
-	public void switch_screen(JPanel p, JLayeredPane lp)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);

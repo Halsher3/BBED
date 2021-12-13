@@ -8,8 +8,9 @@
 	import java.awt.Font;
 	import java.awt.event.MouseAdapter;
 	import java.awt.event.MouseEvent;
-	
-	import javax.swing.ImageIcon;
+import java.sql.Connection;
+
+import javax.swing.ImageIcon;
 	import javax.swing.JButton;
 	import javax.swing.JFrame;
 	import javax.swing.JLabel;
@@ -48,7 +49,7 @@ import javax.swing.border.LineBorder;
 		/**
 		 * Create the application.
 		 */
-		public TestQuestions(JLayeredPane lp, Test test, int questionSelect, int operand) {
+		public TestQuestions(JLayeredPane lp, Test test, int questionSelect, int operand, Student student, Connection con) {
 			panel_TestQuestions.setBounds(0, 0, 1262, 681);
 			panel_TestQuestions.setBackground(new Color(77,58,129));
 			panel_TestQuestions.setLayout(null);
@@ -87,8 +88,8 @@ import javax.swing.border.LineBorder;
 				@Override
 				public void mouseClicked(MouseEvent e) 
 				{
-					MainWindow panel_home = new MainWindow(lp, test);
-					switch_screen(panel_home.getPanel(), lp, test);
+					MainWindow panel_home = new MainWindow(lp, test, student, con);
+					switch_screen(panel_home.getPanel(), lp, test, student, con);
 
 				}
 			});
@@ -144,8 +145,8 @@ import javax.swing.border.LineBorder;
 				@Override
 				public void mouseClicked(MouseEvent e) 
 				{
-					Login panel_login = new Login(lp, test);
-					switch_screen(panel_login.getPanel(), lp, test);
+					Login panel_login = new Login(lp, test, student, con);
+					switch_screen(panel_login.getPanel(), lp, test, student, con);
 
 				}
 			});
@@ -157,8 +158,8 @@ import javax.swing.border.LineBorder;
 			image_settings.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					AccountSettings panel_acc = new AccountSettings(lp, test);
-					switch_screen(panel_acc.getPanel(), lp, test);
+					AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
+					switch_screen(panel_acc.getPanel(), lp, test, student, con);
 
 				}
 				@Override
@@ -248,8 +249,8 @@ import javax.swing.border.LineBorder;
 						{
 							test.setScoreSheet(1);
 							test.setNumQuestions(test.getNumQuestions());
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 
 						}
@@ -259,8 +260,8 @@ import javax.swing.border.LineBorder;
 							test.setNumQuestions(test.getNumQuestions());
 							mpAnswer1.setBackground(new Color(255, 0, 153));
 							
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 					}
@@ -280,8 +281,8 @@ import javax.swing.border.LineBorder;
 						{
 							test.setScoreSheet(1);
 							test.setNumQuestions(test.getNumQuestions());
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 						else
@@ -290,8 +291,8 @@ import javax.swing.border.LineBorder;
 							test.setNumQuestions(test.getNumQuestions());
 							
 							mpAnswer2.setBackground(new Color(255, 0, 153));
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 					}
@@ -311,8 +312,8 @@ import javax.swing.border.LineBorder;
 						{
 							test.setScoreSheet(1);
 							test.setNumQuestions(test.getNumQuestions());
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 						else
@@ -320,8 +321,8 @@ import javax.swing.border.LineBorder;
 							test.setScoreSheet(0);
 							test.setNumQuestions(test.getNumQuestions());
 							mpAnswer3.setBackground(new Color(255, 0, 153));
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 					}
@@ -341,8 +342,8 @@ import javax.swing.border.LineBorder;
 						{
 							test.setScoreSheet(1);
 							test.setNumQuestions(test.getNumQuestions());
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 						else
@@ -350,8 +351,8 @@ import javax.swing.border.LineBorder;
 							test.setScoreSheet(0);
 							test.setNumQuestions(test.getNumQuestions());
 							mpAnswer4.setBackground(new Color(255, 0, 153));
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 					}
@@ -447,16 +448,16 @@ import javax.swing.border.LineBorder;
 						{
 							test.setScoreSheet(1);
 							test.setNumQuestions(test.getNumQuestions());
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 						}
 						else
 						{
 							test.setScoreSheet(0);
 							test.setNumQuestions(test.getNumQuestions());
 							tofPhrase2.setBackground(new Color(255, 0, 153));
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 					}
@@ -479,16 +480,16 @@ import javax.swing.border.LineBorder;
 						{
 							test.setScoreSheet(1);
 							test.setNumQuestions(test.getNumQuestions());
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 						}
 						else
 						{
 							test.setScoreSheet(0);
 							test.setNumQuestions(test.getNumQuestions());
 							tofPhrase3.setBackground(new Color(255, 0, 153));
-							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-							switch_screen(panel_question.getPanel(), lp, test);
+							TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+							switch_screen(panel_question.getPanel(), lp, test, student, con);
 							
 						}
 					}
@@ -543,16 +544,16 @@ case 2:
 			{
 				test.setScoreSheet(1);
 				test.setNumQuestions(test.getNumQuestions());
-				TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-				switch_screen(panel_question.getPanel(), lp, test);
+				TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+				switch_screen(panel_question.getPanel(), lp, test, student, con);
 			}
 			else
 			{
 				
 				test.setScoreSheet(0);
 				test.setNumQuestions(test.getNumQuestions());
-				TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand);
-				switch_screen(panel_question.getPanel(), lp, test);
+				TestQuestions panel_question = new TestQuestions(lp, test, questionSelect, operand, student, con);
+				switch_screen(panel_question.getPanel(), lp, test, student, con);
 				
 			}
 		}
@@ -575,7 +576,7 @@ case 2:
 		}
 		
 
-public void switch_screen(JPanel p, JLayeredPane lp, Test test)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);

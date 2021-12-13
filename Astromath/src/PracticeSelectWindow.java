@@ -13,6 +13,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 
 public class PracticeSelectWindow extends JPanel
 {
@@ -29,7 +30,7 @@ public class PracticeSelectWindow extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public PracticeSelectWindow(JLayeredPane lp, Test test) 
+	public PracticeSelectWindow(JLayeredPane lp, Test test, Student student, Connection con) 
 	{
 		
 		panel_practiceSelect.setBounds(0, 0, 1262, 681);
@@ -63,8 +64,8 @@ public class PracticeSelectWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						MainWindow panel_home = new MainWindow(lp, test);
-						switch_screen(panel_home.getPanel(), lp);
+						MainWindow panel_home = new MainWindow(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
 
 					}
 				});
@@ -113,8 +114,8 @@ public class PracticeSelectWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						LearnVideoWindow panel_vidWindow = new LearnVideoWindow(lp, test);
-						switch_screen(panel_vidWindow.getPanel(), lp);
+						LearnVideoWindow panel_vidWindow = new LearnVideoWindow(lp, test, student, con);
+						switch_screen(panel_vidWindow.getPanel(), lp, test, student, con);
 					}
 				});
 				imageLearn.setIcon(new ImageIcon(".\\Assets\\images\\The Guys.png"));
@@ -144,8 +145,8 @@ public class PracticeSelectWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						PracticeQuestions panel_question = new PracticeQuestions(lp, test);
-						switch_screen(panel_question.getPanel(), lp);
+						PracticeQuestions panel_question = new PracticeQuestions(lp, test, student, con);
+						switch_screen(panel_question.getPanel(), lp, test, student, con);
 					}
 				});
 				
@@ -181,8 +182,8 @@ public class PracticeSelectWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Login panel_login = new Login(lp, test);
-						switch_screen(panel_login.getPanel(), lp);
+						Login panel_login = new Login(lp, test, student, con);
+						switch_screen(panel_login.getPanel(), lp, test, student, con);
 
 					}
 				});
@@ -194,8 +195,8 @@ public class PracticeSelectWindow extends JPanel
 				image_settings.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						AccountSettings panel_acc = new AccountSettings(lp, test);
-						switch_screen(panel_acc.getPanel(), lp);
+						AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
+						switch_screen(panel_acc.getPanel(), lp, test, student, con);
 
 					}
 					@Override
@@ -222,7 +223,7 @@ public class PracticeSelectWindow extends JPanel
 		
 	}
 
-	public void switch_screen(JPanel p, JLayeredPane lp)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);

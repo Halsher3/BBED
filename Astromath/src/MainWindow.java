@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 
 public class MainWindow extends JPanel
 {
@@ -47,7 +48,7 @@ public class MainWindow extends JPanel
 	/**
 	 * Create the application.
 	 */
-	public MainWindow(JLayeredPane lp, Test test) 
+	public MainWindow(JLayeredPane lp, Test test, Student student, Connection con) 
 	{
 		
 				panel_home.setBounds(0, 0, 1262, 681);
@@ -102,8 +103,8 @@ public class MainWindow extends JPanel
 					}
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						TestSelection panel_ts = new TestSelection(lp, test);
-						switch_screen(panel_ts.getPanel(), lp);
+						TestSelection panel_ts = new TestSelection(lp, test, student, con);
+						switch_screen(panel_ts.getPanel(), lp, test, student, con);
 					}
 				});
 				image_ringPlanet.setIcon(new ImageIcon(".\\assets\\images\\ringed planet.png"));
@@ -125,8 +126,8 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						PracticeSelectWindow panel_ps = new PracticeSelectWindow(lp, test);
-						switch_screen(panel_ps.getPanel(), lp);
+						PracticeSelectWindow panel_ps = new PracticeSelectWindow(lp, test, student, con);
+						switch_screen(panel_ps.getPanel(), lp, test, student, con);
 
 					}
 				});
@@ -149,8 +150,8 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Profile panel_profile = new Profile(lp, test);
-						switch_screen(panel_profile.getPanel(), lp);
+						Profile panel_profile = new Profile(lp, test, student, con);
+						switch_screen(panel_profile.getPanel(), lp, test, student, con);
 					}
 				});
 				image_redPlanet.setIcon(new ImageIcon(".\\assets\\images\\red planet.png"));
@@ -189,8 +190,8 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						GradePage panel_grade = new GradePage(lp, test);
-						switch_screen(panel_grade.getPanel(), lp);
+						GradePage panel_grade = new GradePage(lp, test, student, con);
+						switch_screen(panel_grade.getPanel(), lp, test, student, con);
 
 					}
 				});
@@ -201,7 +202,8 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						
+						TestResult panel_tr = new TestResult(lp, test, student, con);
+						switch_screen(panel_tr.getPanel(), lp, test, student, con);
 					}
 				});
 				image_sun.setIcon(new ImageIcon(".\\assets\\images\\sun.png"));
@@ -261,8 +263,8 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						Login panel_login = new Login(lp, test);
-						switch_screen(panel_login.getPanel(), lp);
+						Login panel_login = new Login(lp, test, student, con);
+						switch_screen(panel_login.getPanel(), lp, test, student, con);
 					}
 				});
 				image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
@@ -273,8 +275,8 @@ public class MainWindow extends JPanel
 				image_settings.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						AccountSettings panel_acc = new AccountSettings(lp, test);
-						switch_screen(panel_acc.getPanel(), lp);
+						AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
+						switch_screen(panel_acc.getPanel(), lp, test, student, con);
 					}
 					@Override
 					public void mouseEntered(MouseEvent e) 
@@ -302,7 +304,7 @@ public class MainWindow extends JPanel
 		
 	}
 
-	public void switch_screen(JPanel p, JLayeredPane lp)
+	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
 		p.setLayout(null);
