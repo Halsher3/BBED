@@ -138,11 +138,11 @@ public class AccountCreations extends JPanel {
 		characterReq.setBounds(52, 432, 604, 39);
 		panel_accCreate.add(characterReq);
 		
-		JLabel specialCharReq = new JLabel("At least one special character (!, ?, /, *, &, ^, etc.)\r\n");
-		specialCharReq.setForeground(Color.WHITE);
-		specialCharReq.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
-		specialCharReq.setBounds(52, 461, 604, 39);
-		panel_accCreate.add(specialCharReq);
+		JLabel numberChar = new JLabel("At least one number\r\n");
+		numberChar.setForeground(Color.WHITE);
+		numberChar.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		numberChar.setBounds(52, 461, 604, 39);
+		panel_accCreate.add(numberChar);
 		
 		JLabel home = new JLabel("");
 		home.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\home.png"));
@@ -203,16 +203,11 @@ public class AccountCreations extends JPanel {
                         
                     }
 
-
-                   String  query1 = "INSERT INTO userinfo(`username`, `password`, `email`, `grade`, `name`, userID) "
+                    String query1 = "INSERT INTO userinfo(`username`, `password`, `email`, `grade`, `name`, userID) "
                             + "VALUES ('" + username + "','" + password + "','" + email + "','" + grade +"','" + name + "','" + userID + "')";
                                                     
-                   Statement  sta = connection.createStatement();
+                    Statement sta = connection.createStatement();
                     int x = sta.executeUpdate(query1);
-                    
-
-                    
-
                     if (x == 0) {
                         JOptionPane.showMessageDialog(registerButton, "This account with this email already exists.");
                     } else {
@@ -223,14 +218,13 @@ public class AccountCreations extends JPanel {
                         	switch_screen(panel_login.getPanel(), lp, test, student, con);
 
                     }
-                    
                 
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
 				} else {
 					
-						specialCharReq.setForeground(new Color(255, 66, 66));
+						numberChar.setForeground(new Color(255, 66, 66));
 						characterReq.setForeground(new Color(255, 66, 66));
 						casePasswordReq.setForeground(new Color(255, 66, 66));
                      

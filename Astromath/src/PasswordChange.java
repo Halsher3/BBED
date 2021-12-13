@@ -200,11 +200,11 @@ public class PasswordChange extends JPanel {
 		characterReq.setBounds(52, 205, 604, 39);
 		panel_PasswordChange.add(characterReq);
 		
-		JLabel specialCharReq = new JLabel("At least one special character (!, ?, /, *, &, ^, etc.)\r\n");
-		specialCharReq.setForeground(Color.WHITE);
-		specialCharReq.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
-		specialCharReq.setBounds(52, 235, 604, 39);
-		panel_PasswordChange.add(specialCharReq);
+		JLabel numberChar = new JLabel("At least one number\r\n");
+		numberChar.setForeground(Color.WHITE);
+		numberChar.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
+		numberChar.setBounds(52, 235, 604, 39);
+		panel_PasswordChange.add(numberChar);
 		
 		//UPDATE STUFF
 		JButton updateButton = new JButton("Update");
@@ -236,7 +236,7 @@ public class PasswordChange extends JPanel {
                 }
                 
 				} else {
-					specialCharReq.setForeground(new Color(255, 66, 66));
+					numberChar.setForeground(new Color(255, 66, 66));
 					characterReq.setForeground(new Color(255, 66, 66));
 					casePasswordReq.setForeground(new Color(255, 66, 66));
 				}
