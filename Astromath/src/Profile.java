@@ -163,15 +163,15 @@ public class Profile extends JPanel
 				panel_profile.add(label_nameGrade);
 				
 				JLabel label_level = new JLabel("Level 4");
-				label_level.setForeground(Color.WHITE);
+				label_level.setForeground(new Color(0, 195, 255));
 				label_level.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
-				label_level.setBounds(227, 208, 262, 36);
+				label_level.setBounds(227, 244, 262, 36);
 				panel_profile.add(label_level);
 				
 				JLabel label_aboutMe = new JLabel("About Me:");
 				label_aboutMe.setForeground(Color.WHITE);
 				label_aboutMe.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
-				label_aboutMe.setBounds(97, 282, 336, 45);
+				label_aboutMe.setBounds(97, 349, 336, 45);
 				panel_profile.add(label_aboutMe);
 				
 				JTextArea aboutContent = new JTextArea();
@@ -181,7 +181,7 @@ public class Profile extends JPanel
 				aboutContent.setForeground(Color.WHITE);
 				aboutContent.setFont(new Font("A-Space Demo", Font.PLAIN, 20));
 				aboutContent.setBackground(new Color(26, 38, 83));
-				aboutContent.setBounds(97, 338, 592, 265);
+				aboutContent.setBounds(98, 405, 592, 265);
 				aboutContent.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
 				panel_profile.add(aboutContent);
 				
@@ -201,6 +201,12 @@ public class Profile extends JPanel
 				label_edit.setBounds(963, 613, 275, 45);
 				panel_profile.add(label_edit);
 				
+				JLabel label_state = new JLabel("Massachusetts");
+				label_state.setForeground(Color.WHITE);
+				label_state.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
+				label_state.setBounds(227, 197, 310, 36);
+				panel_profile.add(label_state);
+				
 				label_edit.addMouseListener(new MouseAdapter() 
 				{
 					@Override
@@ -216,8 +222,8 @@ public class Profile extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						//ProfileSettings panel_profileSet = new ProfileSettings(lp, test);
-						//switch_screen(panel_profileSet.getPanel(), lp);
+						ProfileSettings panel_profileSettings = new ProfileSettings(lp, test, student, con);
+						switch_screen(panel_profileSettings.getPanel(), lp, test, student, con);
 					}
 				});
 
