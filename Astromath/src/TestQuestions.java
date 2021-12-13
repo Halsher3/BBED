@@ -9,6 +9,9 @@
 	import java.awt.event.MouseAdapter;
 	import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 	import javax.swing.JButton;
@@ -39,8 +42,8 @@ import javax.swing.JTextArea;
 		private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		private int height = screenSize.height;
 		private int width = screenSize.width;
-		private JLabel label_name = new JLabel("Goku");
-		private JLabel label_grade = new JLabel("1st Grade");
+		private JLabel label_name = new JLabel("");
+		private JLabel label_grade = new JLabel("");
 		
 
 		
@@ -199,6 +202,45 @@ import javax.swing.JTextArea;
 				@Override
 				public void mouseClicked(MouseEvent e) 
 				{
+					int grades = test.calculateGrade(test.getScoreSheet());
+					
+					try {
+					String tempTest = test.getCurrentTest();
+					
+						if(tempTest.equals("Addition Test") || tempTest.equals("Multiplication Test")) {
+						String query = "Update testinfo set testScore1 = '" + grades + "' where userID = '" + student.getAccNum() + "'";
+						Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+						st.executeUpdate(query);
+						}
+						else if(tempTest.equals("Subtraction Test") || tempTest.equals("Division Test")) {
+							String query = "Update testinfo set testScore2 = '" + grades + "' where userID = '" + student.getAccNum() + "'";
+							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+							st.executeUpdate(query);
+							
+							}
+						else if(tempTest.equals("True Or False Test")) {
+								String query = "Update testinfo set testScore3 = '" + grades + "' where userID = '" + student.getAccNum() + "'";
+								Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+								st.executeUpdate(query);
+								}
+						else if(tempTest.equals("Fill In The Blank Test")) {
+							String query = "Update testinfo set testScore4 = '" + grades + "' where userID = '" + student.getAccNum() + "'";
+							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+							st.executeUpdate(query);
+							}
+
+						
+
+					} catch (SQLException e1) {
+
+						e1.printStackTrace();
+					}
+					
+					
+					
+					
+					
+					test.resetNumQuestions();
 					TestResult panel_tr = new TestResult(lp, test, student, con);
 					switch_screen(panel_tr.getPanel(), lp, test, student, con);
 				}
@@ -232,13 +274,11 @@ import javax.swing.JTextArea;
 			
 			if(test.getNumQuestions() == 10) 
 			{
-			System.out.println(test.calculateGrade(test.getScoreSheet()));
 			button_submit.setVisible(true);
 			label_testOver.setVisible(true);
 			label_clickButton.setVisible(true);
 			image_student.setVisible(true);
-			test.resetNumQuestions();
-		
+			
 			
 			} else {
 			//TEST COMPONENTS
@@ -461,7 +501,7 @@ import javax.swing.JTextArea;
 					equation1 = "x";
 				}
 				else if(equation[1] == 3){
-					equation1 = "÷";
+					equation1 = "ï¿½";
 				}
 				JLabel mpEquation3 = new JLabel(equation1);
 				mpEquation3.setForeground(new Color(255, 255, 255));

@@ -23,8 +23,8 @@ public class TestSelection extends JPanel {
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	private JLabel label_name = new JLabel("Goku");
-	private JLabel label_grade = new JLabel("1st Grade");
+	private JLabel label_name = new JLabel("");
+	private JLabel label_grade = new JLabel("");
 
 	private JPanel panel_testSelect = new JPanel();
 	private int questionSelect;
@@ -207,6 +207,7 @@ public class TestSelection extends JPanel {
 				public void mouseClicked(MouseEvent e) {
 					questionSelect = 0;
 					operand = 2;
+					test.setCurrentTest(additionTest.getText());
 					TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
 					switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 				}
@@ -248,6 +249,7 @@ public class TestSelection extends JPanel {
 				public void mouseClicked(MouseEvent e) {
 					questionSelect = 0;
 					operand = 3;
+					test.setCurrentTest(subtractionTest.getText());
 					TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
 					switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 				}
@@ -289,6 +291,7 @@ public class TestSelection extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				questionSelect = 0;
 				operand = 0;
+				test.setCurrentTest(additionTest.getText());
 				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
 				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
@@ -330,6 +333,7 @@ public class TestSelection extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				questionSelect = 0;
 				operand = 1;
+				test.setCurrentTest(subtractionTest.getText());
 				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
 				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
@@ -370,6 +374,7 @@ public class TestSelection extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				questionSelect = 1;
 				operand = 0;
+				test.setCurrentTest(trueOrFalseTest.getText());
 				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
 				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
@@ -404,6 +409,7 @@ public class TestSelection extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				questionSelect = 2;
 				operand = 0;
+				test.setCurrentTest(fillInTheBlankTest.getText());
 				TestQuestions panel_testQ = new TestQuestions(lp, test, questionSelect, operand, student, con);
 				switch_screen(panel_testQ.getPanel(), lp, test, questionSelect, operand, student, con);
 			}
@@ -428,15 +434,24 @@ public class TestSelection extends JPanel {
 		
 		try {
 			
+			String quer = "Select userID from testinfo where userID = '" + student.getAccNum() +"'";                    
+			Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery(quer);
+			if(rs.next()){
+				
+			} else {
+
+	             quer = "INSERT INTO testinfo(`userID`, `testName1`, `testName2`, `testName3`, `testName4`, `testScore1`, `testScore2`, `testScore3`, `testScore4`) "
+	               		
+	                    + "VALUES ('" + student.getAccNum() + "','" + additionTest.getText() + "','" + subtractionTest.getText() + "','" +  trueOrFalseTest.getText() +"','" + fillInTheBlankTest.getText() + "','" + 0 + "','"+ 0 + "','" + 0 + "','" + 0 + "')";
+	                    
+	                     Statement sta = con.createStatement();
+	                     sta.executeUpdate(quer);
+			}
 			
 			
 			
-            String quer = "INSERT INTO testinfo(`userID`, `testName1`, `testName2`, `testName3`, `testName4`, `testScore1`, `testScore2`, `testScore3`, `testScore4`) "
-               		
-                            + "VALUES ('" + student.getAccNum() + "','" + additionTest.getText() + "','" + subtractionTest.getText() + "','" +  trueOrFalseTest.getText() +"','" + fillInTheBlankTest.getText() + "','" + 0 + "','"+ 0 + "','" + 0 + "','" + 0 + "')";
-                    
-                     Statement sta = con.createStatement();
-                     sta.executeUpdate(quer);
+			
 
 			 
 			 

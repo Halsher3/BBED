@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 	import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -52,11 +53,16 @@ import javax.swing.JProgressBar;
 		 */
 		public PracticeQuestions(JLayeredPane lp, Test test, Student student, Connection con)  {
 			
+			
 			if(test.getDifficulty() == 20) {
 				test.resetDifficulty();
 				int inc = student.getLevel();
 				inc = inc + 1;
 				student.setLevel(inc);
+				
+				JOptionPane.showMessageDialog(null,"Congrats, you've leveled up!");
+				
+				
 				
 				try {
 					String query = "Update userinfo set userLevel = '" + student.getLevel() + "' where userID = '" + student.getAccNum() + "'";
@@ -157,7 +163,7 @@ import javax.swing.JProgressBar;
 			// The Welcome back message given when a student logs in, add in boolean to get rid of "Welcome back," and just leave in the name later
 
 			
-
+			
 			label_name = new JLabel(student.getName());
 			label_name.setHorizontalAlignment(SwingConstants.RIGHT);
 			label_name.setForeground(Color.WHITE);
@@ -250,6 +256,14 @@ import javax.swing.JProgressBar;
 			lblNewLabel.setBounds(634, 61, 46, 14);
 			panel_practiceQuestions.add(lblNewLabel);
 			
+			
+			JProgressBar progressBar = new JProgressBar();
+			progressBar.setBackground(new Color(255, 0, 153));
+			progressBar.setForeground(new Color(0, 255, 153));
+			progressBar.setMaximum(20);
+			progressBar.setBounds((0), 681-20, 1262, 20);
+			progressBar.setValue(diff);
+			panel_practiceQuestions.add(progressBar);
 
 			
 

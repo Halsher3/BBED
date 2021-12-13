@@ -95,20 +95,33 @@ public class LearnVideoWindow extends JPanel
 				label_pageTitle.setBounds(97, 106, 953, 74);
 				panel_vidWindow.add(label_pageTitle);
 				
+				if(student.getGradeLevel() == 0) {
+					
+					JLabel label_grade = new JLabel("K");
+					label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+					label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+					label_grade.setForeground(new Color(0, 195, 255));
+					label_grade.setBounds(874, 59, 308, 44);
+					panel_vidWindow.add(label_grade);
+					
+				} else {
+				JLabel label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+				label_grade.setForeground(new Color(0, 195, 255));
+				label_grade.setBounds(874, 59, 308, 44);
+				panel_vidWindow.add(label_grade);
+				}
 				
-				JLabel label_name = new JLabel("Goku");
+				
+				JLabel label_name = new JLabel(student.getName());
 				label_name.setHorizontalAlignment(SwingConstants.RIGHT);
 				label_name.setForeground(Color.WHITE);
 				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 				label_name.setBounds(765, 21, 417, 44);
 				panel_vidWindow.add(label_name);
 				
-				 JLabel label_grade = new JLabel("First Grade");
-				label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
-				label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
-				label_grade.setForeground(new Color(0, 195, 255));
-				label_grade.setBounds(874, 59, 308, 44);
-				panel_vidWindow.add(label_grade);
+				
 				
 				
 				JLabel image_logout = new JLabel("");

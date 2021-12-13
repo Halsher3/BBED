@@ -48,30 +48,7 @@ import java.sql.Statement;
 			inc = inc + 1;
 			student.setLevel(inc);
 			
-			try {
-				String query = "Update userinfo set userLevel = '" + student.getLevel() + "' where userID = '" + student.getAccNum() + "'";
-				Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				st.executeUpdate(query);
-
-
-
-
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
-			}
-			
-
-			try {
-				String query = "Select userLevel from userinfo where userID = '" +student.getAccNum() + "'";
-				Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = st.executeQuery(query);
-				 rs.first();
-				 student.setLevel(rs.getInt(1));
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
-			}
+		
 			
 				panel_result.setBounds(0, 0, 1262, 681);
 				panel_result.setBackground(new Color(77,58,129));
@@ -212,7 +189,7 @@ import java.sql.Statement;
 				label_score.setBounds(351, 274, 496, 219);
 				panel_result.add(label_score);
 				
-				JLabel lblOnTheAddition = new JLabel("on the " + "" + " test!");
+				JLabel lblOnTheAddition = new JLabel("on the " + test.getCurrentTest() + "!");
 				lblOnTheAddition.setHorizontalAlignment(SwingConstants.CENTER);
 				lblOnTheAddition.setForeground(Color.WHITE);
 				lblOnTheAddition.setFont(new Font("A-Space Demo", Font.PLAIN, 44));

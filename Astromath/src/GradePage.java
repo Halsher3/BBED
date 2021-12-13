@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,8 +20,8 @@ import javax.swing.border.LineBorder;
 public class GradePage extends JPanel {
 
 	private JFrame frame;
-	private JLabel label_name = new JLabel("Goku");
-	private JLabel label_grade = new JLabel("1st Grade");
+	private JLabel label_name = new JLabel("");
+	private JLabel label_grade = new JLabel("");
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
@@ -156,7 +159,7 @@ public class GradePage extends JPanel {
 		image_settings.setBounds(1188, 99, 64, 64);
 		panel_grades.add(image_settings);
 		
-		JLabel lblNewLabel = new JLabel("Grades - 1st Grade");
+		JLabel lblNewLabel = new JLabel("Grades");
 		lblNewLabel.setBounds(82, 89, 782, 96);
 		lblNewLabel.setForeground(new Color(0, 195, 255));
 		lblNewLabel.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
@@ -171,42 +174,91 @@ public class GradePage extends JPanel {
 		panel_grades.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Addition Test within 20");
+		
+		if(student.getGradeLevel() < 3) {
+		JLabel lblNewLabel_1 = new JLabel("Addition Test");
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		lblNewLabel_1.setBounds(37, 25, 458, 93);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Subtraction Test within 20");
+		JLabel lblNewLabel_2 = new JLabel("Subtraction Test");
 		lblNewLabel_2.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setBounds(37, 157, 580, 93);
+		lblNewLabel_2.setBounds(37, 125, 580, 93);
 		panel.add(lblNewLabel_2);
+		} else {
+			JLabel lblNewLabel_1 = new JLabel("Multiplication Test");
+			lblNewLabel_1.setForeground(Color.WHITE);
+			lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+			lblNewLabel_1.setBounds(37, 25, 458, 93);
+			panel.add(lblNewLabel_1);
+			
+			JLabel lblNewLabel_2 = new JLabel("Division Test");
+			lblNewLabel_2.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+			lblNewLabel_2.setForeground(Color.WHITE);
+			lblNewLabel_2.setBounds(37, 125, 580, 93);
+			panel.add(lblNewLabel_2);
+		}
 		
-		JLabel lblNewLabel_3 = new JLabel("Word Problem Test");
+		JLabel lblNewLabel_3 = new JLabel("True Or False Test");
 		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-		lblNewLabel_3.setBounds(37, 291, 487, 93);
+		lblNewLabel_3.setBounds(37, 225, 487, 93);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Grade: ");
+		JLabel lblfitb = new JLabel("Fill In The Blank Test");
+		lblfitb.setForeground(Color.WHITE);
+		lblfitb.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+		lblfitb.setBounds(37, 325, 487, 93);
+		panel.add(lblfitb);
+		
+		int grade1 = 0;
+		int grade2 = 0;
+		int grade3 = 0;
+		int grade4 = 0;
+		
+		try {
+			String query = "Select testScore1,testScore2,testScore3,testScore4 from testinfo where userID = '" +student.getAccNum() + "'";
+			Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery(query);
+			 rs.first();
+			 grade1 = rs.getInt(1);
+			 grade2 = rs.getInt(2);
+			 grade3 = rs.getInt(3);
+			 grade4 = rs.getInt(4);
+		} catch (SQLException e1) {
+
+			e1.printStackTrace();
+		}
+		
+		
+		
+		JLabel lblNewLabel_4 = new JLabel("Grade: " + grade1);
 		lblNewLabel_4.setForeground(new Color(0, 255, 153));
 		lblNewLabel_4.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-		lblNewLabel_4.setBounds(740, 31, 355, 87);
+		lblNewLabel_4.setBounds(740, 25, 355, 87);
 		lblNewLabel_4.setBackground(new Color(0, 255, 153));
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Grade:");
+		JLabel lblNewLabel_5 = new JLabel("Grade:" + grade2);
 		lblNewLabel_5.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		lblNewLabel_5.setForeground(new Color(0, 255, 153));
-		lblNewLabel_5.setBounds(740, 160, 355, 87);
+		lblNewLabel_5.setBounds(740, 125, 355, 87);
 		panel.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Grade:");
+		JLabel lblNewLabel_6 = new JLabel("Grade:" + grade3);
 		lblNewLabel_6.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		lblNewLabel_6.setForeground(new Color(0, 255, 153));
-		lblNewLabel_6.setBounds(740, 302, 183, 70);
+		lblNewLabel_6.setBounds(740, 225, 183, 70);
 		panel.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Grade:" + grade4);
+		lblNewLabel_7.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+		lblNewLabel_7.setForeground(new Color(0, 255, 153));
+		lblNewLabel_7.setBounds(740, 325, 183, 70);
+		panel.add(lblNewLabel_7);
+		
 		
 	}
 

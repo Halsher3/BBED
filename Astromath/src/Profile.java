@@ -4,6 +4,9 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -161,20 +164,80 @@ public class Profile extends JPanel
 				accountSettings.setBounds(68, 77, 782, 96);
 				panel_profile.add(accountSettings);
 				
+				
 			
+				String profilePicture = "";
+				String profileAboutMe = "Hey, my name is " + student.getName();
+				String profileState = "US";
+				String defaultPFP = "pfp4.png";
+				
+				try {
+					
+					String quer = "Select userID from profileinfo where userID = '" + student.getAccNum() + "'";                    
+					Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+					ResultSet rs = st.executeQuery(quer);
+					
+
+					if(rs.next()){
+						
+						 quer = "Select userProfilePic,userAboutMe,profileState from profileinfo where userID = '" + student.getAccNum() + "'";                    
+						 st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+						 rs = st.executeQuery(quer);
+						 rs.first();
+						
+						
+						
+						profilePicture = rs.getString(1);
+						profileAboutMe = rs.getString(2);
+						profileState = rs.getString(3);
+						
+					} else {
+
+			             quer = "INSERT INTO profileinfo(`userID`, `userProfilePic`, `userAboutMe`, `profileState`) "
+			               		
+			                    + "VALUES ('" + student.getAccNum() + "','" + defaultPFP + "','" + profileAboutMe + "','" + profileState+ "')";
+			                    
+			                     Statement sta = con.createStatement();
+			                     sta.executeUpdate(quer);
+					}
+					
+					
+					
+					
+
+					 
+					 
+
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+				}
+				
+			
+
 				
 				JLabel image_pfp = new JLabel("");
-				image_pfp.setIcon(new ImageIcon(".\\\\assets\\\\images\\\\pfp3.png"));
+				image_pfp.setIcon(new ImageIcon(".\\Assets\\images\\" +profilePicture));
 				image_pfp.setBounds(110, 161, 88, 83);
 				panel_profile.add(image_pfp);
 				
-				JLabel label_nameGrade = new JLabel("Goku, Grade 1");
+				if(student.getGradeLevel() == 0) {
+					JLabel label_nameGrade = new JLabel(student.getName() + ", Kindergarten");
+					label_nameGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
+					label_nameGrade.setForeground(Color.WHITE);
+					label_nameGrade.setBounds(227, 152, 336, 45);
+					panel_profile.add(label_nameGrade);
+				} else {
+				
+				
+				JLabel label_nameGrade = new JLabel(student.getName() + ", Grade " + student.getGradeLevel());
 				label_nameGrade.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
 				label_nameGrade.setForeground(Color.WHITE);
-				label_nameGrade.setBounds(227, 152, 336, 45);
+				label_nameGrade.setBounds(227, 152, 700, 45);
 				panel_profile.add(label_nameGrade);
+				}
 				
-				JLabel label_level = new JLabel("Level 4");
+				JLabel label_level = new JLabel("Level " + student.getLevel());
 				label_level.setForeground(Color.WHITE);
 				label_level.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
 				label_level.setBounds(227, 208, 262, 36);
@@ -186,10 +249,10 @@ public class Profile extends JPanel
 				label_aboutMe.setBounds(97, 282, 336, 45);
 				panel_profile.add(label_aboutMe);
 				
-				JTextArea aboutContent = new JTextArea();
+				JTextArea aboutContent = new JTextArea(profileAboutMe);
 				aboutContent.setEditable(false);
 				aboutContent.setLineWrap(true);
-				aboutContent.setText("hi my name goku im 7 i like dragon ball and bakugan");
+				aboutContent.setText(profileAboutMe);
 				aboutContent.setForeground(Color.WHITE);
 				aboutContent.setFont(new Font("A-Space Demo", Font.PLAIN, 20));
 				aboutContent.setBackground(new Color(26, 38, 83));
@@ -198,12 +261,12 @@ public class Profile extends JPanel
 				panel_profile.add(aboutContent);
 				
 				JLabel image_astro = new JLabel("");
-				image_astro.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\astro.png"));
+				image_astro.setIcon(new ImageIcon(".\\Assets\\images\\astro.png"));
 				image_astro.setBounds(744, 118, 400, 475);
 				panel_profile.add(image_astro);
 				
 				JLabel image_pencil = new JLabel("");
-				image_pencil.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\profile pencil.png"));
+				image_pencil.setIcon(new ImageIcon(".\\Assets\\images\\profile pencil.png"));
 				image_pencil.setBounds(889, 604, 64, 64);
 				panel_profile.add(image_pencil);
 				
