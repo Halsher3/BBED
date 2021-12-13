@@ -6,11 +6,9 @@ import java.awt.event.MouseEvent;
 
 
 import java.sql.*;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.Connection;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -113,7 +111,7 @@ public class PasswordChange extends JPanel {
 		panel_PasswordChange.add(image_logout);
 		
 		JLabel imageSettings = new JLabel("");
-		image_settings.addMouseListener(new MouseAdapter() {
+		imageSettings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
@@ -130,6 +128,7 @@ public class PasswordChange extends JPanel {
 				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 			}
 		});
+
 		imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 		imageSettings.setBounds(1188, 99, 64, 64);
 		panel_PasswordChange.add(imageSettings);
@@ -140,7 +139,6 @@ public class PasswordChange extends JPanel {
 		accountSettings.setBounds(68, 77, 782, 96);
 		panel_PasswordChange.add(accountSettings);
 		
-
 		
 		JLabel passwordLabel = new JLabel("Enter a new Password");
 		passwordLabel.setBounds(68, 273, 616, 96);
@@ -162,6 +160,72 @@ public class PasswordChange extends JPanel {
 		panel_PasswordChange.add(password);
 		password.setColumns(10);
 		
+		//student name
+		JLabel label_name = new JLabel(student.getName());
+		label_name.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_name.setForeground(Color.WHITE);
+		label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+		label_name.setBounds(765, 21, 417, 44);
+		panel_PasswordChange.add(label_name);
+		
+		//student grade
+		JLabel label_grade;
+		if(student.getGradeLevel() == 0) {
+			label_grade = new JLabel("K");
+			label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+			label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+			label_grade.setForeground(new Color(0, 195, 255));
+			label_grade.setBounds(874, 59, 308, 44);
+			panel_PasswordChange.add(label_grade);
+			
+		} else {
+		label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
+		label_grade.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
+		label_grade.setForeground(new Color(0, 195, 255));
+		label_grade.setBounds(874, 59, 308, 44);
+		panel_PasswordChange.add(label_grade);
+		}
+		
+		//UPDATE STUFF
+		JButton updateButton = new JButton("Update");
+        updateButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) 
+            {
+            	//password requirements
+            	String temp = password.getText();
+				if(checkString(temp) && temp.length() >= 6) {
+					
+				
+				var newPassword = password.getText();
+                try {
+                	Connection connection = DriverManager.getConnection("jdbc:mysql://sql5.freesqldatabase.com/sql5458377","sql5458377","FKhgpmjDr9");
+                	
+                	String query = "UPDATE userinfo SET password = '" + newPassword + "' WHERE userID = '" + student.getAccNum() + "'";
+                	Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                	
+                	st.executeUpdate(query);
+                	
+                	
+                } catch (Exception exception) {
+                	exception.printStackTrace();
+                }
+                
+				} else {
+					
+				}
+            }//needs password requirements
+            
+        });
+        updateButton.setBackground(new Color(26, 38, 83));
+        updateButton.setHorizontalAlignment(SwingConstants.CENTER);
+        updateButton.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
+        updateButton.setForeground(new Color(127, 255, 212));
+        updateButton.setBounds(176, 479, 384, 85);
+        panel_PasswordChange.add(updateButton);
+
+		
 		
 	} //end of PasswordChange
 	
@@ -180,5 +244,25 @@ public class PasswordChange extends JPanel {
 		
 
 	}
-
+	
+	private static boolean checkString(String str) {
+	    char ch;
+	    boolean capitalFlag = false;
+	    boolean lowerCaseFlag = false;
+	    boolean numberFlag = false;
+	    for(int i=0;i < str.length();i++) {
+	        ch = str.charAt(i);
+	        if( Character.isDigit(ch)) {
+	            numberFlag = true;
+	        }
+	        else if (Character.isUpperCase(ch)) {
+	            capitalFlag = true;
+	        } else if (Character.isLowerCase(ch)) {
+	            lowerCaseFlag = true;
+	        }
+	        if(numberFlag && capitalFlag && lowerCaseFlag)
+	            return true;
+	    }
+	    return false;
+	}
 }

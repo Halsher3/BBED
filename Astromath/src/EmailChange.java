@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,16 +18,16 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import javax.swing.JTextField;
 
-public class UsernameChange extends JPanel {
+public class EmailChange extends JPanel {
 
 	private JFrame frame;
-	private JPanel panel_UsernameChange = new JPanel();
+	private JPanel panel_EmailChange = new JPanel();
 	private JLabel image_logout = new JLabel("");
 	private JLabel image_settings = new JLabel("");
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	private JTextField username;
+	private JTextField email;
 	/**
 	 * Launch the application.
 	 */
@@ -34,11 +35,11 @@ public class UsernameChange extends JPanel {
 	/**
 	 * Create the application.
 	 */
-	public UsernameChange(JLayeredPane lp, Test test, Student student, Connection con) {
+	public EmailChange(JLayeredPane lp, Test test, Student student, Connection con) {
 		
-		panel_UsernameChange.setBounds(0, 0, 1262, 681);
-		panel_UsernameChange.setBackground(new Color(77,58,129));
-		panel_UsernameChange.setLayout(null);
+		panel_EmailChange.setBounds(0, 0, 1262, 681);
+		panel_EmailChange.setBackground(new Color(77,58,129));
+		panel_EmailChange.setLayout(null);
 		
 		JLabel imageHome = new JLabel("");
 		imageHome.addMouseListener(new MouseAdapter() {
@@ -50,7 +51,7 @@ public class UsernameChange extends JPanel {
 		});
 		imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 		imageHome.setBounds(40, 21, 64, 74);
-		panel_UsernameChange.add(imageHome);
+		panel_EmailChange.add(imageHome);
 		// Placeholder variables to use for Student name and Student grade
 		
 		JLabel labelLogo = new JLabel("ASTROMATH");
@@ -60,7 +61,7 @@ public class UsernameChange extends JPanel {
 		labelLogo.setFont(new Font("a Atmospheric", Font.PLAIN, 36));
 		labelLogo.setForeground(new Color(255, 255, 255));
 		labelLogo.setBounds(97, 21, 318, 85);
-		panel_UsernameChange.add(labelLogo);
+		panel_EmailChange.add(labelLogo);
 		
 		// Does a hover effect on the AstroMath text with the home button
 		
@@ -106,7 +107,7 @@ public class UsernameChange extends JPanel {
 		});
 		image_logout.setIcon(new ImageIcon(".\\assets\\images\\logout.png"));
 		image_logout.setBounds(1192, 15, 72, 91);
-		panel_UsernameChange.add(image_logout);
+		panel_EmailChange.add(image_logout);
 		
 		JLabel imageSettings = new JLabel("");
 		imageSettings.addMouseListener(new MouseAdapter() {
@@ -115,7 +116,6 @@ public class UsernameChange extends JPanel {
 				AccountSettings panel_acc = new AccountSettings(lp, test, student, con);
 				switch_screen(panel_acc.getPanel(), lp, test, student, con);
 			}
-			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
 				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear v2.png"));
@@ -129,33 +129,36 @@ public class UsernameChange extends JPanel {
 
 		imageSettings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 		imageSettings.setBounds(1188, 99, 64, 64);
-		panel_UsernameChange.add(imageSettings);
+		panel_EmailChange.add(imageSettings);
 		
 		JLabel accountSettings = new JLabel("Account Settings");
 		accountSettings.setForeground(new Color(0, 195, 255));
 		accountSettings.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
 		accountSettings.setBounds(68, 77, 782, 96);
-		panel_UsernameChange.add(accountSettings);
+		panel_EmailChange.add(accountSettings);
 		
-		username = new JTextField();
-		username.setBounds(68, 379, 627, 79);
-		username.setFont(new Font("A-Space Demo", Font.PLAIN, 26));
-		username.setForeground(Color.WHITE);
-		username.setBackground(new Color(26, 38, 83));
-		username.setBorder(new LineBorder(new Color(0, 195, 255), 3, true));
-		panel_UsernameChange.add(username);
-		username.setColumns(10);
+
 		
-		JLabel usernameLabel = new JLabel("Enter a new Username");
-		usernameLabel.setBounds(68, 273, 616, 96);
-		usernameLabel.setForeground(Color.WHITE);
-		usernameLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
-		panel_UsernameChange.add(usernameLabel);
+		JLabel emailLabel = new JLabel("Enter a new Email");
+		emailLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		emailLabel.setBounds(68, 273, 616, 96);
+		emailLabel.setForeground(Color.WHITE);
+		emailLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 40));
+		panel_EmailChange.add(emailLabel);
 		
 		JLabel astronaut = new JLabel("");
 		astronaut.setIcon(new ImageIcon(".\\Assets\\images\\astronaut.png"));
 		astronaut.setBounds(614, -93, 1009, 960);
-		panel_UsernameChange.add(astronaut);	
+		panel_EmailChange.add(astronaut);
+		
+		email = new JTextField();
+		email.setBounds(68, 379, 627, 79);
+		email.setFont(new Font("A-Space Demo", Font.PLAIN, 26));
+		email.setForeground(Color.WHITE);
+		email.setBackground(new Color(26, 38, 83));
+		email.setBorder(new LineBorder(new Color(0, 195, 255), 3, true));
+		panel_EmailChange.add(email);
+		email.setColumns(10);
 		
 		//student name
 		JLabel label_name = new JLabel(student.getName());
@@ -163,7 +166,7 @@ public class UsernameChange extends JPanel {
 		label_name.setForeground(Color.WHITE);
 		label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 		label_name.setBounds(765, 21, 417, 44);
-		panel_UsernameChange.add(label_name);
+		panel_EmailChange.add(label_name);
 		
 		//student grade
 		JLabel label_grade;
@@ -173,7 +176,7 @@ public class UsernameChange extends JPanel {
 			label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 			label_grade.setForeground(new Color(0, 195, 255));
 			label_grade.setBounds(874, 59, 308, 44);
-			panel_UsernameChange.add(label_grade);
+			panel_EmailChange.add(label_grade);
 			
 		} else {
 		label_grade = new JLabel(String.format("Grade: %d", student.getGradeLevel()));
@@ -181,7 +184,7 @@ public class UsernameChange extends JPanel {
 		label_grade.setFont(new Font("A-Space Demo", Font.PLAIN, 21));
 		label_grade.setForeground(new Color(0, 195, 255));
 		label_grade.setBounds(874, 59, 308, 44);
-		panel_UsernameChange.add(label_grade);
+		panel_EmailChange.add(label_grade);
 		}
 		
 		//UPDATE STUFF
@@ -190,11 +193,11 @@ public class UsernameChange extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) 
             {
-				var newUsername = username.getText();
+				var newEmail = email.getText();
                 try {
                 	Connection connection = DriverManager.getConnection("jdbc:mysql://sql5.freesqldatabase.com/sql5458377","sql5458377","FKhgpmjDr9");
                 	
-                	String query = "UPDATE userinfo SET username = '" + newUsername + "' WHERE userID = '" + student.getAccNum() + "'";
+                	String query = "UPDATE userinfo SET email = '" + newEmail + "' WHERE userID = '" + student.getAccNum() + "'";
                 	Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 	
                 	st.executeUpdate(query);
@@ -210,13 +213,14 @@ public class UsernameChange extends JPanel {
         updateButton.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
         updateButton.setForeground(new Color(127, 255, 212));
         updateButton.setBounds(176, 479, 384, 85);
-        panel_UsernameChange.add(updateButton);
+        panel_EmailChange.add(updateButton);
 		
-	}//end of UsernameChange
-
+		
+	} //end of EmailChange
+	
 	public JPanel getPanel()
 	{
-		return panel_UsernameChange;
+		return panel_EmailChange;
 		
 	}
 	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
@@ -229,4 +233,5 @@ public class UsernameChange extends JPanel {
 		
 
 	}
+
 }

@@ -158,7 +158,7 @@ public class AccountSettings extends JPanel
 				JLabel changePassword = new JLabel("Change Password");
 				changePassword.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 				changePassword.setForeground(Color.WHITE);
-				changePassword.setBounds(97, 285, 533, 119);
+				changePassword.setBounds(97, 258, 533, 119);
 				panel_accSettings.add(changePassword);
 				
 				changePassword.addMouseListener(new MouseAdapter() 
@@ -173,12 +173,17 @@ public class AccountSettings extends JPanel
 		            {
 		            	changePassword.setForeground(Color.WHITE);
 		            }
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						PasswordChange panel_home = new PasswordChange(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
+					}
 		        });
 				
 				JLabel changeEmail = new JLabel("Change Email Address");
 				changeEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 				changeEmail.setForeground(Color.WHITE);
-				changeEmail.setBounds(97, 396, 533, 110);
+				changeEmail.setBounds(97, 357, 533, 110);
 				panel_accSettings.add(changeEmail);
 				
 				changeEmail.addMouseListener(new MouseAdapter() 
@@ -193,6 +198,11 @@ public class AccountSettings extends JPanel
 		            {
 		            	changeEmail.setForeground(Color.WHITE);
 		            }
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						EmailChange panel_home = new EmailChange(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
+					}
 		        });
 				
 				JLabel changeUsername = new JLabel("Change Username");
@@ -213,6 +223,11 @@ public class AccountSettings extends JPanel
 		            {
 		            	changeUsername.setForeground(Color.WHITE);
 		            }
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						UsernameChange panel_home = new UsernameChange(lp, test, student, con);
+						switch_screen(panel_home.getPanel(), lp, test, student, con);
+					}
 		        });
 				
 				JLabel verifyEmail = new JLabel("Verify Email Address");
