@@ -315,7 +315,7 @@ import javax.swing.JTextArea;
 
 
 			
-			
+			int font = 87;
 			switch(questionSelect) {
 			case 0: 
 				MultipleChoice mp = new MultipleChoice(grade, 4);
@@ -333,12 +333,24 @@ import javax.swing.JTextArea;
 				String answerKey2 = String.format("%d", answerKey[2]); 
 				String answerKey3 = String.format("%d", answerKey[3]); 
 				
+				if(equation[3] > 100) {
+					font = 50;
+				 if(equation[3] > 1000) {
+					font = 40;
+				}
+				 if(equation[3] > 10000) {
+					 font = 30;
+				 }
+				
+				}
+				
 				JButton mpAnswer1 = new JButton(answerKey0);
 				mpAnswer1.setForeground(Color.WHITE);
-				mpAnswer1.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
+				mpAnswer1.setFont(new Font("A-Space Demo", Font.PLAIN, font));
 				mpAnswer1.setBounds(50, 460, 200, 200);
 				mpAnswer1.setBackground(new Color(0, 255, 153));
 				panel_TestQuestions.add(mpAnswer1);
+				
 				mpAnswer1.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) 
@@ -366,7 +378,7 @@ import javax.swing.JTextArea;
 				});
 				
 				JButton mpAnswer2 = new JButton(answerKey1);
-				mpAnswer2.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
+				mpAnswer2.setFont(new Font("A-Space Demo", Font.PLAIN, font));
 				mpAnswer2.setForeground(Color.WHITE);
 				mpAnswer2.setBounds(350, 460, 200, 200);
 				mpAnswer2.setBackground(new Color(0, 255, 153));
@@ -398,7 +410,7 @@ import javax.swing.JTextArea;
 				
 				JButton mpAnswer3 = new JButton(answerKey2);
 				mpAnswer3.setForeground(Color.WHITE);
-				mpAnswer3.setFont(new Font("A-Space Demo", Font.PLAIN, 78));
+				mpAnswer3.setFont(new Font("A-Space Demo", Font.PLAIN, font));
 				mpAnswer3.setBounds(650, 460, 200, 200);
 				mpAnswer3.setBackground(new Color(0, 255, 153));
 				panel_TestQuestions.add(mpAnswer3);
@@ -428,7 +440,7 @@ import javax.swing.JTextArea;
 				
 				JButton mpAnswer4 = new JButton(answerKey3);
 				mpAnswer4.setForeground(Color.WHITE);
-				mpAnswer4.setFont(new Font("A-Space Demo", Font.PLAIN, 87));
+				mpAnswer4.setFont(new Font("A-Space Demo", Font.PLAIN, font));
 				mpAnswer4.setBounds(950, 460, 200, 200);
 				mpAnswer4.setBackground(new Color(0, 255, 153));
 				panel_TestQuestions.add(mpAnswer4);
@@ -462,9 +474,23 @@ import javax.swing.JTextArea;
 				String equation2 = String.format("%d", equation[2]);
 				String equation3 = String.format("%d", equation[3]);
 			
+				int mpAdjustX = 350;
+				int mpAdjustWidth = 200;
+				if(equation[0] > 1000) {
+					mpAdjustX = 300;
+				}
+				if(equation[0] > 10000) {
+					mpAdjustX = 200;
+				}
+				if(equation[0] > 1000) {
+					mpAdjustWidth = 300;
+				}
+				if(equation[0] > 10000) {
+					mpAdjustWidth = 400;
+				}
 				JLabel mpEquation1 = new JLabel(equation0);
 				mpEquation1.setHorizontalAlignment(SwingConstants.CENTER);
-				mpEquation1.setBounds(350, 260, 197, 91);
+				mpEquation1.setBounds(mpAdjustX, 260, mpAdjustWidth, 91);
 				mpEquation1.setForeground(new Color(255, 255, 255));
 				mpEquation1.setFont(new Font("A-Space Demo", Font.PLAIN, 60));
 				panel_TestQuestions.add(mpEquation1);
@@ -473,8 +499,9 @@ import javax.swing.JTextArea;
 				
 				JLabel mpEquation2 = new JLabel(equation2);
 				mpEquation2.setForeground(new Color(255, 255, 255));
+				mpEquation2.setHorizontalAlignment(SwingConstants.CENTER);
 				mpEquation2.setFont(new Font("A-Space Demo", Font.PLAIN, 60));
-				mpEquation2.setBounds(750, 260, 197, 91);
+				mpEquation2.setBounds(750, 260, mpAdjustWidth, 91);
 				panel_TestQuestions.add(mpEquation2);
 		
 					
@@ -483,6 +510,7 @@ import javax.swing.JTextArea;
 				mpEquation4.setFont(new Font("A-Space Demo", Font.PLAIN, 60));
 				mpEquation4.setBounds(950, 260, 197, 91);
 				panel_TestQuestions.add(mpEquation4);
+				
 				
 				
 				
@@ -512,24 +540,35 @@ import javax.swing.JTextArea;
 				
 			
 			case 1:
+				font = 30;
 				TrueOrFalse tof = new TrueOrFalse(grade, 2);
 				int numOfQuestions = 2;
-				
+				 
 
-				
+				int tofAdjustX = 50;
 				
 				tofPhrase = tof.generateToF(grade);
 				
 				
 				//EQUATION NUMBERS
+				if(tofPhrase[0].length() < 20) {
+					font = 50;
+					tofAdjustX = 0;
+					panel_TestQuestions.revalidate();
+					panel_TestQuestions.repaint();
+				}
+				
+				
 				JLabel tofPhrase1 = new JLabel(tofPhrase[0]);
-				tofPhrase1.setHorizontalAlignment(SwingConstants.CENTER);
 				tofPhrase1.setForeground(new Color(255, 255, 255));
-				tofPhrase1.setFont(new Font("A-Space Demo", Font.PLAIN, 10));
-				tofPhrase1.setBounds(-50, 266,1400,200);
+				tofPhrase1.setFont(new Font("A-Space Demo", Font.PLAIN, font));
+				tofPhrase1.setHorizontalAlignment(SwingConstants.CENTER);
+				tofPhrase1.setBounds(0, 266,1263,200);
 				panel_TestQuestions.add(tofPhrase1);
 				
 				String trueButton = "True";
+				
+				
 				
 				JButton tofPhrase2 = new JButton(trueButton);
 				tofPhrase2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -605,19 +644,28 @@ case 2:
 	phrase1 = fitb.generateFITB(grade);
 	
 	
-	
+font = 50;
 	
 	//phase[0] is the statement, phrase[1] is the answer
 
+	if(phrase1[0].length() > 20) {
+		font = 30;
+		panel_TestQuestions.revalidate();
+		panel_TestQuestions.repaint();
+	}
+	if(phrase1[0].length() > 40) {
+		font = 20;
+	}
 
 	JLabel fitbPhrase1 = new JLabel(phrase1[0]);
+	fitbPhrase1.setBackground(new Color(77,58,129));
+	fitbPhrase1.setForeground(new Color(255,255,255));
 	fitbPhrase1.setHorizontalAlignment(SwingConstants.CENTER);
-	fitbPhrase1.setForeground(new Color(255, 255, 255));
-	fitbPhrase1.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
-	fitbPhrase1.setBounds(-50, 266,1400,200);
+	fitbPhrase1.setFont(new Font("A-Space Demo", Font.PLAIN, font));
+	fitbPhrase1.setBounds(0, 266,1263,200);
 	panel_TestQuestions.add(fitbPhrase1);
 	
-	textAnswer = new JTextField("");
+	textAnswer = new JTextField();
 	textAnswer.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
 	textAnswer.setForeground(Color.WHITE);
 	textAnswer.setBackground(new Color(26, 38, 83));

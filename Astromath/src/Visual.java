@@ -1,13 +1,9 @@
-import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import chrriis.dj.nativeswing.NativeSwing;
 import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -21,10 +17,11 @@ public class Visual extends JFrame
 	private JTextField textUsername;
 	private JPasswordField textPassword;
 	private Student student = new Student("", "", "", 1111, 1, 1, "");
+	public Test test = new Test(0, 0, "");
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int height = screenSize.height;
 	private int width = screenSize.width;
-	public Test test = new Test(0, 0, "");
+	
 	
 	
 
@@ -70,7 +67,6 @@ public class Visual extends JFrame
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql5.freesqldatabase.com/sql5458377","sql5458377","FKhgpmjDr9"); 
 			frame = new JFrame();
@@ -87,7 +83,7 @@ public class Visual extends JFrame
 			
 			frame.setLocation(x, y);
 			
-			layeredPane.setBounds(0, 0, 1262, 681);
+			layeredPane.setBounds(0, 0, 1260, 680);
 			frame.getContentPane().add(layeredPane);
 			
 			Login l = new Login(layeredPane, test, student, con);

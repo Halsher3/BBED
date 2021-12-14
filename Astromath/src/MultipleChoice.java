@@ -300,7 +300,7 @@ public class MultipleChoice extends Question{
 			     
 			      
 		//generate 3 random answers for multiple choice within +-5 of the actual answer
-	      if(grade != 2) {
+	      if(grade == 1 || grade == 3) {
 
 	      //generate 4 random answers for multiple choice within +-spread of the actual answer
 	      do{
@@ -330,6 +330,7 @@ public class MultipleChoice extends Question{
 	  		for(int i = 0; i < baseTen.length-1; i++) {
 	  			baseTen[i] = (i+1) * 10;
 	  		}
+	  		
 	        
 	        
 	        
@@ -357,6 +358,33 @@ public class MultipleChoice extends Question{
 	        }
 	        while(hasNoDuplicate(answers1) || hasNoNegatives(answers1));
 	      }
+			else if(grade == 4) {
+
+		  	      //generate 4 random answers for multiple choice within +-spread of the actual answer
+		  	      do{
+		  	      for(int i = 0; i < numOfQuestions; i++){
+		  	    	  
+		  	    	  	int maxSpread = numOfQuestions * 2 + 1;
+		  	            int spread = rand.nextInt(answer/10) + 1;
+		  	            int operand = rand.nextInt(2);
+		  	            
+		  	            if(maxSpread < numOfQuestions) {
+		  	  	    	  spread++;
+		  	  	    	  }
+		  	            
+		  	          if(operand == 0){
+		  	            answers1[i] = answer + spread;
+		  	          } else if(operand == 1){
+		  	            answers1[i] = answer - spread ;
+		  	          }
+		  	        
+
+		  	      }
+		            answers1[multChoiceAnswer1] = answer;
+		  	      }
+		  	      while(hasNoDuplicate(answers1) || hasNoNegatives(answers1));
+		  	      }
+		        
 			
 		
 
