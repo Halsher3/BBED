@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Font;
@@ -217,9 +218,47 @@ public class MainWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						TestResult panel_tr = new TestResult(lp, test, student, con);
-						switch_screen(panel_tr.getPanel(), lp, test, student, con);
+						int cheat = student.getLevel();
+						cheat = 75;
+						student.setLevel(cheat);
+						
+						JOptionPane.showMessageDialog(null,"Congrats, you've leveled up! You are now level " + student.getLevel());
+						
+						
+						
+						try {
+							String query = "Update userinfo set userLevel = '" + student.getLevel() + "' where userID = '" + student.getAccNum() + "'";
+							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+							st.executeUpdate(query);
+
+
+
+
+						} catch (SQLException e1) {
+
+							e1.printStackTrace();
+						}
+						
+
+						try {
+							String query = "Select userLevel from userinfo where userID = '" +student.getAccNum() + "'";
+							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+							ResultSet rs = st.executeQuery(query);
+							 rs.first();
+							 student.setLevel(rs.getInt(1));
+						} catch (SQLException e1) {
+
+							e1.printStackTrace();
+						}
+						
+						
+						
+						
+						
+						
 					}
+					
+					
 				});
 				image_sun.setIcon(new ImageIcon(".\\assets\\images\\sun.png"));
 				image_sun.setBounds(402, 99, 512, 512);

@@ -199,6 +199,15 @@ public class Profile extends JPanel
 			                    
 			                     Statement sta = con.createStatement();
 			                     sta.executeUpdate(quer);
+
+			                     quer = "Select userProfilePic, profileState from profileinfo where userID = '" + student.getAccNum() + "'";
+			                     sta = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			                     rs = st.executeQuery(quer);
+			                     rs.first();
+			                     
+			                     profilePicture = rs.getString(1);
+			                     profileState = rs.getString(2);
+			                     
 					}
 					
 					
@@ -237,7 +246,7 @@ public class Profile extends JPanel
 				panel_profile.add(label_nameGrade);
 				}
 				
-				JLabel label_level = new JLabel("Level " + student.getLevel());
+				JLabel label_level = new JLabel("Level " + student.getLevel() + "  " + profileState);
 				label_level.setForeground(Color.WHITE);
 				label_level.setFont(new Font("A-Space Demo", Font.PLAIN, 30));
 				label_level.setBounds(227, 208, 262, 36);

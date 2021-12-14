@@ -241,19 +241,19 @@ public class GradePage extends JPanel {
 		lblNewLabel_4.setBackground(new Color(0, 255, 153));
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Grade:" + grade2);
+		JLabel lblNewLabel_5 = new JLabel("Grade: " + grade2);
 		lblNewLabel_5.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		lblNewLabel_5.setForeground(new Color(0, 255, 153));
 		lblNewLabel_5.setBounds(740, 125, 355, 87);
 		panel.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Grade:" + grade3);
+		JLabel lblNewLabel_6 = new JLabel("Grade: " + grade3);
 		lblNewLabel_6.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		lblNewLabel_6.setForeground(new Color(0, 255, 153));
 		lblNewLabel_6.setBounds(740, 225, 183, 70);
 		panel.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("Grade:" + grade4);
+		JLabel lblNewLabel_7 = new JLabel("Grade: " + grade4);
 		lblNewLabel_7.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 		lblNewLabel_7.setForeground(new Color(0, 255, 153));
 		lblNewLabel_7.setBounds(740, 325, 183, 70);
