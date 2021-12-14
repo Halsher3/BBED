@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 import java.util.Random;
@@ -42,6 +44,18 @@ public class AccountCreations extends JPanel {
 		panel_accCreate.setBounds(0, 0, 1262, 681);
 		panel_accCreate.setBackground(new Color(77,58,129));
 		panel_accCreate.setLayout(null);
+		
+		JLabel imageHome = new JLabel("");
+		imageHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login panel_home = new Login(lp, test, student, con);
+				switch_screen(panel_home.getPanel(), lp, test, student, con);
+			}
+		});
+		imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
+		imageHome.setBounds(40, 21, 64, 74);
+		panel_accCreate.add(imageHome);
 	
 		JLabel userLabel = new JLabel("Create a Username");
 		userLabel.setForeground(Color.WHITE);
@@ -143,16 +157,8 @@ public class AccountCreations extends JPanel {
 		numberChar.setFont(new Font("A-Space Demo", Font.PLAIN, 15));
 		numberChar.setBounds(52, 461, 604, 39);
 		panel_accCreate.add(numberChar);
-		
-		JLabel home = new JLabel("");
-		home.setIcon(new ImageIcon("C:\\Users\\halsh\\Downloads\\home.png"));
-		home.setBounds(30, 23, 78, 81);
-		panel_accCreate.add(home);
-		
-
-		
-		
-		
+			
+	
 		//my sql database register stuff
 		JButton registerButton = new JButton("Register");
 		registerButton.setForeground(new Color(127, 255, 212));
