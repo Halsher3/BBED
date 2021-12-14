@@ -1,3 +1,12 @@
+/* Student is an class that acts as an interface
+ * There are setters and getters for the variables in the constructor.
+ * The primary purpose of this class is to lessen wait times and queries to the database
+ * Primarily this takes effect by initializing the student class with the database on execution of the program
+ * and referencing that data whenever it's needed locally from there on, only updating it to the database and re-querying when 
+ * permanent changes occur.
+ * 
+ */
+
 public class Student{
 	private String username;
 	private String email;
