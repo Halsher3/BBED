@@ -156,9 +156,9 @@ public class AccountSettings extends JPanel
 				panel_accSettings.add(accountSettings);
 				
 				JLabel changePassword = new JLabel("Change Password");
-				changePassword.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+				changePassword.setFont(new Font("A-Space Demo", Font.PLAIN, 32));
 				changePassword.setForeground(Color.WHITE);
-				changePassword.setBounds(97, 184, 533, 119);
+				changePassword.setBounds(97, 227, 533, 119);
 				panel_accSettings.add(changePassword);
 				
 				changePassword.addMouseListener(new MouseAdapter() 
@@ -181,9 +181,9 @@ public class AccountSettings extends JPanel
 		        });
 				
 				JLabel changeEmail = new JLabel("Change Email Address");
-				changeEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+				changeEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 32));
 				changeEmail.setForeground(Color.WHITE);
-				changeEmail.setBounds(97, 314, 533, 110);
+				changeEmail.setBounds(97, 340, 533, 110);
 				panel_accSettings.add(changeEmail);
 				
 				changeEmail.addMouseListener(new MouseAdapter() 
@@ -207,8 +207,8 @@ public class AccountSettings extends JPanel
 				
 				JLabel changeUsername = new JLabel("Change Username");
 				changeUsername.setForeground(Color.WHITE);
-				changeUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-				changeUsername.setBounds(97, 435, 376, 96);
+				changeUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 32));
+				changeUsername.setBounds(97, 463, 445, 96);
 				panel_accSettings.add(changeUsername);
 				
 				changeUsername.addMouseListener(new MouseAdapter() 
@@ -230,7 +230,6 @@ public class AccountSettings extends JPanel
 					}
 		        });
 				
-				
 				JLabel label = new JLabel("New label");
 				label.setBounds(1193, 670, -432, -417);
 				panel_accSettings.add(label);
@@ -239,12 +238,24 @@ public class AccountSettings extends JPanel
 				astronaut.setIcon(new ImageIcon(".\\assets\\images\\astronaut.png"));
 				astronaut.setBounds(552, 99, 609, 679);
 				panel_accSettings.add(astronaut);
-
+				
+				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.setIcon(new ImageIcon(".\\Assets\\images\\asteroid1.png"));
+				lblNewLabel.setBounds(-167, 447, 400, 400);
+				panel_accSettings.add(lblNewLabel);
+				
+				JLabel lblNewLabel_1 = new JLabel("");
+				lblNewLabel_1.setIcon(new ImageIcon(".\\Assets\\images\\ufo2.png"));
+				lblNewLabel_1.setBounds(-10, 141, 333, 166);
+				panel_accSettings.add(lblNewLabel_1);
+//help
 	}
 
 	public JPanel getPanel()
 	{
-		return panel_accSettings;
+		return panel_accSettings;			
+
+
 		
 	}
 	

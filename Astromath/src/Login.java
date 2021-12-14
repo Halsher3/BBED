@@ -192,6 +192,11 @@ public class Login extends JPanel
 		lblNewLabel_1.setForeground(new Color(127, 255, 212));
 		lblNewLabel_1.setBounds(964, 602, 288, 68);
 		panel_login.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(".\\Assets\\images\\satellite1.png"));
+		lblNewLabel_2.setBounds(859, 38, 393, 460);
+		panel_login.add(lblNewLabel_2);
 	}
 
 	/**
