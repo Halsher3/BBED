@@ -115,8 +115,8 @@ public class PracticeSelectWindow extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						LearnVideoWindow panel_vidWindow = new LearnVideoWindow(lp, test, student, con);
-						switch_screen(panel_vidWindow.getPanel(), lp, test, student, con);
+						VideoSelection panel_vidSel = new VideoSelection(lp, test, student, con);
+						switch_screen(panel_vidSel.getPanel(), lp, test, student, con);
 					}
 				});
 				imageLearn.setIcon(new ImageIcon(".\\Assets\\images\\The Guys.png"));

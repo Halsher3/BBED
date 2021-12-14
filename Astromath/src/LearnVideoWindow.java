@@ -33,8 +33,8 @@ public class LearnVideoWindow extends JPanel
 {
 
 	private JFrame frame;
-	private String videoURL;
-	private String topic = "Addition within 20";
+	private String url = "";
+	private String topic;
 	
 	private JPanel panel_vidWindow = new JPanel();
 	
@@ -88,6 +88,8 @@ public class LearnVideoWindow extends JPanel
 				image_home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 				image_home.setBounds(40, 21, 64, 74);
 				panel_vidWindow.add(image_home);
+				
+				topic = test.getCurrentTest();
 				
 				JLabel label_pageTitle = new JLabel("" + topic);
 				label_pageTitle.setForeground(new Color(0, 195, 255));
@@ -149,6 +151,23 @@ public class LearnVideoWindow extends JPanel
 				panel_vidWindow.add(image_logout);
 				
 				JLabel image_settings = new JLabel("");
+				image_settings.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						AccountSettings panel_acc= new AccountSettings(lp, test, student, con);
+						switch_screen(panel_acc.getPanel(), lp, test, student, con);
+					}
+					@Override
+					public void mouseEntered(MouseEvent e) 
+					{
+						image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear v2.png"));
+					}
+					@Override
+					public void mouseExited(MouseEvent e) 
+					{
+						image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
+					}
+				});
 				image_settings.setIcon(new ImageIcon(".\\assets\\images\\gear.png"));
 				image_settings.setBounds(1188, 99, 64, 64);
 				panel_vidWindow.add(image_settings);
@@ -157,7 +176,102 @@ public class LearnVideoWindow extends JPanel
 				JWebBrowser webBrowser = new JWebBrowser();
 				webBrowser.setBounds(97, 178, 1055, 467);
 				webBrowser.setBarsVisible(false);
-			    webBrowser.navigate("https://www.youtube.com/embed/R1seVzmeM-8");
+				
+				switch(test.getCurrentTest())
+				{
+					case "Addition Video":
+					
+					if(student.getGradeLevel() == 0)
+					{
+						url = "https://www.youtube.com/embed/fsTD_jqseBA";
+					}
+					else if(student.getGradeLevel() == 1)
+					{
+						url = "https://www.youtube.com/embed/uQiUTFO78Jk";
+					}
+					else if(student.getGradeLevel() == 2)
+					{
+						url = "https://www.youtube.com/embed/ayFAh4VNMFA";
+					}
+						
+					break;
+					
+					case "Subtraction Video":
+						
+						if(student.getGradeLevel() == 0)
+						{
+							url = "https://www.youtube.com/embed/AO9bHbUdg-M";
+						}
+						else if(student.getGradeLevel() == 1)
+						{
+							url = "https://www.youtube.com/embed/ySkjVZ0ym7k";
+						}
+						else if(student.getGradeLevel() == 2)
+						{
+							url = "https://www.youtube.com/embed/ayFAh4VNMFA";
+						}
+							
+						break;
+						
+					case "Multiplication Video":
+						
+						if(student.getGradeLevel() == 3)
+						{
+							url = "https://www.youtube.com/embed/LD4zp8ruvaI";
+						}
+						else if(student.getGradeLevel() == 4)
+						{
+							url = "https://www.youtube.com/embed/PZjIT9CH6bM";
+						}
+							
+						break;
+						
+					case "Division Video":
+						
+						if(student.getGradeLevel() == 3)
+						{
+							url = "https://www.youtube.com/embed/gjqxhtjyfC4";
+						}
+						else if(student.getGradeLevel() == 4)
+						{
+							url = "https://www.youtube.com/embed/up_xKZ6GeUg";
+						}
+							
+						break;	
+						
+					case "Counting to 10":
+						
+						url = "https://www.youtube.com/embed/DR-cfDsHCGA";
+						
+					break;
+					
+					case "Word Problem Comparison to 20":
+						
+						url = "https://www.youtube.com/embed/FDP0mbsVX9A";
+						
+					break;
+					
+					case "Money Word Problems":
+						
+						url = "https://www.youtube.com/embed/TnSj6QCnX1o ";
+						
+					break;
+					
+					case "Unknowns in Multiplication":
+						
+						url = "https://www.youtube.com/embed/TqAtt3g6Tkc";
+						
+					break;
+					
+					case "Decimals to Fractions":
+						
+						url = "https://www.youtube.com/embed/qesj2jpktaE";
+						
+					break;
+				}
+				
+				
+				webBrowser.navigate(url);
 				panel_vidWindow.add(webBrowser);
 				
 	}
