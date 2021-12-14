@@ -158,7 +158,7 @@ public class AccountSettings extends JPanel
 				JLabel changePassword = new JLabel("Change Password");
 				changePassword.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 				changePassword.setForeground(Color.WHITE);
-				changePassword.setBounds(97, 270, 533, 119);
+				changePassword.setBounds(97, 184, 533, 119);
 				panel_accSettings.add(changePassword);
 				
 				changePassword.addMouseListener(new MouseAdapter() 
@@ -183,7 +183,7 @@ public class AccountSettings extends JPanel
 				JLabel changeEmail = new JLabel("Change Email Address");
 				changeEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
 				changeEmail.setForeground(Color.WHITE);
-				changeEmail.setBounds(97, 372, 533, 110);
+				changeEmail.setBounds(97, 314, 533, 110);
 				panel_accSettings.add(changeEmail);
 				
 				changeEmail.addMouseListener(new MouseAdapter() 
@@ -208,7 +208,7 @@ public class AccountSettings extends JPanel
 				JLabel changeUsername = new JLabel("Change Username");
 				changeUsername.setForeground(Color.WHITE);
 				changeUsername.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-				changeUsername.setBounds(97, 479, 376, 96);
+				changeUsername.setBounds(97, 435, 376, 96);
 				panel_accSettings.add(changeUsername);
 				
 				changeUsername.addMouseListener(new MouseAdapter() 
@@ -230,25 +230,6 @@ public class AccountSettings extends JPanel
 					}
 		        });
 				
-				JLabel verifyEmail = new JLabel("Verify Email Address");
-				verifyEmail.setForeground(Color.WHITE);
-				verifyEmail.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-				verifyEmail.setBounds(97, 202, 444, 64);
-				panel_accSettings.add(verifyEmail);
-				
-				verifyEmail.addMouseListener(new MouseAdapter() 
-		        {
-		            @Override
-		            public void mouseEntered(MouseEvent e) 
-		            {
-		            	verifyEmail.setForeground(new Color(0, 195, 255));
-		            }
-		            @Override
-		            public void mouseExited(MouseEvent e) 
-		            {
-		            	verifyEmail.setForeground(Color.WHITE);
-		            }
-		        });
 				
 				JLabel label = new JLabel("New label");
 				label.setBounds(1193, 670, -432, -417);

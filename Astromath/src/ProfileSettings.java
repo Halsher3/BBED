@@ -247,7 +247,8 @@ public class ProfileSettings extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						// Profile Pic page
+						PictureSelect panel_picSelect = new PictureSelect(lp, test, student, con);
+						switch_screen(panel_picSelect.getPanel(), lp, test, student, con);
 					}
 				});
 				
