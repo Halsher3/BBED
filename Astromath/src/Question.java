@@ -1,4 +1,10 @@
-
+/* Question class contains the number of Questions and the grade, this is a parent class that is used to pass 
+ * MultipleChoice, TrueOrFalse, and FillInTheBlank classes utility methods that will aid in question generation
+ * These methods include hasNoNegatives to check if  there are  negative numbers in the equation generation
+ * hasNoDuplicates, to check if there are no duplicates in the answer generation for the UI
+ * avoidNegatives, to avoid the creation of negatives by way of a transition number being used to swap the place of two numbers.
+ * 
+ */
 public class Question {
 	private static int numOfQuestions;
 	private static int grade;
