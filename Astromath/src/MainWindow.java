@@ -350,9 +350,10 @@ public class MainWindow extends JPanel
 				lp.add(panel_home);
 				
 				JLabel lblNewLabel = new JLabel("Level: " + student.getLevel());
+				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 				lblNewLabel.setForeground(Color.YELLOW);
 				lblNewLabel.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-				lblNewLabel.setBounds(545, 601, 168, 36);
+				lblNewLabel.setBounds(481, 601, 278, 36);
 				panel_home.add(lblNewLabel);
 				
 		

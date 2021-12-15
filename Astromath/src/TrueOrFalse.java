@@ -192,13 +192,13 @@ public class TrueOrFalse extends Question {
 			prompt = rand.nextInt(2);
 			maxNum = 180;
 			names1[0] = "Bruce";
-			names1[1] = "Brandon";
+			names1[1] = "Brand";
 			names1[2] = "Eddy";
 			names1[3] = "Dylan";
-			object[0] = " a Soccer game";
+			object[0] = "a game";
 			object[1] = "class";
 			object[2] = "store";
-			object[3] = "a basketball game";
+			object[3] = "a game";
 			int[] minutes = new int[3];
 
 			minutes[0] = rand.nextInt(5) + 10;
@@ -213,8 +213,8 @@ public class TrueOrFalse extends Question {
 
 			case 0:
 				statement = String.format(
-						"%s has to go to %s. It takes %d minutes to get there, and it's %d:05 now. Does %s have enough time to get there if it closes at %d:%d?",
-						names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time, names1[name1Roll],
+						"%s has to go to %s. It takes %d minutes to get there. It's %d:05. Do they have time to get there if it closes at %d:%d?",
+						names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time,
 						(time + 1), minutes[minutesRand]);
 				if (firstNum < 60 + minutes[minutesRand]) {
 					TFStatement[1] = "True";
@@ -226,8 +226,8 @@ public class TrueOrFalse extends Question {
 			case 1:
 				firstNum = rand.nextInt(55) + 5;
 				statement = String.format(
-						"%s has to go to %s. It takes %d minutes to get there, and it's %d:05 now. Does %s have enough time to get there if it closes at %d:%d?",
-						names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time, names1[name1Roll],
+						"%s has to go to %s. It takes %d minutes to get there. It's %d:05. Do they have time to get there if it closes at %d:%d?",
+						names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time,
 						(time + 1), minutes[minutesRand]);
 				TFStatement[1] = "True";
 				break;

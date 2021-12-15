@@ -268,7 +268,7 @@ import javax.swing.JTextArea;
 			
 			JLabel image_student = new JLabel("");
 			image_student.setVisible(false);
-			image_student.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\homework.png"));
+			image_student.setIcon(new ImageIcon(".\\Assets\\images\\homework.png"));
 			image_student.setBounds(351, 282, 480, 480);
 			panel_TestQuestions.add(image_student);
 			
@@ -283,7 +283,7 @@ import javax.swing.JTextArea;
 			} else {
 			//TEST COMPONENTS
 			
-			JLabel practiceProblems = new JLabel("Practice Problems");
+			JLabel practiceProblems = new JLabel(test.getCurrentTest());
 			practiceProblems.setHorizontalAlignment(SwingConstants.CENTER);
 			practiceProblems.setForeground(new Color(0, 195, 255));
 			practiceProblems.setFont(new Font("a Atmospheric", Font.PLAIN, 30));
@@ -303,6 +303,7 @@ import javax.swing.JTextArea;
 			
 			JLabel lblNewLabel = new JLabel(String.format("%d",  diff));
 			lblNewLabel.setBounds(634, 61, 46, 14);
+			lblNewLabel.setVisible(false);
 			panel_TestQuestions.add(lblNewLabel);
 			
 
@@ -529,7 +530,7 @@ import javax.swing.JTextArea;
 					equation1 = "x";
 				}
 				else if(equation[1] == 3){
-					equation1 = "�";
+					equation1 = "/";
 				}
 				JLabel mpEquation3 = new JLabel(equation1);
 				mpEquation3.setForeground(new Color(255, 255, 255));
@@ -552,10 +553,16 @@ import javax.swing.JTextArea;
 				
 				//EQUATION NUMBERS
 				if(tofPhrase[0].length() < 20) {
+					
 					font = 50;
 					tofAdjustX = 0;
 					panel_TestQuestions.revalidate();
 					panel_TestQuestions.repaint();
+				}
+				else if(tofPhrase[0].length() > 50) 
+				{
+					font = 16;
+				
 				}
 				
 				
@@ -679,7 +686,7 @@ font = 50;
 	lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	lblNewLabel_1.setFont(new Font("A-Space Demo", Font.PLAIN, 22));
 	lblNewLabel_1.setForeground(new Color(127, 255, 212));
-	lblNewLabel_1.setBounds(964, 602, 288, 68);
+	lblNewLabel_1.setBounds(964, 580, 288, 68);
 	panel_TestQuestions.add(lblNewLabel_1);
 	
 	lblNewLabel_1.addMouseListener(new MouseAdapter() {
