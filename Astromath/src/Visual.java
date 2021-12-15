@@ -75,7 +75,10 @@ public class Visual extends JFrame
 			frame.setBounds(100, 100, 1278, 720);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.getContentPane().setLayout(null);
+			frame.setTitle("Astromath");
 			
+			ImageIcon img = new ImageIcon(".\\\\assets\\\\images\\\\icon.png");
+			frame.setIconImage(img.getImage());
 		
 			
 			int x = ((width / 2) - (width / 3));
