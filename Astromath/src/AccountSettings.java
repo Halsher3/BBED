@@ -81,7 +81,7 @@ public class AccountSettings extends JPanel {
 		labelLogo.setBounds(97, 21, 318, 85);
 		panel_accSettings.add(labelLogo);
 
-		// Does a hover effect on the AstroMath text with the home butto
+		// Does a hover effect on the AstroMath text with the home button
 
 		labelLogo.addMouseListener(new MouseAdapter() {
 			@Override
