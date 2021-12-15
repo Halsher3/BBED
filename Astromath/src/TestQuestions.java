@@ -49,7 +49,14 @@ public class TestQuestions {
 	private JPanel panel_TestQuestions = new JPanel();
 
 	/**
-	 * Create the application.
+	 * Creates the TestQuestions page, the page where you do your test questions on.
+	 * 
+	 * Depending on what type of test, which was passed through the constructor, the
+	 * student will be greeted to those specific problems with randomization.
+	 * Once the student is finished with the test, they are greeted with a button to
+	 * press to head to the results page. Once that button is pressed, they gain a
+	 * level-up for doing the test and the test information, level, and grade are
+	 * set in the database before moving onto the results page.
 	 */
 	public TestQuestions(JLayeredPane lp, Test test, int questionSelect, int operand, Student student, Connection con) {
 		int grade = student.getGradeLevel();
@@ -61,7 +68,6 @@ public class TestQuestions {
 		home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
 		home.setBounds(40, 21, 64, 74);
 		panel_TestQuestions.add(home);
-		// Placeholder variables to use for Student name and Student grade
 
 		// Code for the logo in the upper left corner and Astromath text
 
@@ -106,9 +112,6 @@ public class TestQuestions {
 				astromath.setForeground(Color.WHITE);
 			}
 		});
-
-		// The Welcome back message given when a student logs in, add in boolean to get
-		// rid of "Welcome back," and just leave in the name later
 
 		label_name = new JLabel(student.getName());
 		label_name.setHorizontalAlignment(SwingConstants.RIGHT);

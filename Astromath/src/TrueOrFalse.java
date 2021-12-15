@@ -214,8 +214,8 @@ public class TrueOrFalse extends Question {
 			case 0:
 				statement = String.format(
 						"%s has to go to %s. It takes %d minutes to get there. It's %d:05. Do they have time to get there if it closes at %d:%d?",
-						names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time,
-						(time + 1), minutes[minutesRand]);
+						names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time, (time + 1),
+						minutes[minutesRand]);
 				if (firstNum < 60 + minutes[minutesRand]) {
 					TFStatement[1] = "True";
 
@@ -227,8 +227,8 @@ public class TrueOrFalse extends Question {
 				firstNum = rand.nextInt(55) + 5;
 				statement = String.format(
 						"%s has to go to %s. It takes %d minutes to get there. It's %d:05. Do they have time to get there if it closes at %d:%d?",
-						names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time,
-						(time + 1), minutes[minutesRand]);
+						names1[name1Roll], object[objectRoll].toLowerCase(), firstNum, time, (time + 1),
+						minutes[minutesRand]);
 				TFStatement[1] = "True";
 				break;
 
