@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,7 +37,7 @@ public class ProfileSettings extends JPanel
 	private JPanel panel_profileSettings = new JPanel();
 	private JTextField textbox_state;
 	private JTextField textfield_aboutMe;
-
+	private String pic = "";
 	/**
 	 * Launch the application.
 	 */
@@ -168,18 +169,6 @@ public class ProfileSettings extends JPanel
 				label_profileSettings.setBounds(68, 77, 782, 96);
 				panel_profileSettings.add(label_profileSettings);
 				
-			
-				
-				JLabel image_pfp = new JLabel("");
-				image_pfp.setIcon(new ImageIcon(".\\Assets\\images\\"));
-				image_pfp.setBounds(110, 161, 88, 83);
-				panel_profileSettings.add(image_pfp);
-				
-				JLabel label_name = new JLabel("Name:");
-				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
-				label_name.setForeground(Color.WHITE);
-				label_name.setBounds(100, 255, 336, 45);
-				panel_profileSettings.add(label_name);
 				
 				JTextField textbox_name = new JTextField();
 				textbox_name.setFont(new Font("A-Space Demo", Font.PLAIN, 42));
@@ -189,6 +178,91 @@ public class ProfileSettings extends JPanel
 				textbox_name.setBorder(new LineBorder(new Color(0, 195, 255), 5, true));
 				panel_profileSettings.add(textbox_name);
 				textbox_name.setColumns(10);
+				
+
+				try {
+	               String query = "Select userProfilePic from profileinfo where userID = '" + student.getAccNum() + "'";
+	                Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	                ResultSet rs = st.executeQuery(query);
+	                rs.first();
+	                
+	                pic = rs.getString(1);
+					
+				}catch(SQLException e0) {
+					e0.printStackTrace();
+				}
+				
+				
+				
+				JButton button_submit = new JButton("Save");
+				button_submit.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						// DATABASE STUFF HERE AND THEN POPUP
+						try {
+							
+							String aboutMe = textfield_aboutMe.getText();
+							String state = textbox_state.getText();
+							
+							PreparedStatement st = con.prepareStatement("Update profileinfo set userAboutMe = ?, profileState = ? where userID = ?");
+							st.setString(1, aboutMe);
+							st.setString(2, state);
+							st.setInt(3, student.getAccNum());
+							
+							st.executeUpdate();
+						
+
+
+						} catch (SQLException e1) {
+
+							e1.printStackTrace();
+						}
+						
+						try {
+							
+							
+							String name = textbox_name.getText();
+							String query = "Update userinfo set name = '" + name + "' where userID = '" + student.getAccNum() + "'";
+							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+							st.executeUpdate(query);
+							
+							
+							query = "Select name from userinfo where userID = '" + student.getAccNum() + "'";
+							st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+							ResultSet rs = st.executeQuery(query);
+							rs.first();
+							student.setName(rs.getString(1));
+							
+
+						
+
+
+						} catch (SQLException e1) {
+
+							e1.printStackTrace();
+						}
+						
+						
+						Profile panel_profile = new Profile(lp, test, student, con);
+						switch_screen(panel_profile.getPanel(), lp, test, student, con);
+					}
+				});
+				
+
+				
+				JLabel image_pfp = new JLabel("");
+				image_pfp.setIcon(new ImageIcon(".\\Assets\\images\\" + pic));
+				image_pfp.setBounds(110, 161, 88, 83);
+				panel_profileSettings.add(image_pfp);
+				
+				JLabel label_name = new JLabel("Name:");
+				label_name.setFont(new Font("A-Space Demo", Font.PLAIN, 38));
+				label_name.setForeground(Color.WHITE);
+				label_name.setBounds(100, 255, 336, 45);
+				panel_profileSettings.add(label_name);
+				
+			
 				
 				JLabel label_level = new JLabel(String.format("%d", student.getLevel()));
 				label_level.setForeground(Color.WHITE);
@@ -252,55 +326,7 @@ public class ProfileSettings extends JPanel
 					}
 				});
 				
-				JButton button_submit = new JButton("Save");
-				button_submit.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) 
-					{
-						// DATABASE STUFF HERE AND THEN POPUP
-						try {
-							
-							String aboutMe = textfield_aboutMe.getText();
-							String state = textbox_state.getText();
-							
-							String query = "Update profileinfo set userAboutMe = '" + aboutMe + "', profileState = '" + state +  "' where userID = '" + student.getAccNum() + "'";
-							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-							st.executeUpdate(query);
-						
 
-
-						} catch (SQLException e1) {
-
-							e1.printStackTrace();
-						}
-						
-						try {
-							
-							
-							String name = textbox_name.getText();
-							String query = "Update userinfo set name = '" + name + "' where userID = '" + student.getAccNum() + "'";
-							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-							st.executeUpdate(query);
-							
-							
-							query = "Select name from userinfo where userID = '" + student.getAccNum() + "'";
-							st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-							ResultSet rs = st.executeQuery(query);
-							rs.first();
-							student.setName(rs.getString(1));
-						
-
-
-						} catch (SQLException e1) {
-
-							e1.printStackTrace();
-						}
-						
-						
-						Profile panel_profile = new Profile(lp, test, student, con);
-						switch_screen(panel_profile.getPanel(), lp, test, student, con);
-					}
-				});
 				button_submit.setBackground(new Color(26, 38, 83));
 				button_submit.setHorizontalAlignment(SwingConstants.CENTER);
 				button_submit.setFont(new Font("A-Space Demo", Font.PLAIN, 22));

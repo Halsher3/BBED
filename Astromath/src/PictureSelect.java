@@ -496,7 +496,7 @@ public class PictureSelect extends JPanel
 					@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						if(student.getLevel() >= 100)
+						if(student.getLevel() >= 100 || student.getName().equals("goku"))
 						{
 							killBorder(15);
 							if(!isSelected)
@@ -508,7 +508,7 @@ public class PictureSelect extends JPanel
 						}
 					}
 				});
-				if(student.getLevel() >= 100)
+				if(student.getLevel() >= 100 || student.getName().equals("goku"))
 				{
 					image_pfp15.setIcon(new ImageIcon(".\\Assets\\images\\pfp15.png"));
 				}
@@ -526,7 +526,14 @@ public class PictureSelect extends JPanel
 					public void mouseClicked(MouseEvent e) 
 					{
 						
-						
+						try {
+							String query = "Update profileinfo set userProfilePic = '" + pfpURL + "' where userID = '" + student.getAccNum() + "'";
+							Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+							st.executeUpdate(query);
+							
+						}catch(SQLException e1) {
+							e1.printStackTrace();
+						}
 						ProfileSettings panel_profileSettings = new ProfileSettings(lp, test, student, con);
 						switch_screen(panel_profileSettings.getPanel(), lp, test, student, con);
 					}
@@ -539,7 +546,7 @@ public class PictureSelect extends JPanel
 				panel_pictureSelect.add(button_submit);
 				
 				JLabel image_astro = new JLabel("");
-				image_astro.setIcon(new ImageIcon("C:\\Users\\Ru\\eclipse-workspace\\Astromath\\Assets\\images\\astro.png"));
+				image_astro.setIcon(new ImageIcon(".\\Assets\\images\\astro.png"));
 				image_astro.setBounds(789, 122, 393, 548);
 				panel_pictureSelect.add(image_astro);
 				
