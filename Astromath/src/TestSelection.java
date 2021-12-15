@@ -430,8 +430,20 @@ public class TestSelection extends JPanel {
 		editorPane_2_1.setBounds(175, 439, 953, 74);
 		panel_testSelect.add(editorPane_2_1);
 		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(".\\Assets\\images\\astro.png"));
+		lblNewLabel.setBounds(-99, 291, 400, 475);
+		panel_testSelect.add(lblNewLabel);
 		
 		
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(".\\Assets\\images\\rocket.png"));
+		lblNewLabel_1.setBounds(742, 276, 549, 500);
+		panel_testSelect.add(lblNewLabel_1);
+		//donut toch, code diez if any img is move, or toched
+		
+			
 		try {
 			
 			String quer = "Select userID from testinfo where userID = '" + student.getAccNum() +"'";                    

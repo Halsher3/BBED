@@ -106,10 +106,17 @@ import javax.swing.JTextArea;
 			panel_practiceQuestions.setBackground(new Color(77,58,129));
 			panel_practiceQuestions.setLayout(null);
 			
-			JLabel home = new JLabel("");
-			home.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
-			home.setBounds(40, 21, 64, 74);
-			panel_practiceQuestions.add(home);
+			JLabel imageHome = new JLabel("");
+			imageHome.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					MainWindow panel_home = new MainWindow(lp, test, student, con);
+					switch_screen(panel_home.getPanel(), lp, test, student, con);
+				}
+			});
+			imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
+			imageHome.setBounds(40, 21, 64, 74);
+			panel_practiceQuestions.add(imageHome);
 			// Placeholder variables to use for Student name and Student grade
 			
 
@@ -262,12 +269,6 @@ import javax.swing.JTextArea;
 			progressBar.setString("EXP");
 			progressBar.setValue(diff);
 			panel_practiceQuestions.add(progressBar);
-			
-			
-
-
-			
-
 			
 
 			
@@ -644,6 +645,16 @@ case 2:
 
 }
 
+			//here
+			JLabel lblNewLabel = new JLabel("");
+			lblNewLabel.setIcon(new ImageIcon(".\\Assets\\images\\asteroid1.png"));
+			lblNewLabel.setBounds(-153, 105, 400, 400);
+			panel_practiceQuestions.add(lblNewLabel);
+			
+			JLabel lblNewLabel_2 = new JLabel("");
+			lblNewLabel_2.setIcon(new ImageIcon(".\\Assets\\images\\asteroidbelt.png"));
+			lblNewLabel_2.setBounds(1068, 481, 249, 200);
+			panel_practiceQuestions.add(lblNewLabel_2);
 						
 		}
 		public JPanel getPanel()

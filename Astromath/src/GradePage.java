@@ -37,8 +37,15 @@ public class GradePage extends JPanel {
 		panel_grades.setLayout(null);
 		
 		JLabel imageHome = new JLabel("");
-		imageHome.setBounds(40, 21, 64, 74);
+		imageHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainWindow panel_home = new MainWindow(lp, test, student, con);
+				switch_screen(panel_home.getPanel(), lp, test, student, con);
+			}
+		});
 		imageHome.setIcon(new ImageIcon(".\\assets\\images\\home.png"));
+		imageHome.setBounds(40, 21, 64, 74);
 		panel_grades.add(imageHome);
 		// Placeholder variables to use for Student name and Student grade
 		
@@ -254,19 +261,36 @@ public class GradePage extends JPanel {
 		panel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("Grade: " + grade4);
-		lblNewLabel_7.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
-		lblNewLabel_7.setForeground(new Color(0, 255, 153));
-		lblNewLabel_7.setBounds(740, 325, 183, 70);
-		panel.add(lblNewLabel_7);
+        lblNewLabel_7.setFont(new Font("A-Space Demo", Font.PLAIN, 28));
+        lblNewLabel_7.setForeground(new Color(0, 255, 153));
+        lblNewLabel_7.setBounds(740, 325, 183, 70);
+        panel.add(lblNewLabel_7);
 		
+		JLabel lblNewLabel_9 = new JLabel("");
+		lblNewLabel_9.setIcon(new ImageIcon(".\\Assets\\images\\asteroid1.png"));
+		lblNewLabel_9.setBounds(-67, 51, 400, 400);
+		panel_grades.add(lblNewLabel_9);
 		
+		JLabel lblNewLabel_8 = new JLabel("New label");
+		lblNewLabel_8.setBounds(606, -67, 400, 400);
+		lblNewLabel_8.setIcon(new ImageIcon(".\\Assets\\images\\satellite1.png"));
+		panel_grades.add(lblNewLabel_8);
+		//dont touch these or else the code will die fr fr -eddy
+
 	}
 
 	public JPanel getPanel()
 	{
 		return panel_grades;
 		
-	}
+		
+		
+		
+		
+		
+		
+		
+			}
 	public void switch_screen(JPanel p, JLayeredPane lp, Test test, Student student, Connection con)
 	{
 		lp.removeAll();
